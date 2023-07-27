@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Mappings\" />
+    <Folder Include="Common\Security\" />
+    <Folder Include="Common\Results\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Features\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Chatverse.Domain\Chatverse.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

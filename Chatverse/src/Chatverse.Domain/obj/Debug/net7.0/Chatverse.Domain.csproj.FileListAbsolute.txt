@@ -1,0 +1,12 @@
+C:\Chatverse\Chatverse\src\Chatverse.Domain\bin\Debug\net7.0\Chatverse.Domain.deps.json
+C:\Chatverse\Chatverse\src\Chatverse.Domain\bin\Debug\net7.0\Chatverse.Domain.dll
+C:\Chatverse\Chatverse\src\Chatverse.Domain\bin\Debug\net7.0\Chatverse.Domain.pdb
+C:\Chatverse\Chatverse\src\Chatverse.Domain\obj\Debug\net7.0\Chatverse.Domain.csproj.AssemblyReference.cache
+C:\Chatverse\Chatverse\src\Chatverse.Domain\obj\Debug\net7.0\Chatverse.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Chatverse\Chatverse\src\Chatverse.Domain\obj\Debug\net7.0\Chatverse.Domain.AssemblyInfoInputs.cache
+C:\Chatverse\Chatverse\src\Chatverse.Domain\obj\Debug\net7.0\Chatverse.Domain.AssemblyInfo.cs
+C:\Chatverse\Chatverse\src\Chatverse.Domain\obj\Debug\net7.0\Chatverse.Domain.csproj.CoreCompileInputs.cache
+C:\Chatverse\Chatverse\src\Chatverse.Domain\obj\Debug\net7.0\Chatverse.Domain.dll
+C:\Chatverse\Chatverse\src\Chatverse.Domain\obj\Debug\net7.0\refint\Chatverse.Domain.dll
+C:\Chatverse\Chatverse\src\Chatverse.Domain\obj\Debug\net7.0\Chatverse.Domain.pdb
+C:\Chatverse\Chatverse\src\Chatverse.Domain\obj\Debug\net7.0\ref\Chatverse.Domain.dll

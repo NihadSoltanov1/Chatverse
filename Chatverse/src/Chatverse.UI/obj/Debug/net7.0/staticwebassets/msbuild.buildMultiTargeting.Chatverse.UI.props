@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Chatverse.UI.props" />
+</Project>

@@ -1,0 +1,15 @@
+C:\Chatverse\Chatverse\src\Chatverse.Application\bin\Debug\net7.0\Chatverse.Application.deps.json
+C:\Chatverse\Chatverse\src\Chatverse.Application\bin\Debug\net7.0\Chatverse.Application.dll
+C:\Chatverse\Chatverse\src\Chatverse.Application\bin\Debug\net7.0\Chatverse.Application.pdb
+C:\Chatverse\Chatverse\src\Chatverse.Application\bin\Debug\net7.0\Chatverse.Domain.dll
+C:\Chatverse\Chatverse\src\Chatverse.Application\bin\Debug\net7.0\Chatverse.Domain.pdb
+C:\Chatverse\Chatverse\src\Chatverse.Application\obj\Debug\net7.0\Chatverse.Application.csproj.AssemblyReference.cache
+C:\Chatverse\Chatverse\src\Chatverse.Application\obj\Debug\net7.0\Chatverse.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Chatverse\Chatverse\src\Chatverse.Application\obj\Debug\net7.0\Chatverse.Application.AssemblyInfoInputs.cache
+C:\Chatverse\Chatverse\src\Chatverse.Application\obj\Debug\net7.0\Chatverse.Application.AssemblyInfo.cs
+C:\Chatverse\Chatverse\src\Chatverse.Application\obj\Debug\net7.0\Chatverse.Application.csproj.CoreCompileInputs.cache
+C:\Chatverse\Chatverse\src\Chatverse.Application\obj\Debug\net7.0\Chatverse.Application.csproj.CopyComplete
+C:\Chatverse\Chatverse\src\Chatverse.Application\obj\Debug\net7.0\Chatverse.Application.dll
+C:\Chatverse\Chatverse\src\Chatverse.Application\obj\Debug\net7.0\refint\Chatverse.Application.dll
+C:\Chatverse\Chatverse\src\Chatverse.Application\obj\Debug\net7.0\Chatverse.Application.pdb
+C:\Chatverse\Chatverse\src\Chatverse.Application\obj\Debug\net7.0\ref\Chatverse.Application.dll
