@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Mappings\" />
-    <Folder Include="Features\Command\AppUser\Register\" />
     <Folder Include="Features\Query\" />
   </ItemGroup>
 
