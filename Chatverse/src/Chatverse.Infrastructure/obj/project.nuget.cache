@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "CFeF1dF1Vw9VjrdcOaMl3qjZ+obo/uNnA+3mvf1nRQs1Ev9rSx+9+FxiHLUHc8w+0PUCJKhbksrlP6ywwN1slg==",
+  "dgSpecHash": "SW04yEE0RylR9nlmht7Gj0P61c/QEcNeApNBvZiSyMU8Gm7VtSjNM2dvsq57vPH8QRREKwz/U1v1SCxBOswXXA==",
   "success": true,
   "projectFilePath": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Infrastructure\\Chatverse.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.1.0\\mediatr.extensions.microsoft.dependencyinjection.11.1.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",

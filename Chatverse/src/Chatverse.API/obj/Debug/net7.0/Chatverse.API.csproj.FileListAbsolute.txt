@@ -86,3 +86,7 @@ C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\refint\Chatverse.API.d
 C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\Chatverse.API.pdb
 C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\Chatverse.API.genruntimeconfig.cache
 C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\ref\Chatverse.API.dll
+C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\MediatR.dll
+C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\MediatR.Contracts.dll
+C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

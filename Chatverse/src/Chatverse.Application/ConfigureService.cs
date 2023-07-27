@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Chatverse.Application
 {
-    internal class ConfigureService
+    public static class ConfigureServices
     {
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
+        {   
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+            return services;
+        }
+
     }
+
 }

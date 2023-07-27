@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "bfuvbTuHpoOXHSwjE+9TVhicqg1TcaHzQ+t86egXduazTj5laodkAEquoV6Qf04f4+q70WGzl3iZhVJgaQPkmw==",
+  "dgSpecHash": "aHmrgwtM0A6Nea3dwOLa8redrK3xbmP54y2/ZU4KNYph1eXm8FbL1pbhJIzER0KGxkhVGnVlzMU3Zn5PvFWFUQ==",
   "success": true,
   "projectFilePath": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Application\\Chatverse.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.1.0\\mediatr.extensions.microsoft.dependencyinjection.11.1.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",

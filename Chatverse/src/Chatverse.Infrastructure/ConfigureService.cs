@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Chatverse.Application.Common.Security.Jwt;
 
 namespace Chatverse.Infrastructure
 {
@@ -28,7 +29,7 @@ namespace Chatverse.Infrastructure
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
 
             services.AddScoped<AppDbContextInitialiser>();
-
+            services.AddScoped<ITokenHandler, TokenHandler>();
             services.AddTransient<IDateTime, DateTimeService>();
             return services;
         }

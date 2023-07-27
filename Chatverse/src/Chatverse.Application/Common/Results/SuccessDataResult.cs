@@ -6,20 +6,23 @@ using System.Threading.Tasks;
 
 namespace Chatverse.Application.Common.Results
 {
-    public record DataResult<T> : Result, IDataResult<T>
+    public record SuccessDataResult<T> : DataResult<T>
     {
-        public DataResult(T data, bool success, string message)
-            : base(success, message)
+        public SuccessDataResult(T data, string message) : base(data, true, message)
         {
-            Data = data;
-        }
 
-        public DataResult(T data, bool success)
-            : base(success)
+        }
+        public SuccessDataResult(T data) : base(data, true)
         {
-            this.Data = data;
-        }
 
-        public T Data { get; set; }
+        }
+        public SuccessDataResult(string message) : base(default, true, message)
+        {
+
+        }
+        public SuccessDataResult() : base(default, true)
+        {
+
+        }
     }
 }
