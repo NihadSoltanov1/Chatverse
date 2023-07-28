@@ -27,7 +27,7 @@ namespace Chatverse.Infrastructure
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<AppDbContext>());
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
-
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddScoped<AppDbContextInitialiser>();
             services.AddScoped<ITokenHandler, TokenHandler>();
             services.AddTransient<IDateTime, DateTimeService>();
