@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "9yL8+IsLg4VOVn7UTNrU0doIglRB723JfjduI70PyHaaPUC86a1M0U9/q+ASlAKtPSYA6uixFB7VJvncZB6bqQ==",
+  "dgSpecHash": "9KE8GvPNBPDt5Z+14r+xy+8/2s28g5BVbqkipIKGWZB4eT4fKjiv1U3L13Z8lKjWWYSAZNHbljBUmlEBeQkKsA==",
   "success": true,
   "projectFilePath": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\Chatverse.UI.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

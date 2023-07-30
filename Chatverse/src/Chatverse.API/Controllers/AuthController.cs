@@ -26,7 +26,7 @@ namespace Chatverse.API.Controllers
         public async Task<IActionResult> Login(LoginUserCommandRequest loginUserCommandRequest)
         {
             LoginUserCommandResponse loginUser = await _mediator.Send(loginUserCommandRequest);
-            return Ok(loginUser);
+            return Ok(loginUser.Token.AccessToken);
         }
     }
 }

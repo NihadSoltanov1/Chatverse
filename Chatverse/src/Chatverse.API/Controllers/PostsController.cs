@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Chatverse.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = "Bearer")]
     public class PostsController : ControllerBase
@@ -17,11 +17,12 @@ namespace Chatverse.API.Controllers
         {
             _mediator = mediator;
         }
-        [HttpPost]
-        public async Task<IActionResult> CreatePost(CreatePostCommandRequest createPostCommandRequest)
+        [HttpGet]
+        public async Task<IActionResult> CreatePost()
         {
-            await _mediator.Send(createPostCommandRequest);
-            return Ok();
+           
+            string myname = "Nihad";
+            return Ok(myname);
         }
     }
 }

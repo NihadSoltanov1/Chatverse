@@ -29,3 +29,5 @@ C:\Chatverse\Chatverse\src\Chatverse.UI\obj\Debug\net7.0\refint\Chatverse.UI.dll
 C:\Chatverse\Chatverse\src\Chatverse.UI\obj\Debug\net7.0\Chatverse.UI.pdb
 C:\Chatverse\Chatverse\src\Chatverse.UI\obj\Debug\net7.0\Chatverse.UI.genruntimeconfig.cache
 C:\Chatverse\Chatverse\src\Chatverse.UI\obj\Debug\net7.0\ref\Chatverse.UI.dll
+C:\Chatverse\Chatverse\src\Chatverse.UI\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Chatverse\Chatverse\src\Chatverse.UI\obj\Debug\net7.0\Chatverse.UI.csproj.CopyComplete

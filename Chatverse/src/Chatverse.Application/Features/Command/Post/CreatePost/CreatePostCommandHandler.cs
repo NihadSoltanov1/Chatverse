@@ -26,7 +26,7 @@ namespace Chatverse.Application.Features.Command.Post.CreatePost
         public async Task<IDataResult<CreatePostCommandRequest>> Handle(CreatePostCommandRequest request, CancellationToken cancellationToken)
         {
             var currentUser = await _userManager.FindByNameAsync(_currentUserService.UserName);
-            if (currentUser is null) throw new NotFoundException();
+            if (currentUser is null) throw new UnauthorizedLoginException("Login to your account to share post");
             Domain.Entities.Post post = new()
             {
                 AppUserId = currentUser.Id,
