@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "VGLVr0ezdvvMoicjssCgrw+cc/6XyAni5b1XiIUQsHy41f4CSs0v0AjT9ksCm0YO+rx9VGyzWSPT65SkymfDWw==",
+  "dgSpecHash": "qfGMiL9oasjyQFqy6xZShSxMEpCIt2EbD+R8v0ouv5MQUsoar2YSgQ8SASBt9FNvP/mCPylCcu3cN2FfifHq3g==",
   "success": true,
   "projectFilePath": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Application\\Chatverse.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\fluentvalidation\\11.6.0\\fluentvalidation.11.6.0.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.1.0\\mediatr.extensions.microsoft.dependencyinjection.11.1.0.nupkg.sha512",

@@ -31,3 +31,4 @@ C:\Chatverse\Chatverse\src\Chatverse.UI\obj\Debug\net7.0\Chatverse.UI.genruntime
 C:\Chatverse\Chatverse\src\Chatverse.UI\obj\Debug\net7.0\ref\Chatverse.UI.dll
 C:\Chatverse\Chatverse\src\Chatverse.UI\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Chatverse\Chatverse\src\Chatverse.UI\obj\Debug\net7.0\Chatverse.UI.csproj.CopyComplete
+C:\Chatverse\Chatverse\src\Chatverse.UI\bin\Debug\net7.0\FluentValidation.dll

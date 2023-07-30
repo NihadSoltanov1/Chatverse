@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "9KE8GvPNBPDt5Z+14r+xy+8/2s28g5BVbqkipIKGWZB4eT4fKjiv1U3L13Z8lKjWWYSAZNHbljBUmlEBeQkKsA==",
+  "dgSpecHash": "hhnm8sMBf1blAgFruGJFWbbI7u6xxIKor2YXhPly19RSYPedkxYahU4Fp5rAfjiY0kXL+vnQflYENLRYlq/fjg==",
   "success": true,
   "projectFilePath": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\Chatverse.UI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\fluentvalidation\\11.6.0\\fluentvalidation.11.6.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []

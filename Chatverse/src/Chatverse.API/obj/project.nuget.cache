@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "ZMz8P1XH7vvhMRc655XSoJN2620I0WikJz2uI5wF9JeOLtbEkMSSZkl1s8RfwZRd0YobUyB5imyfI+2bLydQKQ==",
+  "dgSpecHash": "+hwAnOeOtDvz8ddZ8zOfe5m6aYiqrJhXDcJ5dCLbORTzyhyO9T2SiLOyjxt8Ad72IL0sddMQoVrFpHfCKT2xwQ==",
   "success": true,
   "projectFilePath": "C:\\Chatverse\\Chatverse\\src\\Chatverse.API\\Chatverse.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\fluentvalidation\\11.6.0\\fluentvalidation.11.6.0.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",

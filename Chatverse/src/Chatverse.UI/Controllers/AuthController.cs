@@ -47,6 +47,10 @@ namespace Chatverse.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var jsonRegister = JsonConvert.SerializeObject(registerViewModel);
             StringContent content = new StringContent(jsonRegister, Encoding.UTF8, "application/json");
             var responseMessage = await _httpClient.PostAsync($"{baseUrl}/Auth/Register", content);

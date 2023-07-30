@@ -90,3 +90,6 @@ C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\MediatR.dll
 C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\MediatR.Contracts.dll
 C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\FluentValidation.dll
+C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
+C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll

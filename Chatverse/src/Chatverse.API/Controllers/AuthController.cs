@@ -19,6 +19,7 @@ namespace Chatverse.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserRegisterCommandRequest userRegisterCommandRequest)
         {
+           
             await _mediator.Send(userRegisterCommandRequest);
             return Ok();
         }
