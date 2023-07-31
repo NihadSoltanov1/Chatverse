@@ -17,12 +17,13 @@ namespace Chatverse.UI.Controllers
         public async Task<IActionResult> Login()
         {
             var accessToken = HttpContext.Session.GetString("JWToken");
-            if (accessToken is not null) return RedirectToAction("Index","Home");
+            if (accessToken is not null) return RedirectToAction("HomePage","Main");
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
+            if (!ModelState.IsValid) return View();
             var jsonLogin = JsonConvert.SerializeObject(loginViewModel);
             StringContent content = new StringContent(jsonLogin, Encoding.UTF8, "application/json");
             var responseMessage = await _httpClient.PostAsync($"{baseUrl}/Auth/Login", content);
@@ -33,7 +34,7 @@ namespace Chatverse.UI.Controllers
                 if (jwt is null) return NotFound();
                 HttpContext.Session.SetString("JWToken", jwt);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("HomePage", "Main");
             }
 
             return View(loginViewModel);

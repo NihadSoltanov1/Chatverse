@@ -1,7 +1,9 @@
 ﻿using Chatverse.Application.Features.Command.Post.CreatePost;
+using Chatverse.Application.Features.Query.Post.GetPostByFriend;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chatverse.API.Controllers
@@ -17,12 +19,19 @@ namespace Chatverse.API.Controllers
         {
             _mediator = mediator;
         }
-        [HttpGet]
-        public async Task<IActionResult> CreatePost()
+        [HttpPost]
+        public async Task<IActionResult> CreatePost(CreatePostCommandRequest createPostCommandRequest)
         {
-           
-            string myname = "Nihad";
-            return Ok(myname);
+
+            var response = await _mediator.Send(createPostCommandRequest);
+            return Ok(response);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetPostsByFriend()
+        {
+            GetPostByFriendQueryRequest request = new GetPostByFriendQueryRequest();
+           GetPostByFriendQueryResponse response =  await  _mediator.Send(request);
+            return Ok(response.Posts);
         }
     }
 }

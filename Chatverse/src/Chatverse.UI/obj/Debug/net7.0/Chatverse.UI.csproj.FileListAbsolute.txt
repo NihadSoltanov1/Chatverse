@@ -32,3 +32,8 @@ C:\Chatverse\Chatverse\src\Chatverse.UI\obj\Debug\net7.0\ref\Chatverse.UI.dll
 C:\Chatverse\Chatverse\src\Chatverse.UI\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Chatverse\Chatverse\src\Chatverse.UI\obj\Debug\net7.0\Chatverse.UI.csproj.CopyComplete
 C:\Chatverse\Chatverse\src\Chatverse.UI\bin\Debug\net7.0\FluentValidation.dll
+C:\Chatverse\Chatverse\src\Chatverse.UI\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Chatverse\Chatverse\src\Chatverse.UI\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Chatverse\Chatverse\src\Chatverse.UI\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Chatverse\Chatverse\src\Chatverse.UI\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Chatverse\Chatverse\src\Chatverse.UI\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
