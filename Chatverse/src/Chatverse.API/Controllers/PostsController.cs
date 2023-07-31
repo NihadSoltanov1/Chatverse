@@ -22,9 +22,8 @@ namespace Chatverse.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePost(CreatePostCommandRequest createPostCommandRequest)
         {
-
             var response = await _mediator.Send(createPostCommandRequest);
-            return Ok(response);
+            return Ok(response.Message);
         }
         [HttpGet]
         public async Task<IActionResult> GetPostsByFriend()
