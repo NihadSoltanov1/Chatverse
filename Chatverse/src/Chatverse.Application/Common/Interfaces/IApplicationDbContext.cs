@@ -15,6 +15,7 @@ namespace Chatverse.Application.Common.Interfaces
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<Like> Likes { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<PostImage> PostImages { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

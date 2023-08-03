@@ -26,6 +26,8 @@ namespace Chatverse.Infrastructure.Persistance
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<Like> Likes { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<PostImage> PostImages { get ; set ; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
@@ -72,7 +74,8 @@ namespace Chatverse.Infrastructure.Persistance
                 .WithMany(p => p.Likes)
                 .HasForeignKey(l => l.PostId)
                 .OnDelete(DeleteBehavior.Restrict);
-
+           builder.Entity<PostImage>().HasOne(i=>i.Post).WithMany(i=>i.PostImages).HasForeignKey(c => c.PostId)
+                .OnDelete(DeleteBehavior.Restrict);
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

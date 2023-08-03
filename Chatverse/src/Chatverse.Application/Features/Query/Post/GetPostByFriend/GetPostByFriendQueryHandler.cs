@@ -41,7 +41,7 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByFriend
                     {
                         FullName = sharePostUser.FullName,
                         Content = post.Content,
-                        Media = post.MediaLocation,
+                       // Media = post.MediaLocation,
                         CreateDate = post.CreatedDate
                     };
 

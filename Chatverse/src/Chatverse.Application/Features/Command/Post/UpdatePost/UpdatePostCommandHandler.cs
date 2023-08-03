@@ -29,7 +29,7 @@ namespace Chatverse.Application.Features.Command.Post.UpdatePost
                 case { Media: null, Content: null }: _context.Posts.Update(updatePost); break;
                 default: 
                     updatePost.Content = request.Content;
-                    updatePost.MediaLocation = request.Media;
+                   // updatePost.MediaLocation = request.Media;
                     break;
             }
             await _context.SaveChangesAsync(cancellationToken);

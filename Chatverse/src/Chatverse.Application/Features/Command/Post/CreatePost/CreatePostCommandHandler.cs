@@ -1,6 +1,7 @@
 ﻿using Chatverse.Application.Common.Interfaces;
 using Chatverse.Application.Common.Results;
 using Chatverse.Application.Exceptions;
+using Chatverse.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -31,10 +32,20 @@ namespace Chatverse.Application.Features.Command.Post.CreatePost
             {
                 AppUserId = currentUser.Id,
                 Content = request.Content,
-                MediaLocation = request.MediaLocation
             };
             await _context.Posts.AddAsync(post);
             await _context.SaveChangesAsync(cancellationToken);
+            foreach(string path in request.MediaLocation)
+            {
+                PostImage postImage = new PostImage
+                {
+                    PostId = post.Id,
+                    FilePath = path
+                };
+                await _context.PostImages.AddAsync(postImage);
+                await _context.SaveChangesAsync(cancellationToken);
+            }
+                 
             return new SuccessDataResult<CreatePostCommandRequest>(request, "Post added successfully");
         }
     }

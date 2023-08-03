@@ -7861,6 +7861,14 @@
       "PackagePath": "staticwebassets\\chatverse\\uitheme.net\\sociala\\user-page.html"
     },
     {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\downl6oad.jpeg",
+      "PackagePath": "staticwebassets\\postfiles\\downl6oad.jpeg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\download.jpg",
+      "PackagePath": "staticwebassets\\postfiles\\download.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Chatverse.UI.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

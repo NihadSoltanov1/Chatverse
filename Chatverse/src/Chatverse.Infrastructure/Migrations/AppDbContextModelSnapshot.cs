@@ -141,9 +141,6 @@ namespace Chatverse.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MediaLocation")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
@@ -152,6 +149,28 @@ namespace Chatverse.Infrastructure.Migrations
                     b.HasIndex("AppUserId");
 
                     b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("Chatverse.Domain.Entities.PostImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("PostImages");
                 });
 
             modelBuilder.Entity("Chatverse.Domain.Identity.AppRole", b =>
@@ -435,6 +454,17 @@ namespace Chatverse.Infrastructure.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("Chatverse.Domain.Entities.PostImage", b =>
+                {
+                    b.HasOne("Chatverse.Domain.Entities.Post", "Post")
+                        .WithMany("PostImages")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Chatverse.Domain.Identity.AppRole", null)
@@ -491,6 +521,8 @@ namespace Chatverse.Infrastructure.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Likes");
+
+                    b.Navigation("PostImages");
                 });
 
             modelBuilder.Entity("Chatverse.Domain.Identity.AppUser", b =>
