@@ -21,6 +21,27 @@
         .owl-stage {
             display: flex;
         }
+
+
+        .image-container {
+            display: inline-block;
+            position: relative;
+            margin-right: 10px;
+        }
+
+        .delete-icon {
+            color: white;
+            background-color: darkred;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
     </style>
 
 </head>
@@ -474,10 +495,42 @@
     </div>
 
 
+    <script>
+        document.getElementById("uploadLink").addEventListener("click", function () {
+            document.getElementById("fileInput").click();
+        });
 
+        document.getElementById("fileInput").addEventListener("change", function () {
+            var imagePreview = document.getElementById('imagePreview');
+            imagePreview.innerHTML = ''; // Önceki resim önizlemelerini temizleyelim.
 
+            var images = Array.from(this.files);
+            images.forEach(function (image, index) {
+                var div = document.createElement('div');
+                div.className = 'image-container';
 
+                var img = document.createElement('img');
+                img.src = URL.createObjectURL(image);
+                img.style.width = '100px';
+                img.style.height = '100px';
 
+                var deleteIcon = document.createElement('span');
+                deleteIcon.innerHTML = 'X';
+                deleteIcon.className = 'delete-icon';
+                deleteIcon.addEventListener('click', function () {
+                    imagePreview.removeChild(div);
+                });
+
+                div.appendChild(img);
+                div.appendChild(deleteIcon);
+
+                imagePreview.appendChild(div);
+            });
+
+            // Görsel önizlemeyi göster
+            imagePreview.style.display = 'block';
+        });
+    </script>
 
     <script src="~/chatverse/uitheme.net/sociala/js/plugin.js"></script>
 

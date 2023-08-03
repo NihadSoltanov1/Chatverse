@@ -93,3 +93,4 @@ C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\Microsoft.AspNetCore.A
 C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\FluentValidation.dll
 C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
 C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\Chatverse.API.staticwebassets.runtime.json

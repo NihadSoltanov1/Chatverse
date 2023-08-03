@@ -25,4 +25,8 @@
     <ProjectReference Include="..\Chatverse.Infrastructure\Chatverse.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>
