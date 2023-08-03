@@ -7861,12 +7861,20 @@
       "PackagePath": "staticwebassets\\chatverse\\uitheme.net\\sociala\\user-page.html"
     },
     {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\design-medium.jpg",
+      "PackagePath": "staticwebassets\\postfiles\\design-medium.jpg"
+    },
+    {
       "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\downl6oad.jpeg",
       "PackagePath": "staticwebassets\\postfiles\\downl6oad.jpeg"
     },
     {
       "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\download.jpg",
       "PackagePath": "staticwebassets\\postfiles\\download.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\photo-1615663245857-ac93bb7c39e7.jpeg",
+      "PackagePath": "staticwebassets\\postfiles\\photo-1615663245857-ac93bb7c39e7.jpeg"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Chatverse.UI.Microsoft.AspNetCore.StaticWebAssets.props",

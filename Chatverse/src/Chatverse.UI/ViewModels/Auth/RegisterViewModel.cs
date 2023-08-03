@@ -12,5 +12,6 @@ namespace Chatverse.UI.ViewModels.Auth
         public string Password { get; set; }
         [DataType(DataType.Password), Compare(nameof(Password))]
         public string PasswordConfirm { get; set; }
+        public IFormFile? ProfilePicture { get; set; }
     }
 }

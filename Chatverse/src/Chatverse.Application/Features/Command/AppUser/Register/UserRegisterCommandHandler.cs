@@ -31,7 +31,8 @@ namespace Chatverse.Application.Features.Command.AppUser.Register
             {
                 FullName = request.FullName,
                 UserName = request.Username,
-                Email = request.Email
+                Email = request.Email,
+                ProfilePicture = request.ProfilePicture
             };
             IdentityResult identityResult = await _userManager.CreateAsync(newUser, request.Password);
             if (!identityResult.Succeeded) throw new UserCreateFailedException("An unexpected error occurred while creating the user!");

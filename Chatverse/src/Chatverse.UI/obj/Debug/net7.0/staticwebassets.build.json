@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "K1ypGQJmJ1SBENFMrZrCWdlnKlsRMFCXCxFpzxWduQg=",
+  "Hash": "I4Er59bmplkNm8oVVhEPo2mEaMnWoifSPqXedAPxiro=",
   "Source": "Chatverse.UI",
   "BasePath": "_content/Chatverse.UI",
   "Mode": "Default",
@@ -33439,6 +33439,23 @@
       "OriginalItemSpec": "wwwroot\\chatverse\\uitheme.net\\sociala\\user-page.html"
     },
     {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\design-medium.jpg",
+      "SourceId": "Chatverse.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\",
+      "BasePath": "_content/Chatverse.UI",
+      "RelativePath": "postfiles/design-medium.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\postfiles\\design-medium.jpg"
+    },
+    {
       "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\downl6oad.jpeg",
       "SourceId": "Chatverse.UI",
       "SourceType": "Discovered",
@@ -33471,6 +33488,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\postfiles\\download.jpg"
+    },
+    {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\photo-1615663245857-ac93bb7c39e7.jpeg",
+      "SourceId": "Chatverse.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\",
+      "BasePath": "_content/Chatverse.UI",
+      "RelativePath": "postfiles/photo-1615663245857-ac93bb7c39e7.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\postfiles\\photo-1615663245857-ac93bb7c39e7.jpeg"
     }
   ]
 }

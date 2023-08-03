@@ -1,4 +1,5 @@
-﻿using Chatverse.UI.ViewModels.Auth;
+﻿using Chatverse.UI.DTOs.Auth;
+using Chatverse.UI.ViewModels.Auth;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -52,7 +53,23 @@ namespace Chatverse.UI.Controllers
             {
                 return View();
             }
-            var jsonRegister = JsonConvert.SerializeObject(registerViewModel);
+            string returnPath = String.Empty;
+            if (registerViewModel.ProfilePicture != null && registerViewModel.ProfilePicture.Length > 0)
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/profilepictures", registerViewModel.ProfilePicture.FileName);
+                using var stream = new FileStream(path, FileMode.Create);
+                returnPath = "profilepictures/" + registerViewModel.ProfilePicture.FileName;
+            }
+            RegisterDto registerDto = new RegisterDto()
+            {
+                FullName = registerViewModel.FullName,
+                Email = registerViewModel.Email,
+                Password = registerViewModel.Password,
+                Username = registerViewModel.Username,
+                PasswordConfirm = registerViewModel.PasswordConfirm,
+                ProfilePicture = returnPath
+            };
+            var jsonRegister = JsonConvert.SerializeObject(registerDto);
             StringContent content = new StringContent(jsonRegister, Encoding.UTF8, "application/json");
             var responseMessage = await _httpClient.PostAsync($"{baseUrl}/Auth/Register", content);
             return responseMessage.IsSuccessStatusCode ? RedirectToAction("Login", "Auth") : View(registerViewModel);
