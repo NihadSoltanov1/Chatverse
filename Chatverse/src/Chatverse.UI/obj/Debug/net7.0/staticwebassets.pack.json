@@ -7877,6 +7877,14 @@
       "PackagePath": "staticwebassets\\postfiles\\photo-1615663245857-ac93bb7c39e7.jpeg"
     },
     {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\t-11.jpg",
+      "PackagePath": "staticwebassets\\postfiles\\t-11.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\design-medium.jpg",
+      "PackagePath": "staticwebassets\\profilepictures\\design-medium.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Chatverse.UI.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

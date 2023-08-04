@@ -1,6 +1,4 @@
-﻿@using Chatverse.UI.ViewModels.Post;
-@model CreatePostViewModel
-
+﻿
 
 
 <div class="card w-100 shadow-xss rounded-xxl border-0 ps-4 pt-4 pe-4 pb-3 mb-3">
@@ -10,7 +8,7 @@
      <form method="post" asp-action="CreatePost" asp-controller="Posts" enctype="multipart/form-data">
     <div class="card-body p-0 mt-3 position-relative">
             <figure class="avatar position-absolute ms-2 mt-1 top-5"><img src="~/chatverse/uitheme.net/sociala/images/user-8.png" alt="image" class="shadow-sm rounded-circle w30"></figure>
-        <textarea  asp-for="Content" class="h100 bor-0 w-100 rounded-xxl p-2 ps-5 font-xssss text-grey-500 fw-500 border-light-md theme-dark-bg" cols="30" rows="10" placeholder="What's on your mind?"></textarea>
+        <textarea  name="Content" class="h100 bor-0 w-100 rounded-xxl p-2 ps-5 font-xssss text-grey-500 fw-500 border-light-md theme-dark-bg" cols="30" rows="10" placeholder="What's on your mind?"></textarea>
     </div>
     <div class="card-body d-flex p-0 mt-0">
         <a href="#" class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"><i class="font-md text-danger feather-video me-2"></i><span class="d-none-xs">Live Video</span></a>
@@ -24,6 +22,6 @@
     <div id="imagePreview" class="card-body position-relative" style="display: none;">
         <!-- Resim önizleme alanı -->
     </div>
-    <input type="file" id="fileInput" style="display:none" asp-for="Media" multiple accept="image/*">
+    <input type="file" id="fileInput" style="display:none" name="Media" multiple accept="image/*">
     </form>
 </div>
