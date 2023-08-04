@@ -15,7 +15,7 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByFriend
     {
         public string FullName { get; set; }
         public string? Content { get; set; }
-        public string? Media { get; set; }
+        public List<string>? Media { get; set; }
         public DateTime CreateDate { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Chatverse.Application.Common.Interfaces;
+using Chatverse.Domain.Entities;
 using Chatverse.Domain.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -32,6 +33,9 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByFriend
             {
                 List<Domain.Entities.Post> getPostByFriend = await _context.Posts.Where(x => x.AppUserId == friendship.ReceiverId).ToListAsync();
                 if (getPostByFriend is null) throw new Exception();
+                List<string> postImage = new List<string>();
+                string path = "";
+               
                 List<GetFriendsPosts> postsList = new List<GetFriendsPosts>();
 
                 foreach (var post in getPostByFriend)
@@ -41,7 +45,8 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByFriend
                     {
                         FullName = sharePostUser.FullName,
                         Content = post.Content,
-                       // Media = post.MediaLocation,
+                        Media = _context.PostImages.Where(p => p.PostId == post.Id)
+                        .Select(i=>i.FilePath).ToList(),
                         CreateDate = post.CreatedDate
                     };
 
