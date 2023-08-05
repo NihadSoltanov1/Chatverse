@@ -1,9 +1,9 @@
-﻿
+﻿@using Chatverse.UI.ViewModels.Post;
 @{
     ViewData["Title"] = "AuthorProfile";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@model ICollection<GetPostsViewModel>
  <div class="main-content right-chat-active">
 
             <div class="middle-sidebar-bottom">
@@ -77,31 +77,36 @@
                     <div class="card w-100 shadow-xss rounded-xxl border-0 mb-3"></div>
 
                     @await Component.InvokeAsync("CreatePost")
-
+                    @foreach(var post in Model)
+                    {
+                        if(post.Media != null && post.Content != null)
+                        {
                             <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
                                 <div class="card-body p-0 d-flex">
                                     <figure class="avatar me-3"><img src="~/chatverse/uitheme.net/sociala/images/user-7.png" alt="image" class="shadow-sm rounded-circle w45"></figure>
-                                    <h4 class="fw-700 text-grey-900 font-xssss mt-1">Anthony Daugloi <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">3 hour ago</span></h4>
-                            <a href="#" class="ms-auto" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
-                            <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu2">
-                                <div class="card-body p-0 d-flex">
-                                    <i class="feather-trash text-grey-500 me-3 font-lg"></i>
-                                    <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Delete <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Delete your post</span></h4>
-                                </div>
-                                <div class="card-body p-0 d-flex mt-2">
-                                    <i class="feather-refresh-ccw text-grey-500 me-3 font-lg"></i>
-                                    <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Update <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Update your post</span></h4>
-                                </div>
-                            </div>
+                                    <h4 class="fw-700 text-grey-900 font-xssss mt-1">@post.FullName <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">3 hour ago</span></h4>
+                                    <a href="#" class="ms-auto" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu2">
+                                        <div class="card-body p-0 d-flex">
+                                            <i class="feather-trash text-grey-500 me-3 font-lg"></i>
+                                            <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Delete <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Delete your post</span></h4>
+                                        </div>
+                                        <div class="card-body p-0 d-flex mt-2">
+                                            <i class="feather-refresh-ccw text-grey-500 me-3 font-lg"></i>
+                                            <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Update <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Update your post</span></h4>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-body p-0 me-lg-5">
-                                    <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat non nisi. Phasellus faucibus mollis pharetra. Proin blandit ac massa sed rhoncus <a href="#" class="fw-600 text-primary ms-2">See more</a></p>
+                                    <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">@post.Content</p>
                                 </div>
                                 <div class="card-body d-block p-0">
                                     <div class="row ps-2 pe-2">
-                                        <div class="col-xs-4 col-sm-4 p-1"><a href="~/chatverse/uitheme.net/sociala/images/t-10.jpg" data-lightbox="roadtrip"><img src="~/chatverse/uitheme.net/sociala/images/t-10.jpg" class="rounded-3 w-100" alt="image"></a></div>
-                                        <div class="col-xs-4 col-sm-4 p-1"><a href="~/chatverse/uitheme.net/sociala/images/t-11.jpg" data-lightbox="roadtrip"><img src="~/chatverse/uitheme.net/sociala/images/t-11.jpg" class="rounded-3 w-100" alt="image"></a></div>
-                                        <div class="col-xs-4 col-sm-4 p-1"><a href="~/chatverse/uitheme.net/sociala/images/t-12.jpg" data-lightbox="roadtrip" class="position-relative d-block"><img src="~/chatverse/uitheme.net/sociala/images/t-12.jpg" class="rounded-3 w-100" alt="image"><span class="img-count font-sm text-white ls-3 fw-600"><b>+2</b></span></a></div>
+                                        @foreach(var image in post.Media)
+                                        {
+                                            <div class="col-xs-4 col-sm-4 p-1"><a href="~/chatverse/uitheme.net/sociala/images/t-10.jpg" data-lightbox="roadtrip"><img img src="~/@image" class="rounded-3 w-100" alt="image"></a></div>
+                                        }
+
                                     </div>
                                 </div>
                                 <div class="card-body d-flex p-0 mt-3">
@@ -110,25 +115,27 @@
 
                                 </div>
                             </div>
-
+                        }
+                        else
+                        {
                             <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-0">
                                 <div class="card-body p-0 d-flex">
                                     <figure class="avatar me-3"><img src="~/chatverse/uitheme.net/sociala/images/user-8.png" alt="image" class="shadow-sm rounded-circle w45"></figure>
-                                    <h4 class="fw-700 text-grey-900 font-xssss mt-1">Anthony Daugloi <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">2 hour ago</span></h4>
-                            <a href="#" class="ms-auto" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
-                            <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu2">
-                                <div class="card-body p-0 d-flex">
-                                    <i class="feather-trash text-grey-500 me-3 font-lg"></i>
-                                    <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Delete <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Delete your post</span></h4>
-                                </div>
-                                <div class="card-body p-0 d-flex mt-2">
-                                    <i class="feather-refresh-ccw text-grey-500 me-3 font-lg"></i>
-                                    <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Update <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Update your post</span></h4>
-                                </div>
-                            </div>
+                                    <h4 class="fw-700 text-grey-900 font-xssss mt-1">@post.FullName <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">2 hour ago</span></h4>
+                                    <a href="#" class="ms-auto" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu2">
+                                        <div class="card-body p-0 d-flex">
+                                            <i class="feather-trash text-grey-500 me-3 font-lg"></i>
+                                            <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Delete <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Delete your post</span></h4>
+                                        </div>
+                                        <div class="card-body p-0 d-flex mt-2">
+                                            <i class="feather-refresh-ccw text-grey-500 me-3 font-lg"></i>
+                                            <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Update <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Update your post</span></h4>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-body p-0 me-lg-5">
-                                    <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat non nisi. Phasellus faucibus mollis pharetra. Proin blandit ac massa sed rhoncus <a href="#" class="fw-600 text-primary ms-2">See more</a></p>
+                                    <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">@post.Content </p>
                                 </div>
                                 <div class="card-body d-flex p-0">
                                     <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-3"><i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i> <i class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>2.8K Like</a>
@@ -136,6 +143,10 @@
 
                                 </div>
                             </div>
+
+                        }
+                    }
+
                         </div>
                     </div>
                 </div>

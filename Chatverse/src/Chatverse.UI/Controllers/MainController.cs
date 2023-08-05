@@ -20,7 +20,7 @@ namespace Chatverse.UI.Controllers
             {
                 string jsonResponse = await response.Content.ReadAsStringAsync(); // JSON yanıtı string olarak al
 
-                List<GetPostsByFriendsViewModel> posts = JsonConvert.DeserializeObject<List<GetPostsByFriendsViewModel>>(jsonResponse); // JSON'u List<string> olarak deserialize et
+                List<GetPostsViewModel> posts = JsonConvert.DeserializeObject<List<GetPostsViewModel>>(jsonResponse); // JSON'u List<string> olarak deserialize et
                 return View(model: posts);
             }
             return View();
