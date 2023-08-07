@@ -77,8 +77,12 @@
                     <div class="card w-100 shadow-xss rounded-xxl border-0 mb-3"></div>
 
                     @await Component.InvokeAsync("CreatePost")
+                    @{
+                        int count = 1;                    
+                    }
                     @foreach(var post in Model)
                     {
+                        
                         if(post.Media != null && post.Content != null)
                         {
                             <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
@@ -111,14 +115,18 @@
                                 </div>
                                 <div class="card-body d-flex p-0 mt-3">
                                     <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-3"><i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i> <i class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>2.8K Like</a>
-                                    <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i>22 Comment</a>
+                                    <a id="show{@count}"  class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss showComments" style="cursor: pointer;"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">22 Comment</span></a>
 
                                 </div>
+                                <div id="commentshow{@count}" style="display:none">
+                                    @await Component.InvokeAsync("Comment")
+                                </div>
                             </div>
+                            count++;
                         }
                         else
                         {
-                            <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-0">
+                            <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
                                 <div class="card-body p-0 d-flex">
                                     <figure class="avatar me-3"><img src="~/chatverse/uitheme.net/sociala/images/user-8.png" alt="image" class="shadow-sm rounded-circle w45"></figure>
                                     <h4 class="fw-700 text-grey-900 font-xssss mt-1">@post.FullName <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">2 hour ago</span></h4>
@@ -138,11 +146,22 @@
                                     <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">@post.Content </p>
                                 </div>
                                 <div class="card-body d-flex p-0">
-                                    <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-3"><i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i> <i class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>2.8K Like</a>
-                                    <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i>22 Comment</a>
+                                    <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-3 "><i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i> <i class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>2.8K Like</a>
+
+
+                                            <a id="show{@count}" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss showComments" style="cursor: pointer;"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">22 Comment</span></a>
+
+                                 
+
 
                                 </div>
+
+                                <div id="commentshow{@count}" style="display:none">
+                                    @await Component.InvokeAsync("Comment")
+                                </div>
+
                             </div>
+                            count++;
 
                         }
                     }
@@ -153,5 +172,4 @@
 
             </div>
  </div>
-   
-    
+

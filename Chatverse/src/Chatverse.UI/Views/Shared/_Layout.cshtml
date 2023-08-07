@@ -42,6 +42,18 @@
             top: 5px;
             right: 5px;
         }
+
+        #myCommentSection {
+            display:none!important;
+        }
+
+        #showCommentSectionBtn: active #myCommentSection{
+            display:block!important;
+        }
+
+
+
+
     </style>
 
 </head>
@@ -494,8 +506,18 @@
         </div>
     </div>
 
-
-    <script>
+@*    <script>
+        document.getElementById('showCommentSectionBtn').addEventListener('click', function () {
+            var commentSection = document.getElementById('commentSection');
+            if (commentSection.style.display === 'none') {
+                commentSection.style.display = 'block';
+            } else {
+                commentSection.style.display = 'none';
+            }
+        });
+    </script>
+*@    
+<script>
         document.getElementById("uploadLink").addEventListener("click", function () {
             document.getElementById("fileInput").click();
         });
@@ -530,6 +552,30 @@
             // Görsel önizlemeyi göster
             imagePreview.style.display = 'block';
         });
+
+
+
+        document.querySelectorAll('.showComments').forEach(item => {
+            item.addEventListener('click', e => {
+                var targetElement = e.target;
+                console.log(targetElement);
+                if (targetElement.tagName === 'I' || targetElement.tagName === 'SPAN') {
+                    targetElement = $(targetElement).closest('a')[0];
+                }
+
+                // Yalnızca <a> etiketine tıklanıldığında burası çalışır
+                if (targetElement.tagName === 'A') {
+                    console.log('Sadece <a> etiketine tıklandı.');
+                }
+                const commentId = targetElement.getAttribute('id');
+                console.log(commentId);
+                var commentElement = document.getElementById('comment' + commentId);
+                commentElement.style.display = 'block';
+            })
+        })
+
+
+
     </script>
 
     <script src="~/chatverse/uitheme.net/sociala/js/plugin.js"></script>

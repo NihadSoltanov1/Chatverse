@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Mappings\" />
-    <Folder Include="Features\Query\Comment\GetCommentByPostId\" />
   </ItemGroup>
 
   <ItemGroup>
