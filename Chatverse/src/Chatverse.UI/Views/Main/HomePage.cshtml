@@ -132,7 +132,9 @@
 
                     <!-- Create Post -->
                     @await Component.InvokeAsync("CreatePost")
-
+                    @{
+                        int count = 1;
+                    }
                     @foreach(var posts in Model){
                         if(posts.Media is not null){
                             <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
@@ -169,7 +171,7 @@
                                             <li class="emoji list-inline-item"><i class="em em-full_moon_with_face"></i></li>
                                         </ul>
                                     </div>
-                                    <a class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss" data-lightbox="roadtrip"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">22 Comment</span></a>
+                                    <a id="show{@count}" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss showComments" style="cursor: pointer;"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">22 Comment</span></a>
                                     <a href="#" id="dropdownMenu21" data-bs-toggle="dropdown" aria-expanded="false" class="ms-auto d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-share-2 text-grey-900 text-dark btn-round-sm font-lg"></i><span class="d-none-xs">Share</span></a>
                                     <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu21">
                                         <h4 class="fw-700 font-xss text-grey-900 d-flex align-items-center">Share <i class="feather-x ms-auto font-xssss btn-round-xs bg-greylight text-grey-900 me-2"></i></h4>
@@ -196,8 +198,34 @@
                                         <input type="text" value="https://socia.be/1rGxjoJKVF0" class="bg-grey text-grey-500 font-xssss border-0 lh-32 p-2 font-xssss fw-600 rounded-3 w-100 theme-dark-bg">
                                     </div>
                                 </div>
-                            </div>
+                                <div id="commentshow{@count}" style="display:none">
+                                    @if (posts.Comments is null)
+                                    {
+                                        <div>There aren't any Comment</div>
+                                    }
+                                    else
+                                    {
+                                        foreach (var comment in posts.Comments)
+                                        {
+                                            <div class="card-body border-top-xs pt-4 pb-3 pe-4 d-block ps-5 commentSection">
+                                                <figure style="margin-left:28px!important" class="avatar position-absolute left-0 ms-2 mt-1"><img src="~/chatverse/uitheme.net/sociala/images/user-6.png" alt="image" class="shadow-smrounded-circle w35"></figure>
+                                                <div class="chat p-3 myCustomCommentBgColor  rounded-xxl d-block text-left theme-dark-bg">
+                                                    <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">@comment.FullName <a href="#" class="ms-auto"><i class="ti-more-alt float-right text-grey-800font-xsss"></i></a></h4>
+                                                    <p class="fw-500 myCustomCommentTxtColor lh-20 font-xssss w-100 mt-2 mb-0">@comment.Content</p>
+                                                </div>
+                                            </div>
 
+                                        }
+                                    }
+                                    <div class="modal-popup-footer w-100 border-top">
+                                        <div class="card p-3 d-block border-0 d-block">
+                                            <div class="form-group icon-right-input style1-input mb-0"><input type="text" placeholder="Start typing.." class="form-control rounded-xl bg-greylight border-0 font-xssss fw-500 ps-3"><i class="feather-send text-grey-500 font-md"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            count++;
                         }
                         else
                         {
@@ -235,7 +263,7 @@
                                             <li class="emoji list-inline-item"><i class="em em-full_moon_with_face"></i></li>
                                         </ul>
                                     </div>
-                                    <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">22 Comment</span></a>
+                                    <a id="show{@count}" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss showComments" style="cursor: pointer;"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">22 Comment</span></a>
                                     <a href="#" id="dropdownMenu31" data-bs-toggle="dropdown" aria-expanded="false" class="ms-auto d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-share-2 text-grey-900 text-dark btn-round-sm font-lg"></i><span class="d-none-xs">Share</span></a>
                                     <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu31">
                                         <h4 class="fw-700 font-xss text-grey-900 d-flex align-items-center">Share <i class="feather-x ms-auto font-xssss btn-round-xs bg-greylight text-grey-900 me-2"></i></h4>
@@ -253,8 +281,34 @@
                                         <input type="text" value="https://socia.be/1rGxjoJKVF0" class="bg-grey text-grey-500 font-xssss border-0 lh-32 p-2 font-xssss fw-600 rounded-3 w-100 theme-dark-bg">
                                     </div>
                                 </div>
-                            </div>
+                                <div id="commentshow{@count}" style="display:none">
+                                    @if (posts.Comments is null)
+                                    {
+                                        <div>There aren't any Comment</div>
+                                    }
+                                    else
+                                    {
+                                        foreach (var comment in posts.Comments)
+                                        {
+                                            <div class="card-body border-top-xs pt-4 pb-3 pe-4 d-block ps-5 commentSection">
+                                                <figure style="margin-left:28px!important" class="avatar position-absolute left-0 ms-2 mt-1"><img src="~/chatverse/uitheme.net/sociala/images/user-6.png" alt="image" class="shadow-smrounded-circle w35"></figure>
+                                                <div class="chat p-3 myCustomCommentBgColor  rounded-xxl d-block text-left theme-dark-bg">
+                                                    <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">@comment.FullName <a href="#" class="ms-auto"><i class="ti-more-alt float-right text-grey-800font-xsss"></i></a></h4>
+                                                    <p class="fw-500 myCustomCommentTxtColor lh-20 font-xssss w-100 mt-2 mb-0">@comment.Content</p>
+                                                </div>
+                                            </div>
 
+                                        }
+                                    }
+                                    <div class="modal-popup-footer w-100 border-top">
+                                        <div class="card p-3 d-block border-0 d-block">
+                                            <div class="form-group icon-right-input style1-input mb-0"><input type="text" placeholder="Start typing.." class="form-control rounded-xl bg-greylight border-0 font-xssss fw-500 ps-3"><i class="feather-send text-grey-500 font-md"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            count++;
                         }
                     }
 

@@ -7,17 +7,17 @@ namespace Chatverse.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class Comments : ControllerBase
+    public class CommentsController : ControllerBase
     {
         readonly IMediator _mediator;
 
-        public Comments(IMediator mediator)
+        public CommentsController(IMediator mediator)
         {
             _mediator = mediator;
-        }
+        } 
 
-        [HttpGet]
-        public async Task<IActionResult> GetCommentsByPostId(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCommentsByPostId([FromRoute]int id)
         {
             GetCommentByPostIdQueryRequest getCommentByPostIdQueryRequest = new GetCommentByPostIdQueryRequest() { PostId = id };
             GetCommentByPostIdQueryResponse response = await _mediator.Send(getCommentByPostIdQueryRequest);

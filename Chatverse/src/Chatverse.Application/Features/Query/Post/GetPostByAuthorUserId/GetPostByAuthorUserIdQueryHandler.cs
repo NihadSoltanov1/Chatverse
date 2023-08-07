@@ -41,14 +41,17 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByAuthorUserId
             posts.ForEach(async post =>
             {
                 var comment = await _mediator.Send(new GetCommentByPostIdQueryRequest() { PostId = post.Id });
+
                 var getPosts = new GetMyPosts()
                 {
+                    PostId = post.Id,
                     Content = post.Content,
                     FullName = currentUser.FullName,
                     Media = _context.PostImages.Where(p => p.PostId == post.Id)
                         .Select(i => i.FilePath).ToList(),
                     CreateDate = post.CreatedDate,
                     Comments = comment.Comments
+
                 };
                 getMyPosts.Add(getPosts);
             });
