@@ -1,7 +1,10 @@
+using Chatverse.UI.Hubs;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSignalR();
 builder.Services.AddSession();
 builder.Services.AddHttpClient();
 var app = builder.Build();
@@ -20,9 +23,9 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseSession();
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Main}/{action=HomePage}/{id?}");
+app.MapHub<CommentHub>("/commentHub");  
 
 app.Run();

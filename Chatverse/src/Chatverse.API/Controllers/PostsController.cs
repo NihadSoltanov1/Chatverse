@@ -14,7 +14,6 @@ namespace Chatverse.API.Controllers
     public class PostsController : ControllerBase
     {
         IMediator _mediator;
-
         public PostsController(IMediator mediator)
         {
             _mediator = mediator;

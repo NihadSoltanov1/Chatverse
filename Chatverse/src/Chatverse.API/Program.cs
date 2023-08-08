@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Chatverse.Application;
 using System.Text;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,7 +48,6 @@ app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

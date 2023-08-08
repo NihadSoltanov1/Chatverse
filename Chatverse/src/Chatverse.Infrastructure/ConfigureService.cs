@@ -24,7 +24,6 @@ namespace Chatverse.Infrastructure
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-
             services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<AppDbContext>());
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();

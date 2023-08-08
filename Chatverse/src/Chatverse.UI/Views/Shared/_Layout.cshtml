@@ -523,7 +523,7 @@
         });
     </script>
 *@    
-<script>
+    <script>
         document.getElementById("uploadLink").addEventListener("click", function () {
             document.getElementById("fileInput").click();
         });
@@ -559,6 +559,54 @@
             imagePreview.style.display = 'block';
         });
 
+        document.querySelectorAll('.mySendCommentButton').forEach(button => {
+            button.addEventListener('click', e => {
+                e.preventDefault();
+
+                var targetcommentElemet = e.target;
+                const buttonId = targetcommentElemet.getAttribute('id');
+                console.log(buttonId)
+                var formElementId = 'commentForm' + buttonId;
+                var formElement = document.getElementById(formElementId);
+                console.log('Form Element: ' + formElement)
+                var postId = formElement.querySelector('#commentPostId').value;
+                var content = formElement.querySelector('#commentContent').value;
+                var fullname = formElement.querySelector('#commentPostFullName').value;
+                console.log(postId);
+                console.log(content);
+                var data = {
+                    Content: content,
+                    PostId: postId
+                };
+                console.log(data);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Comments/CreateComment',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        var newComment = document.createElement('div');
+                        newComment.className = 'card-body border-top-xs pt-4 pb-3 pe-4 d-block ps-5 commentSection';
+                        newComment.innerHTML = `
+                    
+            <div class="chat p-3 myCustomCommentBgColor  rounded-xxl d-block text-left theme-dark-bg">
+                        <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">${fullname} <a href="#" class="ms-auto"><i class="ti-more-alt float-right text-grey-800font-xsss"></i></a></h4>
+                        <p class="fw-500 myCustomCommentTxtColor lh-20 font-xssss w-100 mt-2 mb-0">${content}</p>
+            </div>
+        `;
+
+                       
+                        var formElement = document.getElementById(formElementId);
+                        formElement.parentNode.insertBefore(newComment, formElement);
+
+
+                    },
+                    error: function () {
+                        console.error('Ajax isteği başarısız.');
+                    }
+                });
+            });
+        });
 
 
         document.querySelectorAll('.showComments').forEach(item => {
@@ -583,9 +631,8 @@
 
 
     </script>
-
+    @RenderSection("JS",false);
     <script src="~/chatverse/uitheme.net/sociala/js/plugin.js"></script>
-
     <script src="~/chatverse/uitheme.net/sociala/js/lightbox.js"></script>
     <script src="~/chatverse/uitheme.net/sociala/js/scripts.js"></script>
 
