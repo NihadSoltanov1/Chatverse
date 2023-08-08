@@ -19,10 +19,10 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByAuthorUserId
     public class GetPostByAuthorUserIdQueryHandler : IRequestHandler<GetPostByAuthorUserIdQueryRequest, GetPostByAuthorUserIdQueryResponse>
     {
         readonly ICurrentUserService _currentUser;
-        readonly UserManager<AppUser> _userManager;
+        readonly UserManager<Domain.Identity.AppUser> _userManager;
         readonly IApplicationDbContext _context;
         readonly IMediator _mediator;
-        public GetPostByAuthorUserIdQueryHandler(ICurrentUserService currentUser, UserManager<AppUser> userManager, IApplicationDbContext context, IMediator mediator)
+        public GetPostByAuthorUserIdQueryHandler(ICurrentUserService currentUser, UserManager<Domain.Identity.AppUser> userManager, IApplicationDbContext context, IMediator mediator)
         {
             _currentUser = currentUser;
             _userManager = userManager;

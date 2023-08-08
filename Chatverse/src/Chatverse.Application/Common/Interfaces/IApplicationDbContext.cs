@@ -16,6 +16,8 @@ namespace Chatverse.Application.Common.Interfaces
         public DbSet<Like> Likes { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<PostImage> PostImages { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Country> Countries { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

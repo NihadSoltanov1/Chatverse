@@ -1,4 +1,5 @@
-﻿using Chatverse.Application.Features.Query.Post.GetPostByAuthorUserId;
+﻿using Chatverse.Application.Features.Query.AppUser.GetAuthorUserShortInformation;
+using Chatverse.Application.Features.Query.Post.GetPostByAuthorUserId;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -23,6 +24,13 @@ namespace Chatverse.API.Controllers
             GetPostByAuthorUserIdQueryRequest getPostByAuthorUserIdQueryRequest = new GetPostByAuthorUserIdQueryRequest();
             GetPostByAuthorUserIdQueryResponse response = await _mediator.Send(getPostByAuthorUserIdQueryRequest);
             return Ok(response.Posts);
+        }
+        [HttpGet]
+        public async Task<IActionResult> ShortInformation()
+        {
+            GetAuthorUserShortInformationQueryRequest getAuthorUserShortInformationQueryRequest = new GetAuthorUserShortInformationQueryRequest();
+            GetAuthorUserShortInformationQueryResponse response = await _mediator.Send(getAuthorUserShortInformationQueryRequest);
+            return Ok(response);
         }
     }
 }

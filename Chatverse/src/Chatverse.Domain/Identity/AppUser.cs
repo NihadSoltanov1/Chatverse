@@ -34,5 +34,6 @@ namespace Chatverse.Domain.Identity
         [InverseProperty("Receiver")]
         public ICollection<Friendship> ReceivedFriendRequests { get; set; }
         public bool Privicy { get; set; }
+        public DateTime? BirthDate { get; set; }
     }
 }

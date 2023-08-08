@@ -16,8 +16,8 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByFriend
     {
         private readonly IApplicationDbContext _context;
         private readonly ICurrentUserService _currentUserService;
-        private readonly UserManager<AppUser> _userManager;
-        public GetPostByFriendQueryHandler(IApplicationDbContext context, ICurrentUserService currentUserService, UserManager<AppUser> userManager)
+        private readonly UserManager<Domain.Identity.AppUser> _userManager;
+        public GetPostByFriendQueryHandler(IApplicationDbContext context, ICurrentUserService currentUserService, UserManager<Domain.Identity.AppUser> userManager)
         {
             _context = context;
             _currentUserService = currentUserService;

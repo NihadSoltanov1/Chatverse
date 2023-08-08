@@ -41,7 +41,7 @@ namespace Chatverse.Infrastructure.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("City");
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("Chatverse.Domain.Entities.Comment", b =>
@@ -92,7 +92,7 @@ namespace Chatverse.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Country");
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("Chatverse.Domain.Entities.Friendship", b =>
@@ -252,6 +252,9 @@ namespace Chatverse.Infrastructure.Migrations
 
                     b.Property<string>("BackgroundPicture")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("BirthDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("CityId")
                         .HasColumnType("int");

@@ -27,6 +27,8 @@ namespace Chatverse.Infrastructure.Persistance
         public DbSet<Like> Likes { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<PostImage> PostImages { get ; set ; }
+        public DbSet<City> Cities { get ; set; }
+        public DbSet<Country> Countries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
