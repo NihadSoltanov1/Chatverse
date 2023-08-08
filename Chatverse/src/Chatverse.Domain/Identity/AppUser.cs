@@ -13,10 +13,17 @@ namespace Chatverse.Domain.Identity
     {
         public string? FullName { get; set; }
         public string? ProfilePicture { get; set; }
+        public string? About { get; set; }
         public string? BackgroundPicture { get; set; }
         public Gender? UserGender { get; set; }
         public bool? State { get; set; }
+        [ForeignKey("City")]
+        public int? CityId { get; set; }
+        public City? City { get; set; }
 
+        [ForeignKey("Country")]
+        public int? CountryId { get; set; }
+        public Country? Country { get; set; }
         public ICollection<Post> Posts { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Like> Likes { get; set; }
@@ -26,5 +33,6 @@ namespace Chatverse.Domain.Identity
 
         [InverseProperty("Receiver")]
         public ICollection<Friendship> ReceivedFriendRequests { get; set; }
+        public bool Privicy { get; set; }
     }
 }

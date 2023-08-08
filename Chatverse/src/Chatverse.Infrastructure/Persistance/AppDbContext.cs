@@ -50,6 +50,23 @@ namespace Chatverse.Infrastructure.Persistance
                 .WithMany(u => u.Posts)
                 .HasForeignKey(p => p.AppUserId)
                 .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<City>()
+               .HasOne(p => p.Country)
+               .WithMany(u => u.Cities)
+               .HasForeignKey(p => p.CountryId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<AppUser>()
+              .HasOne(p => p.Country)
+              .WithMany(u => u.AppUsers)
+              .HasForeignKey(p => p.CountryId)
+              .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<AppUser>()
+             .HasOne(p => p.City)
+             .WithMany(u => u.AppUsers)
+             .HasForeignKey(p => p.CityId)
+             .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Comment>()
                 .HasOne(c => c.AppUser)
