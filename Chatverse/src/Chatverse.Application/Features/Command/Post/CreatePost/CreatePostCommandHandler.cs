@@ -17,11 +17,13 @@ namespace Chatverse.Application.Features.Command.Post.CreatePost
        private readonly ICurrentUserService _currentUserService;
        private readonly UserManager<Domain.Identity.AppUser> _userManager;
        private readonly IApplicationDbContext _context;
-        public CreatePostCommandHandler(ICurrentUserService currentUserService, UserManager<Domain.Identity.AppUser> userManager, IApplicationDbContext context)
+        private readonly IGoogleCloudService _googleCloudService;
+        public CreatePostCommandHandler(ICurrentUserService currentUserService, UserManager<Domain.Identity.AppUser> userManager, IApplicationDbContext context, IGoogleCloudService googleCloudService)
         {
             _currentUserService = currentUserService;
             _userManager = userManager;
             _context = context;
+            _googleCloudService = googleCloudService;
         }
 
         public async Task<IDataResult<CreatePostCommandRequest>> Handle(CreatePostCommandRequest request, CancellationToken cancellationToken)
@@ -35,12 +37,15 @@ namespace Chatverse.Application.Features.Command.Post.CreatePost
             };
             await _context.Posts.AddAsync(post);
             await _context.SaveChangesAsync(cancellationToken);
-            foreach(string path in request.MediaLocation)
+            string rootFolder = @"wwwroot\";
+            foreach (string path in request.MediaLocation)
             {
+                _googleCloudService.UploadFileToCloud(path);
+                string returnPath = path.Substring(path.IndexOf(rootFolder, StringComparison.OrdinalIgnoreCase) + rootFolder.Length).Replace("\\", "/");
                 PostImage postImage = new PostImage
                 {
                     PostId = post.Id,
-                    FilePath = path
+                    FilePath = returnPath
                 };
                 await _context.PostImages.AddAsync(postImage);
                 await _context.SaveChangesAsync(cancellationToken);

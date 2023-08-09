@@ -7885,6 +7885,10 @@
       "PackagePath": "staticwebassets\\microsoft\\signalr\\dist\\browser\\signalr.min.js"
     },
     {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\Instagram-Post-Ideas.png",
+      "PackagePath": "staticwebassets\\postfiles\\Instagram-Post-Ideas.png"
+    },
+    {
       "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\design-medium.jpg",
       "PackagePath": "staticwebassets\\postfiles\\design-medium.jpg"
     },
