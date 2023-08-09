@@ -7885,6 +7885,14 @@
       "PackagePath": "staticwebassets\\microsoft\\signalr\\dist\\browser\\signalr.min.js"
     },
     {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\202306090848_download.jpg",
+      "PackagePath": "staticwebassets\\postfiles\\202306090848_download.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\202306090848_t-11.jpg",
+      "PackagePath": "staticwebassets\\postfiles\\202306090848_t-11.jpg"
+    },
+    {
       "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\Instagram-Post-Ideas.png",
       "PackagePath": "staticwebassets\\postfiles\\Instagram-Post-Ideas.png"
     },

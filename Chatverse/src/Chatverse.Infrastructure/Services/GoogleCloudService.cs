@@ -30,5 +30,11 @@ namespace Chatverse.Infrastructure.Services
                 storage.UploadObject(_configuration["GoogleCloud:CloudBucket"], objectName, null, uploadFileStream);
             }
         }
+
+        public void DeleteFileToCloud(string fileName)
+        {
+            var storage = StorageClient.Create(google);
+            storage.DeleteObject(_configuration["GoogleCloud:CloudBucket"], fileName);
+        }
     }
 }

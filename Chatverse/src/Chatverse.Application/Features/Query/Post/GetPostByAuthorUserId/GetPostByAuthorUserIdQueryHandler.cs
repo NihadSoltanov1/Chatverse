@@ -37,11 +37,13 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByAuthorUserId
             var posts = await _context.Posts.Where(p => p.AppUserId == currentUser.Id).ToListAsync();
             if (!posts.Any()) throw new NotFoundAnyPostException("You haven't shared any posts yet");
             List<GetMyPosts> getMyPosts = new List<GetMyPosts>();
-
+            
             posts.ForEach(async post =>
             {
+                if (post.State == true)
+                {
                 var comment = await _mediator.Send(new GetCommentByPostIdQueryRequest() { PostId = post.Id });
-
+               
                 var getPosts = new GetMyPosts()
                 {
                     PostId = post.Id,
@@ -54,8 +56,9 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByAuthorUserId
 
                 };
                 getMyPosts.Add(getPosts);
+                }
             });
-
+            if(getMyPosts is null) { throw new NotFoundException("There aren't any posts..."); }
             return new GetPostByAuthorUserIdQueryResponse()
             {
                 Posts = getMyPosts

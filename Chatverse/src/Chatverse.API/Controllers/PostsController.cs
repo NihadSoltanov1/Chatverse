@@ -1,4 +1,5 @@
 ﻿using Chatverse.Application.Features.Command.Post.CreatePost;
+using Chatverse.Application.Features.Command.Post.DeletePost;
 using Chatverse.Application.Features.Query.Post.GetPostByFriend;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -28,8 +29,17 @@ namespace Chatverse.API.Controllers
         public async Task<IActionResult> GetPostsByFriend()
         {
             GetPostByFriendQueryRequest request = new GetPostByFriendQueryRequest();
-           GetPostByFriendQueryResponse response =  await  _mediator.Send(request);
+           GetPostByFriendQueryResponse response =  await _mediator.Send(request);
             return Ok(response.Posts);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePost([FromRoute]int id)
+        {
+            DeletePostCommandRequest deletePostCommandRequest = new DeletePostCommandRequest();
+            deletePostCommandRequest.Id = id;
+            var response =  await _mediator.Send(deletePostCommandRequest);
+            return Ok(response.Data);
         }
     }
 }

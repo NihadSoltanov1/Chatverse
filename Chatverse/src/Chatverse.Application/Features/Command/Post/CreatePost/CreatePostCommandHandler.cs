@@ -34,6 +34,7 @@ namespace Chatverse.Application.Features.Command.Post.CreatePost
             {
                 AppUserId = currentUser.Id,
                 Content = request.Content,
+                State=true
             };
             await _context.Posts.AddAsync(post);
             await _context.SaveChangesAsync(cancellationToken);
@@ -45,7 +46,9 @@ namespace Chatverse.Application.Features.Command.Post.CreatePost
                 PostImage postImage = new PostImage
                 {
                     PostId = post.Id,
-                    FilePath = returnPath
+                    FilePath = returnPath,
+                    State=true
+                    
                 };
                 await _context.PostImages.AddAsync(postImage);
                 await _context.SaveChangesAsync(cancellationToken);

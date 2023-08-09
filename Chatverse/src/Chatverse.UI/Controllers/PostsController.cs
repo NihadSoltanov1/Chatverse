@@ -1,8 +1,10 @@
 ﻿using Chatverse.UI.DTOs.Post;
+using Chatverse.UI.DTOs.PostFile;
 using Chatverse.UI.ViewModels.Auth;
 using Chatverse.UI.ViewModels.Post;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 
@@ -18,7 +20,27 @@ namespace Chatverse.UI.Controllers
             _httpClient = httpClient;
             _env = env;
         }
-
+        [HttpGet]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null) return RedirectToAction("Login", "Auth");
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            HttpResponseMessage response = await _httpClient.DeleteAsync($"{baseUrl}/Posts/DeletePost/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var filePathString =await response.Content.ReadAsStringAsync();
+                List<PostFilePathDto> postFiles = JsonConvert.DeserializeObject<List<PostFilePathDto>>(filePathString);
+                postFiles.ForEach(postFile =>
+                {
+                    var wwwrootPath = Path.Combine(_env.WebRootPath);
+                    var fullPath = Path.Combine(wwwrootPath, postFile.filePath);
+                    if (System.IO.File.Exists(fullPath)) System.IO.File.Delete(fullPath);
+                });
+                return RedirectToAction("AuthorProfile", "Users");  
+            };
+            return NotFound();
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreatePost(CreatePostViewModel createPostViewModel)
