@@ -1,4 +1,4 @@
-﻿@using Chatverse.UI.ViewModels.Post;
+﻿﻿@using Chatverse.UI.ViewModels.Post;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -135,183 +135,194 @@
                     @{
                         int count = 1;
                     }
-                    @foreach(var posts in Model){
-                        if(posts.Media is not null){
-                            <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
-                                <div class="card-body p-0 d-flex">
-                                    <figure class="avatar me-3"><img src="~/chatverse/uitheme.net/sociala/images/user-7.png" alt="image" class="shadow-sm rounded-circle w45"></figure>
-                                    <h4 class="fw-700 text-grey-900 font-xssss mt-1">@posts.FullName  <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">@posts.CreateDate</span></h4>
+                    @if (Model is null)
+                    {
+                        <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
+                           <p>THERE AREN'T ANY POSTS</p>
 
-
-                                </div>
-                                <div class="card-body p-0 me-lg-5">
-                                    <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">@posts.Content 
-                                </div>
-                                <div class="card-body d-block p-0">
-                                    <div class="row ps-2 pe-2">
-                                        @foreach (var images in posts.Media)
-                                        {
-                                            <div class="col-xs-4 col-sm-4 p-1"><a  data-lightbox="roadtrip"><img src="~/@images" class="rounded-3 w-100" alt="image"></a></div>
-                                        }
-
-
-                                    </div>
-                                </div>
-                                <div class="card-body d-flex p-0 mt-3">
-                                    <a href="#" class="emoji-bttn d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2"><i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i> <i class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>2.8K Like</a>
-                                    <div class="emoji-wrap">
-                                        <ul class="emojis list-inline mb-0">
-                                            <li class="emoji list-inline-item"><i class="em em---1"></i> </li>
-                                            <li class="emoji list-inline-item"><i class="em em-angry"></i></li>
-                                            <li class="emoji list-inline-item"><i class="em em-anguished"></i> </li>
-                                            <li class="emoji list-inline-item"><i class="em em-astonished"></i> </li>
-                                            <li class="emoji list-inline-item"><i class="em em-blush"></i></li>
-                                            <li class="emoji list-inline-item"><i class="em em-clap"></i></li>
-                                            <li class="emoji list-inline-item"><i class="em em-cry"></i></li>
-                                            <li class="emoji list-inline-item"><i class="em em-full_moon_with_face"></i></li>
-                                        </ul>
-                                    </div>
-                                    <a id="show{@count}" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss showComments" style="cursor: pointer;"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">22 Comment</span></a>
-                                    <a href="#" id="dropdownMenu21" data-bs-toggle="dropdown" aria-expanded="false" class="ms-auto d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-share-2 text-grey-900 text-dark btn-round-sm font-lg"></i><span class="d-none-xs">Share</span></a>
-                                    <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu21">
-                                        <h4 class="fw-700 font-xss text-grey-900 d-flex align-items-center">Share <i class="feather-x ms-auto font-xssss btn-round-xs bg-greylight text-grey-900 me-2"></i></h4>
-                                        <div class="card-body p-0 d-flex">
-                                            <ul class="d-flex align-items-center justify-content-between mt-2">
-                                                <li class="me-1"><a href="#" class="btn-round-lg bg-facebook"><i class="font-xs ti-facebook text-white"></i></a></li>
-                                                <li class="me-1"><a href="#" class="btn-round-lg bg-twiiter"><i class="font-xs ti-twitter-alt text-white"></i></a></li>
-                                                <li class="me-1"><a href="#" class="btn-round-lg bg-linkedin"><i class="font-xs ti-linkedin text-white"></i></a></li>
-                                                <li class="me-1"><a href="#" class="btn-round-lg bg-instagram"><i class="font-xs ti-instagram text-white"></i></a></li>
-                                                <li><a href="#" class="btn-round-lg bg-pinterest"><i class="font-xs ti-pinterest text-white"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="card-body p-0 d-flex">
-                                            <ul class="d-flex align-items-center justify-content-between mt-2">
-                                                <li class="me-1"><a href="#" class="btn-round-lg bg-tumblr"><i class="font-xs ti-tumblr text-white"></i></a></li>
-                                                <li class="me-1"><a href="#" class="btn-round-lg bg-youtube"><i class="font-xs ti-youtube text-white"></i></a></li>
-                                                <li class="me-1"><a href="#" class="btn-round-lg bg-flicker"><i class="font-xs ti-flickr text-white"></i></a></li>
-                                                <li class="me-1"><a href="#" class="btn-round-lg bg-black"><i class="font-xs ti-vimeo-alt text-white"></i></a></li>
-                                                <li><a href="#" class="btn-round-lg bg-whatsup"><i class="font-xs feather-phone text-white"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <h4 class="fw-700 font-xssss mt-4 text-grey-500 d-flex align-items-center mb-3">Copy Link</h4>
-                                        <i class="feather-copy position-absolute right-35 mt-3 font-xs text-grey-500"></i>
-                                        <input type="text" value="https://socia.be/1rGxjoJKVF0" class="bg-grey text-grey-500 font-xssss border-0 lh-32 p-2 font-xssss fw-600 rounded-3 w-100 theme-dark-bg">
-                                    </div>
-                                </div>
-                                <div id="commentshow{@count}" style="display:none">
-                                    @if (posts.Comments is null)
-                                    {
-                                        <div>There aren't any Comment</div>
-                                    }
-                                    else
-                                    {
-                                        foreach (var comment in posts.Comments)
-                                        {
-                                            <div class="card-body border-top-xs pt-4 pb-3 pe-4 d-block ps-5 commentSection">
-                                                <figure style="margin-left:28px!important" class="avatar position-absolute left-0 ms-2 mt-1"><img src="~/chatverse/uitheme.net/sociala/images/user-6.png" alt="image" class="shadow-smrounded-circle w35"></figure>
-                                                <div class="chat p-3 myCustomCommentBgColor  rounded-xxl d-block text-left theme-dark-bg">
-                                                    <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">@comment.FullName <a href="#" class="ms-auto"><i class="ti-more-alt float-right text-grey-800font-xsss"></i></a></h4>
-                                                    <p class="fw-500 myCustomCommentTxtColor lh-20 font-xssss w-100 mt-2 mb-0">@comment.Content</p>
-                                                </div>
-                                            </div>
-
-                                        }
-                                    }
-                                    <div class="modal-popup-footer w-100 border-top">
-                                        <div class="card p-3 d-block border-0 d-block">
-                                            <div class="form-group icon-right-input style1-input mb-0"><input type="text" placeholder="Start typing.." class="form-control rounded-xl bg-greylight border-0 font-xssss fw-500 ps-3"><i class="feather-send text-grey-500 font-md"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            count++;
-                        }
-                        else
-                        {
-                            <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-0">
-                                <div class="card-body p-0 d-flex">
-                                    <figure class="avatar me-3 m-0"><img src="~/chatverse/uitheme.net/sociala/images/user-8.png" alt="image" class="shadow-sm rounded-circle w45"></figure>
-                                    <h4 class="fw-700 text-grey-900 font-xssss mt-1">@posts.FullName  <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">@posts.CreateDate</span></h4>
-                            
-                                    <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu6">
-                                        <div class="card-body p-0 d-flex">
-                                            <i class="feather-trash text-grey-500 me-3 font-lg"></i>
-                                            <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Save Link <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Add this to your saved items</span></h4>
-                                        </div>
-                                        <div class="card-body p-0 d-flex mt-2">
-                                            <i class="feather-refresh-ccw text-grey-500 me-3 font-lg"></i>
-                                            <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Hide Post <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save to your saved items</span></h4>
-                                        </div>
-                                       
-                                    </div>
-                                </div>
-                                <div class="card-body p-0 me-lg-5">
-                                    <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">@posts.Content 
-                                </div>
-                                <div class="card-body d-flex p-0">
-                                    <a href="#" class="emoji-bttn d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2"><i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i> <i class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>2.8K Like</a>
-                                    <div class="emoji-wrap">
-                                        <ul class="emojis list-inline mb-0">
-                                            <li class="emoji list-inline-item"><i class="em em---1"></i> </li>
-                                            <li class="emoji list-inline-item"><i class="em em-angry"></i></li>
-                                            <li class="emoji list-inline-item"><i class="em em-anguished"></i> </li>
-                                            <li class="emoji list-inline-item"><i class="em em-astonished"></i> </li>
-                                            <li class="emoji list-inline-item"><i class="em em-blush"></i></li>
-                                            <li class="emoji list-inline-item"><i class="em em-clap"></i></li>
-                                            <li class="emoji list-inline-item"><i class="em em-cry"></i></li>
-                                            <li class="emoji list-inline-item"><i class="em em-full_moon_with_face"></i></li>
-                                        </ul>
-                                    </div>
-                                    <a id="show{@count}" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss showComments" style="cursor: pointer;"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">22 Comment</span></a>
-                                    <a href="#" id="dropdownMenu31" data-bs-toggle="dropdown" aria-expanded="false" class="ms-auto d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-share-2 text-grey-900 text-dark btn-round-sm font-lg"></i><span class="d-none-xs">Share</span></a>
-                                    <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu31">
-                                        <h4 class="fw-700 font-xss text-grey-900 d-flex align-items-center">Share <i class="feather-x ms-auto font-xssss btn-round-xs bg-greylight text-grey-900 me-2"></i></h4>
-                                        <div class="card-body p-0 d-flex">
-                                            <ul class="d-flex align-items-center justify-content-between mt-2">
-                                                <li class="me-1"><a href="#" class="btn-round-lg bg-facebook"><i class="font-xs ti-facebook text-white"></i></a></li>
-                                                <li class="me-1"><a href="#" class="btn-round-lg bg-twiiter"><i class="font-xs ti-twitter-alt text-white"></i></a></li>
-                                                <li class="me-1"><a href="#" class="btn-round-lg bg-linkedin"><i class="font-xs ti-linkedin text-white"></i></a></li>
-                                                <li class="me-1"><a href="#" class="btn-round-lg bg-instagram"><i class="font-xs ti-instagram text-white"></i></a></li>
-                                                <li><a href="#" class="btn-round-lg bg-pinterest"><i class="font-xs ti-pinterest text-white"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <h4 class="fw-700 font-xssss mt-4 text-grey-500 d-flex align-items-center mb-3">Copy Link</h4>
-                                        <i class="feather-copy position-absolute right-35 mt-3 font-xs text-grey-500"></i>
-                                        <input type="text" value="https://socia.be/1rGxjoJKVF0" class="bg-grey text-grey-500 font-xssss border-0 lh-32 p-2 font-xssss fw-600 rounded-3 w-100 theme-dark-bg">
-                                    </div>
-                                </div>
-                                <div id="commentshow{@count}" style="display:none">
-                                    @if (posts.Comments is null)
-                                    {
-                                        <div>There aren't any Comment</div>
-                                    }
-                                    else
-                                    {
-                                        foreach (var comment in posts.Comments)
-                                        {
-                                            <div class="card-body border-top-xs pt-4 pb-3 pe-4 d-block ps-5 commentSection">
-                                                <figure style="margin-left:28px!important" class="avatar position-absolute left-0 ms-2 mt-1"><img src="~/chatverse/uitheme.net/sociala/images/user-6.png" alt="image" class="shadow-smrounded-circle w35"></figure>
-                                                <div class="chat p-3 myCustomCommentBgColor  rounded-xxl d-block text-left theme-dark-bg">
-                                                    <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">@comment.FullName <a href="#" class="ms-auto"><i class="ti-more-alt float-right text-grey-800font-xsss"></i></a></h4>
-                                                    <p class="fw-500 myCustomCommentTxtColor lh-20 font-xssss w-100 mt-2 mb-0">@comment.Content</p>
-                                                </div>
-                                            </div>
-
-                                        }
-                                    }
-                                    <div class="modal-popup-footer w-100 border-top">
-                                        <div class="card p-3 d-block border-0 d-block">
-                                            <div class="form-group icon-right-input style1-input mb-0"><input type="text" placeholder="Start typing.." class="form-control rounded-xl bg-greylight border-0 font-xssss fw-500 ps-3"><i class="feather-send text-grey-500 font-md"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            count++;
-                        }
+                        </div>
                     }
+                    else{
+                        @foreach (var posts in Model)
+                        {
+                            if (posts.Media is not null)
+                            {
+                                <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
+                                    <div class="card-body p-0 d-flex">
+                                        <figure class="avatar me-3"><img src="~/chatverse/uitheme.net/sociala/images/user-7.png" alt="image" class="shadow-sm rounded-circle w45"></figure>
+                                        <h4 class="fw-700 text-grey-900 font-xssss mt-1">@posts.FullName  <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">@posts.CreateDate</span></h4>
 
+
+                                    </div>
+                                    <div class="card-body p-0 me-lg-5">
+                                        <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">@posts.Content
+                                    </div>
+                                    <div class="card-body d-block p-0">
+                                        <div class="row ps-2 pe-2">
+                                            @foreach (var images in posts.Media)
+                                            {
+                                                <div class="col-xs-4 col-sm-4 p-1"><a data-lightbox="roadtrip"><img src="~/@images" class="rounded-3 w-100" alt="image"></a></div>
+                                            }
+
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body d-flex p-0 mt-3">
+                                        <a href="#" class="emoji-bttn d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2"><i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i> <i class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>2.8K Like</a>
+                                        <div class="emoji-wrap">
+                                            <ul class="emojis list-inline mb-0">
+                                                <li class="emoji list-inline-item"><i class="em em---1"></i> </li>
+                                                <li class="emoji list-inline-item"><i class="em em-angry"></i></li>
+                                                <li class="emoji list-inline-item"><i class="em em-anguished"></i> </li>
+                                                <li class="emoji list-inline-item"><i class="em em-astonished"></i> </li>
+                                                <li class="emoji list-inline-item"><i class="em em-blush"></i></li>
+                                                <li class="emoji list-inline-item"><i class="em em-clap"></i></li>
+                                                <li class="emoji list-inline-item"><i class="em em-cry"></i></li>
+                                                <li class="emoji list-inline-item"><i class="em em-full_moon_with_face"></i></li>
+                                            </ul>
+                                        </div>
+                                        <a id="show{@count}" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss showComments" style="cursor: pointer;"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">22 Comment</span></a>
+                                        <a href="#" id="dropdownMenu21" data-bs-toggle="dropdown" aria-expanded="false" class="ms-auto d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-share-2 text-grey-900 text-dark btn-round-sm font-lg"></i><span class="d-none-xs">Share</span></a>
+                                        <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu21">
+                                            <h4 class="fw-700 font-xss text-grey-900 d-flex align-items-center">Share <i class="feather-x ms-auto font-xssss btn-round-xs bg-greylight text-grey-900 me-2"></i></h4>
+                                            <div class="card-body p-0 d-flex">
+                                                <ul class="d-flex align-items-center justify-content-between mt-2">
+                                                    <li class="me-1"><a href="#" class="btn-round-lg bg-facebook"><i class="font-xs ti-facebook text-white"></i></a></li>
+                                                    <li class="me-1"><a href="#" class="btn-round-lg bg-twiiter"><i class="font-xs ti-twitter-alt text-white"></i></a></li>
+                                                    <li class="me-1"><a href="#" class="btn-round-lg bg-linkedin"><i class="font-xs ti-linkedin text-white"></i></a></li>
+                                                    <li class="me-1"><a href="#" class="btn-round-lg bg-instagram"><i class="font-xs ti-instagram text-white"></i></a></li>
+                                                    <li><a href="#" class="btn-round-lg bg-pinterest"><i class="font-xs ti-pinterest text-white"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-body p-0 d-flex">
+                                                <ul class="d-flex align-items-center justify-content-between mt-2">
+                                                    <li class="me-1"><a href="#" class="btn-round-lg bg-tumblr"><i class="font-xs ti-tumblr text-white"></i></a></li>
+                                                    <li class="me-1"><a href="#" class="btn-round-lg bg-youtube"><i class="font-xs ti-youtube text-white"></i></a></li>
+                                                    <li class="me-1"><a href="#" class="btn-round-lg bg-flicker"><i class="font-xs ti-flickr text-white"></i></a></li>
+                                                    <li class="me-1"><a href="#" class="btn-round-lg bg-black"><i class="font-xs ti-vimeo-alt text-white"></i></a></li>
+                                                    <li><a href="#" class="btn-round-lg bg-whatsup"><i class="font-xs feather-phone text-white"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <h4 class="fw-700 font-xssss mt-4 text-grey-500 d-flex align-items-center mb-3">Copy Link</h4>
+                                            <i class="feather-copy position-absolute right-35 mt-3 font-xs text-grey-500"></i>
+                                            <input type="text" value="https://socia.be/1rGxjoJKVF0" class="bg-grey text-grey-500 font-xssss border-0 lh-32 p-2 font-xssss fw-600 rounded-3 w-100 theme-dark-bg">
+                                        </div>
+                                    </div>
+                                    <div id="commentshow{@count}" style="display:none">
+                                        @if (posts.Comments is null)
+                                        {
+                                            <div>There aren't any Comment</div>
+                                        }
+                                        else
+                                        {
+                                            foreach (var comment in posts.Comments)
+                                            {
+                                                <div class="card-body border-top-xs pt-4 pb-3 pe-4 d-block ps-5 commentSection">
+                                                    <figure style="margin-left:28px!important" class="avatar position-absolute left-0 ms-2 mt-1"><img src="~/chatverse/uitheme.net/sociala/images/user-6.png" alt="image" class="shadow-smrounded-circle w35"></figure>
+                                                    <div class="chat p-3 myCustomCommentBgColor  rounded-xxl d-block text-left theme-dark-bg">
+                                                        <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">@comment.FullName <a href="#" class="ms-auto"><i class="ti-more-alt float-right text-grey-800font-xsss"></i></a></h4>
+                                                        <p class="fw-500 myCustomCommentTxtColor lh-20 font-xssss w-100 mt-2 mb-0">@comment.Content</p>
+                                                    </div>
+                                                </div>
+
+                                            }
+                                        }
+                                        <div class="modal-popup-footer w-100 border-top">
+                                            <div class="card p-3 d-block border-0 d-block">
+                                                <div class="form-group icon-right-input style1-input mb-0"><input type="text" placeholder="Start typing.." class="form-control rounded-xl bg-greylight border-0 font-xssss fw-500 ps-3"><i class="feather-send text-grey-500 font-md"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                count++;
+                            }
+                            else
+                            {
+                                <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-0">
+                                    <div class="card-body p-0 d-flex">
+                                        <figure class="avatar me-3 m-0"><img src="~/chatverse/uitheme.net/sociala/images/user-8.png" alt="image" class="shadow-sm rounded-circle w45"></figure>
+                                        <h4 class="fw-700 text-grey-900 font-xssss mt-1">@posts.FullName  <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">@posts.CreateDate</span></h4>
+
+                                        <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu6">
+                                            <div class="card-body p-0 d-flex">
+                                                <i class="feather-trash text-grey-500 me-3 font-lg"></i>
+                                                <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Save Link <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Add this to your saved items</span></h4>
+                                            </div>
+                                            <div class="card-body p-0 d-flex mt-2">
+                                                <i class="feather-refresh-ccw text-grey-500 me-3 font-lg"></i>
+                                                <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Hide Post <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save to your saved items</span></h4>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-0 me-lg-5">
+                                        <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">@posts.Content
+                                    </div>
+                                    <div class="card-body d-flex p-0">
+                                        <a href="#" class="emoji-bttn d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2"><i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i> <i class="feather-heart text-white bg-red-gradiant me-2 btn-round-xs font-xss"></i>2.8K Like</a>
+                                        <div class="emoji-wrap">
+                                            <ul class="emojis list-inline mb-0">
+                                                <li class="emoji list-inline-item"><i class="em em---1"></i> </li>
+                                                <li class="emoji list-inline-item"><i class="em em-angry"></i></li>
+                                                <li class="emoji list-inline-item"><i class="em em-anguished"></i> </li>
+                                                <li class="emoji list-inline-item"><i class="em em-astonished"></i> </li>
+                                                <li class="emoji list-inline-item"><i class="em em-blush"></i></li>
+                                                <li class="emoji list-inline-item"><i class="em em-clap"></i></li>
+                                                <li class="emoji list-inline-item"><i class="em em-cry"></i></li>
+                                                <li class="emoji list-inline-item"><i class="em em-full_moon_with_face"></i></li>
+                                            </ul>
+                                        </div>
+                                        <a id="show{@count}" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss showComments" style="cursor: pointer;"><i class="feather-message-circle text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">22 Comment</span></a>
+                                        <a href="#" id="dropdownMenu31" data-bs-toggle="dropdown" aria-expanded="false" class="ms-auto d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-share-2 text-grey-900 text-dark btn-round-sm font-lg"></i><span class="d-none-xs">Share</span></a>
+                                        <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu31">
+                                            <h4 class="fw-700 font-xss text-grey-900 d-flex align-items-center">Share <i class="feather-x ms-auto font-xssss btn-round-xs bg-greylight text-grey-900 me-2"></i></h4>
+                                            <div class="card-body p-0 d-flex">
+                                                <ul class="d-flex align-items-center justify-content-between mt-2">
+                                                    <li class="me-1"><a href="#" class="btn-round-lg bg-facebook"><i class="font-xs ti-facebook text-white"></i></a></li>
+                                                    <li class="me-1"><a href="#" class="btn-round-lg bg-twiiter"><i class="font-xs ti-twitter-alt text-white"></i></a></li>
+                                                    <li class="me-1"><a href="#" class="btn-round-lg bg-linkedin"><i class="font-xs ti-linkedin text-white"></i></a></li>
+                                                    <li class="me-1"><a href="#" class="btn-round-lg bg-instagram"><i class="font-xs ti-instagram text-white"></i></a></li>
+                                                    <li><a href="#" class="btn-round-lg bg-pinterest"><i class="font-xs ti-pinterest text-white"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <h4 class="fw-700 font-xssss mt-4 text-grey-500 d-flex align-items-center mb-3">Copy Link</h4>
+                                            <i class="feather-copy position-absolute right-35 mt-3 font-xs text-grey-500"></i>
+                                            <input type="text" value="https://socia.be/1rGxjoJKVF0" class="bg-grey text-grey-500 font-xssss border-0 lh-32 p-2 font-xssss fw-600 rounded-3 w-100 theme-dark-bg">
+                                        </div>
+                                    </div>
+                                    <div id="commentshow{@count}" style="display:none">
+                                        @if (posts.Comments is null)
+                                        {
+                                            <div>There aren't any Comment</div>
+                                        }
+                                        else
+                                        {
+                                            foreach (var comment in posts.Comments)
+                                            {
+                                                <div class="card-body border-top-xs pt-4 pb-3 pe-4 d-block ps-5 commentSection">
+                                                    <figure style="margin-left:28px!important" class="avatar position-absolute left-0 ms-2 mt-1"><img src="~/chatverse/uitheme.net/sociala/images/user-6.png" alt="image" class="shadow-smrounded-circle w35"></figure>
+                                                    <div class="chat p-3 myCustomCommentBgColor  rounded-xxl d-block text-left theme-dark-bg">
+                                                        <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">@comment.FullName <a href="#" class="ms-auto"><i class="ti-more-alt float-right text-grey-800font-xsss"></i></a></h4>
+                                                        <p class="fw-500 myCustomCommentTxtColor lh-20 font-xssss w-100 mt-2 mb-0">@comment.Content</p>
+                                                    </div>
+                                                </div>
+
+                                            }
+                                        }
+                                        <div class="modal-popup-footer w-100 border-top">
+                                            <div class="card p-3 d-block border-0 d-block">
+                                                <div class="form-group icon-right-input style1-input mb-0"><input type="text" placeholder="Start typing.." class="form-control rounded-xl bg-greylight border-0 font-xssss fw-500 ps-3"><i class="feather-send text-grey-500 font-md"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                count++;
+                            }
+                        }
+
+                    }
 
                 </div>
                 <div class="col-xl-4 col-xxl-3 col-lg-4 ps-lg-0">
@@ -445,9 +456,3 @@
 
     </div>
 </div>
-
-
-
-
-
-

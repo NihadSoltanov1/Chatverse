@@ -86,5 +86,30 @@ namespace Chatverse.UI.Controllers
 
             return RedirectToAction("HomePage", "Main");
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> UpdatePost(int id)
+        {
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null) return RedirectToAction("Login", "Auth");
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            HttpResponseMessage response = await _httpClient.GetAsync($"{baseUrl}/Posts/GetPostById/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var postString = await response.Content.ReadAsStringAsync();
+                GetPostByIdViewModel post = JsonConvert.DeserializeObject<GetPostByIdViewModel>(postString);
+
+                return View(model: post);
+            };
+            return RedirectToAction("AuthorProfile","Users");
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdatePost(UpdatePostViewModel updatePostViewModel)
+        {
+            return View();
+        }
+
+     
     }
 }
