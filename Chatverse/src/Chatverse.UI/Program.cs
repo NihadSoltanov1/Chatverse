@@ -1,10 +1,14 @@
 
+
+using Chatverse.UI.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
 builder.Services.AddSession();
+builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddHttpClient();
 var app = builder.Build();
 

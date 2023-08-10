@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Chatverse.Application.Features.Command.Post.UpdatePost
 {
-    public class UpdatePostCommandRequest : IRequest<IDataResult<UpdatePostCommandRequest>>
+    public class UpdatePostCommandRequest : IRequest<IDataResult<List<UpdatePostCommandResponse>>>
     {
-        public int Id { get; set; }
-        public string? Content { get; set; } 
-        public string? Media { get; set; } 
+        public int UpdatePostId { get; set; }
+        public string? UpdateContent { get; set; }
+        public List<string>? UpdateMedia { get; set; }
     }
 }

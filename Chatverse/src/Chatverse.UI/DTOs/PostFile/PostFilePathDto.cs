@@ -2,6 +2,6 @@
 {
     public class PostFilePathDto
     {
-        public string filePath { get; set; }
+        public string OldFilePath { get; set; }
     }
 }

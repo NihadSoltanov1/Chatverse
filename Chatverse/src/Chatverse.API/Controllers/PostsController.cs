@@ -1,5 +1,6 @@
 ﻿using Chatverse.Application.Features.Command.Post.CreatePost;
 using Chatverse.Application.Features.Command.Post.DeletePost;
+using Chatverse.Application.Features.Command.Post.UpdatePost;
 using Chatverse.Application.Features.Query.Post.GetPostByFriend;
 using Chatverse.Application.Features.Query.Post.GetPostById;
 using MediatR;
@@ -52,5 +53,16 @@ namespace Chatverse.API.Controllers
             GetPostByIdQueryResponse response = await _mediator.Send(getPostByIdQueryRequest);
             return Ok(response);
         }
+
+
+
+        [HttpPut]
+        public async Task<IActionResult> UpdatePost(UpdatePostCommandRequest updatePostCommandRequest)
+        {
+           var response = await _mediator.Send(updatePostCommandRequest);
+            return Ok(response.Data);
+        }
+
+
     }
 }

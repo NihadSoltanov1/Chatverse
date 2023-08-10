@@ -32,6 +32,7 @@ namespace Chatverse.Application.Features.Command.Post.DeletePost
             List<Domain.Entities.Comment> comments = await _context.Comments.Where(x => x.PostId == deletePost.Id).ToListAsync();
             List<DeletePostCommandResponse> filePaths = new List<DeletePostCommandResponse>();
             string rootFolder = @"postfiles/";
+        
             if (postImages is not null)
             {
 
