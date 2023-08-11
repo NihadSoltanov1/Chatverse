@@ -31,6 +31,7 @@ namespace Chatverse.Application.Features.Command.AppUser.Login
             }
             var result = await _userManager.CheckPasswordAsync(user, request.Password);
             if (!result) throw new AuthenticationErrorException();
+            if (user.EmailConfirmed == false) throw new ActivateAccountException("Please check your email and activate your account");
             var accessToken = _tokenHandler.CreateAccessToken(20,user);
 
             return new LoginUserCommandResponse()

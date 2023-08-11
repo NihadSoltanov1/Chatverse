@@ -38,7 +38,7 @@ namespace Chatverse.Application.Features.Command.Post.DeletePost
 
                 postImages.ForEach(image =>
                 {
-                    DeletePostCommandResponse _fileresponsePath = new DeletePostCommandResponse() { filePath=image.FilePath };
+                    DeletePostCommandResponse _fileresponsePath = new DeletePostCommandResponse() { OldFilePath = image.FilePath };
                    var newPath =  image.FilePath.Substring(image.FilePath.IndexOf(rootFolder, StringComparison.OrdinalIgnoreCase) + rootFolder.Length).Replace("\\", " /");
                     _googleCloudService.DeleteFileToCloud(newPath);
                     filePaths.Add(_fileresponsePath);

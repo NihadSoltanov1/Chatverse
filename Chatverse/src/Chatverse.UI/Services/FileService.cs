@@ -48,7 +48,7 @@ namespace Chatverse.UI.Services
             FilesPath.ForEach(path =>
             {
                 var wwwrootPath = Path.Combine(_env.WebRootPath);
-                var fullPath = Path.Combine(wwwrootPath, path.filePath);
+                var fullPath = Path.Combine(wwwrootPath, path.OldFilePath);
                 if (System.IO.File.Exists(fullPath)) System.IO.File.Delete(fullPath);
             });
         }

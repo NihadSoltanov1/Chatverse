@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "vnHwm2jjNNXyWmW7897Z0yfDPhaCRri3mwpz4BftROwDSMpPJVYgPhLn+mE/GT7gfdhkg6rqj5BMmaB5FYIahw==",
+  "success": true,
+  "projectFilePath": "C:\\Chatverse\\Chatverse\\src\\EmailConsurmer\\EmailConsurmer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\rabbitmq.client\\6.5.0\\rabbitmq.client.6.5.0.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

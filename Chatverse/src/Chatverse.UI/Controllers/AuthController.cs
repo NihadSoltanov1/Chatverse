@@ -18,7 +18,7 @@ namespace Chatverse.UI.Controllers
         public async Task<IActionResult> Login()
         {
             var accessToken = HttpContext.Session.GetString("JWToken");
-            if (accessToken is not null) return RedirectToAction("HomePage","Main");
+            if (accessToken is not null) return RedirectToAction("HomePage", "Main");
             return View();
         }
         [HttpPost]
@@ -46,6 +46,7 @@ namespace Chatverse.UI.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
@@ -72,7 +73,34 @@ namespace Chatverse.UI.Controllers
             var jsonRegister = JsonConvert.SerializeObject(registerDto);
             StringContent content = new StringContent(jsonRegister, Encoding.UTF8, "application/json");
             var responseMessage = await _httpClient.PostAsync($"{baseUrl}/Auth/Register", content);
-            return responseMessage.IsSuccessStatusCode ? RedirectToAction("Login", "Auth") : View(registerViewModel);
+            return responseMessage.IsSuccessStatusCode ? RedirectToAction("CheckEmail", "Auth") : View(registerViewModel);
+        }
+        [HttpGet]
+        public async Task<IActionResult> CheckEmail()
+        {
+            return View();
+        }
+        [HttpGet]
+        [Route("auth/confirmemail")]
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            ConfirmMailDto confirmMailDto = new ConfirmMailDto();
+            confirmMailDto.userId = userId;
+            confirmMailDto.token = token;
+
+
+            var jsonConfirmDto = JsonConvert.SerializeObject(confirmMailDto);
+            StringContent content = new StringContent(jsonConfirmDto, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync($"{baseUrl}/Auth/ConfirmEmail", content);
+            if (response.IsSuccessStatusCode)
+            {
+                string responseMessage =await response.Content.ReadAsStringAsync();
+                string deSerMessage = JsonConvert.DeserializeObject<string>(responseMessage);
+                return Convert.ToBoolean(deSerMessage) ? RedirectToAction("Login", "Auth") : NotFound();
+             }
+            throw new Exception();
+
+
         }
     }
 }

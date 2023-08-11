@@ -5,15 +5,19 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{75E728BD-14F4-47F7-B84B-ED2CE46F7823}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatverse.Domain", "src\Chatverse.Domain\Chatverse.Domain.csproj", "{6D916EE7-E1BB-4CE8-8B99-FEB76405E3DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatverse.Domain", "src\Chatverse.Domain\Chatverse.Domain.csproj", "{6D916EE7-E1BB-4CE8-8B99-FEB76405E3DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatverse.Application", "src\Chatverse.Application\Chatverse.Application.csproj", "{7FF997B9-C0BC-4615-8077-31D2D9FCEBD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatverse.Application", "src\Chatverse.Application\Chatverse.Application.csproj", "{7FF997B9-C0BC-4615-8077-31D2D9FCEBD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatverse.Infrastructure", "src\Chatverse.Infrastructure\Chatverse.Infrastructure.csproj", "{99FD7C1D-E03B-4089-9EBC-0C8C228CB553}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatverse.Infrastructure", "src\Chatverse.Infrastructure\Chatverse.Infrastructure.csproj", "{99FD7C1D-E03B-4089-9EBC-0C8C228CB553}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatverse.API", "src\Chatverse.API\Chatverse.API.csproj", "{89D25D5C-A10C-4C9D-903A-BCC20C88EB67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatverse.API", "src\Chatverse.API\Chatverse.API.csproj", "{89D25D5C-A10C-4C9D-903A-BCC20C88EB67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatverse.UI", "src\Chatverse.UI\Chatverse.UI.csproj", "{BDBB1668-8035-460D-9E34-D9442DF402AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatverse.UI", "src\Chatverse.UI\Chatverse.UI.csproj", "{BDBB1668-8035-460D-9E34-D9442DF402AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Consumer", "Consumer", "{6B5557A9-17D1-4E75-9780-074B4C30D74B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqConsumer", "src\Consumer\RabbitMqConsumer\RabbitMqConsumer.csproj", "{07933197-2815-4BF5-B283-A416CC3266C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,10 @@ Global
 		{BDBB1668-8035-460D-9E34-D9442DF402AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDBB1668-8035-460D-9E34-D9442DF402AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDBB1668-8035-460D-9E34-D9442DF402AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07933197-2815-4BF5-B283-A416CC3266C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07933197-2815-4BF5-B283-A416CC3266C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07933197-2815-4BF5-B283-A416CC3266C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07933197-2815-4BF5-B283-A416CC3266C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +59,8 @@ Global
 		{99FD7C1D-E03B-4089-9EBC-0C8C228CB553} = {75E728BD-14F4-47F7-B84B-ED2CE46F7823}
 		{89D25D5C-A10C-4C9D-903A-BCC20C88EB67} = {75E728BD-14F4-47F7-B84B-ED2CE46F7823}
 		{BDBB1668-8035-460D-9E34-D9442DF402AD} = {75E728BD-14F4-47F7-B84B-ED2CE46F7823}
+		{6B5557A9-17D1-4E75-9780-074B4C30D74B} = {75E728BD-14F4-47F7-B84B-ED2CE46F7823}
+		{07933197-2815-4BF5-B283-A416CC3266C4} = {6B5557A9-17D1-4E75-9780-074B4C30D74B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7ECAFD0C-2112-4CD0-B8C2-77B7A27725FC}

@@ -6,6 +6,9 @@ using Chatverse.Application;
 using System.Text;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Chatverse.Domain.Identity;
+using Chatverse.Infrastructure.Persistance;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +18,7 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();
 builder.Services.AddControllers();
+
 builder.Services.AddInfrastructureServices(configuration);
 builder.Services.AddApplicationServices(configuration);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
