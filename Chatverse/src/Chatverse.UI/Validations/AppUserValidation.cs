@@ -43,6 +43,8 @@ namespace Chatverse.Application.Features.ValidationRules
             RuleFor(x => x.PasswordConfirm)
             .NotEmpty().WithMessage("Confirm Password is required.")
             .Equal(x => x.Password).WithMessage("Passwords do not match.");
+
+            RuleFor(x => x.IsAgree).Equal(true).WithMessage("Agree with terms for the sign up");
         }
     }
 }

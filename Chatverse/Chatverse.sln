@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatverse.UI", "src\Chatver
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Consumer", "Consumer", "{6B5557A9-17D1-4E75-9780-074B4C30D74B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqConsumer", "src\Consumer\RabbitMqConsumer\RabbitMqConsumer.csproj", "{07933197-2815-4BF5-B283-A416CC3266C4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,10 +43,6 @@ Global
 		{BDBB1668-8035-460D-9E34-D9442DF402AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDBB1668-8035-460D-9E34-D9442DF402AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDBB1668-8035-460D-9E34-D9442DF402AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07933197-2815-4BF5-B283-A416CC3266C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07933197-2815-4BF5-B283-A416CC3266C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07933197-2815-4BF5-B283-A416CC3266C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07933197-2815-4BF5-B283-A416CC3266C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,7 +54,6 @@ Global
 		{89D25D5C-A10C-4C9D-903A-BCC20C88EB67} = {75E728BD-14F4-47F7-B84B-ED2CE46F7823}
 		{BDBB1668-8035-460D-9E34-D9442DF402AD} = {75E728BD-14F4-47F7-B84B-ED2CE46F7823}
 		{6B5557A9-17D1-4E75-9780-074B4C30D74B} = {75E728BD-14F4-47F7-B84B-ED2CE46F7823}
-		{07933197-2815-4BF5-B283-A416CC3266C4} = {6B5557A9-17D1-4E75-9780-074B4C30D74B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7ECAFD0C-2112-4CD0-B8C2-77B7A27725FC}

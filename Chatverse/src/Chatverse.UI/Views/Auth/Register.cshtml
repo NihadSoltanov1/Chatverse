@@ -60,9 +60,9 @@
 
         <div class="row" style="overflow: auto;">
             <div class="col-xl-5 d-none d-xl-block p-0 vh-100 bg-image-cover bg-no-repeat"><img src="~/chatverse/uitheme.net/sociala/images/login-bg-2.jpg" /></div>
-            <div class="col-xl-7 vh-100 align-items-center d-flex bg-white rounded-3 overflow-hidden">
-                <div class="card shadow-none border-0 ms-auto me-auto login-card">
-                    <div style="margin-top:20px;"> </div>
+            <div class="col-xl-7 vh-100 align-items-center d-flex bg-white rounded-3">
+                <div class="card shadow-none border-0 ms-auto me-auto login-card" style="overflow:auto;">
+                    <div style="margin-top:100px;"> </div>
                         <h2 class="fw-700 display1-size display2-md-size mb-4">Create <br>your account</h2>
                     <form method="post" asp-action="Register" asp-controller="Auth" enctype="multipart/form-data">
 
@@ -94,8 +94,9 @@
                    
                             
                             <div class="form-check text-left mb-3">
-                                <input type="checkbox" class="form-check-input mt-2" id="exampleCheck2">
+                                <input type="checkbox" asp-for="IsAgree" class="form-check-input mt-2" id="exampleCheck2">
                                 <label class="form-check-label font-xsss text-grey-500" for="exampleCheck2">Accept Term and Conditions</label>
+                            <span asp-validation-for="IsAgree" style="color:darkred; font:bold;"></span>
                             </div>
                             <button type="submit" class="form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0" >Register</button>
                         </form>

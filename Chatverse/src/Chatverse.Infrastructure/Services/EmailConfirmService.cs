@@ -1,4 +1,4 @@
-﻿using Chatverse.Application.Common.Interfaces;
+﻿ using Chatverse.Application.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +22,7 @@ namespace Chatverse.Infrastructure.Services
         {
             _userManager = userManager;
         }
+     
 
         public void SendMail(string email, string subject, string content)
         {
