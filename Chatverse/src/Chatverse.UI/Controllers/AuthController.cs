@@ -50,10 +50,7 @@ namespace Chatverse.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
+           
             string returnPath = String.Empty;
             if (registerViewModel.ProfilePicture != null && registerViewModel.ProfilePicture.Length > 0)
             {
@@ -73,7 +70,23 @@ namespace Chatverse.UI.Controllers
             var jsonRegister = JsonConvert.SerializeObject(registerDto);
             StringContent content = new StringContent(jsonRegister, Encoding.UTF8, "application/json");
             var responseMessage = await _httpClient.PostAsync($"{baseUrl}/Auth/Register", content);
-            return responseMessage.IsSuccessStatusCode ? RedirectToAction("CheckEmail", "Auth") : View(registerViewModel);
+
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var message = await responseMessage.Content.ReadAsStringAsync();
+                var s = "s";
+                var r = "R";
+                return Ok();
+            }
+            string c = await responseMessage.Content.ReadAsStringAsync();
+            List<ValidationErrorsViewModel> errors = JsonConvert.DeserializeObject<List<ValidationErrorsViewModel>>(c);
+            var a = "";
+            var b = "";
+            return Ok();
+
+            //var r = "string";
+            //return responseMessage.IsSuccessStatusCode ? RedirectToAction("CheckEmail", "Auth") : View(registerViewModel);
         }
         [HttpGet]
         public async Task<IActionResult> CheckEmail()

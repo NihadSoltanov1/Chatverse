@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Chatverse.Domain.Identity;
 using Chatverse.Infrastructure.Persistance;
+using Chatverse.Infrastructure.Filters;
+using Chatverse.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +19,7 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .Build();
-builder.Services.AddControllers();
+builder.Services.AddControllers(options=> options.Filters.Add<ValidationFilter>()).ConfigureApiBehaviorOptions(options=>options.SuppressModelStateInvalidFilter = true);
 
 builder.Services.AddInfrastructureServices(configuration);
 builder.Services.AddApplicationServices(configuration);
@@ -48,6 +50,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.ConfigureExceptionHandler<Program>(app.Services.GetRequiredService<ILogger<Program>>());
 app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseAuthentication();

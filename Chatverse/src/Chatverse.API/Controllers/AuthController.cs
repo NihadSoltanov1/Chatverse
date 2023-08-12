@@ -5,6 +5,7 @@ using Chatverse.Application.Features.Command.AppUser.Register;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Chatverse.API.Controllers
 {
@@ -14,6 +15,7 @@ namespace Chatverse.API.Controllers
     {
         IMediator _mediator;
         IEmailService _email;
+        
         public AuthController(IMediator mediator, IEmailService email)
         {
             _mediator = mediator;
@@ -22,7 +24,10 @@ namespace Chatverse.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserRegisterCommandRequest userRegisterCommandRequest)
         {
-           
+            if (!ModelState.IsValid)
+            {
+                 
+            }
             await _mediator.Send(userRegisterCommandRequest);
             return Ok();
         }
