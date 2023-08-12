@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9ywyw8/NmSrdrck1yzvsTQ2ZbBKzar01b6ND4aGWmpX+OurUEG1eK7Ri5JIOFLd8+hRPD3hXkwntm/ChGiRbfQ==",
+  "dgSpecHash": "AidGlAroWVOVHnrbYXVGx0s0MTbrgqUo6bfhS+qi8NwDTK+48HoOFnA9uTSi61brw2/kEza5ABg3twQEvil2ng==",
   "success": true,
   "projectFilePath": "C:\\Chatverse\\Chatverse\\src\\Chatverse.API\\Chatverse.API.csproj",
   "expectedPackageFiles": [
@@ -17,8 +17,8 @@
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\google.apis.storage.v1\\1.60.0.2981\\google.apis.storage.v1.1.60.0.2981.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\google.cloud.storage.v1\\4.6.0\\google.cloud.storage.v1.4.6.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
-    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
-    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.1.0\\mediatr.extensions.microsoft.dependencyinjection.11.1.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
@@ -120,5 +120,16 @@
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: MediatR.Extensions.Microsoft.DependencyInjection 11.1.0 requires MediatR (>= 11.0.0 && < 12.0.0) but version MediatR 12.0.1 was resolved.",
+      "libraryId": "MediatR",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }
