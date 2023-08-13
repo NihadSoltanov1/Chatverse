@@ -34,7 +34,7 @@ namespace Chatverse.Application.Features.Query.AppUser.GetAllUsers
             {
                 var friendShips = _context.Friendships.Where(f => (f.SenderId == currentUser.Id && f.ReceiverId == user.Id) || (f.SenderId == user.Id && f.ReceiverId == currentUser.Id)).FirstOrDefault();
 
-                if(friendShips is null)
+                if(friendShips is null && user.EmailConfirmed == true && currentUser.Id!=user.Id)
                 {
                     GetAllUsersQueryResponse responseUser = new GetAllUsersQueryResponse()
                     {

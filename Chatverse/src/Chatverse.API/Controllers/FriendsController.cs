@@ -1,12 +1,14 @@
 ﻿using Chatverse.Application.Features.Query.AppUser.GetAllUsers;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chatverse.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class FriendsController : ControllerBase
     {
         private readonly IMediator _mediator;
