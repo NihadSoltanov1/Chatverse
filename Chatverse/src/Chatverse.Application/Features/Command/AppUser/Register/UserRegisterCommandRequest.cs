@@ -16,5 +16,6 @@ namespace Chatverse.Application.Features.Command.AppUser.Register
         public string Password { get; set; }
         public string PasswordConfirm { get; set; }
         public string? ProfilePicture { get; set; }
+        public bool IsAgree { get; set; }
     }
 }

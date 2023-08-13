@@ -7,7 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
-builder.Services.AddSession();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
+});
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddHttpClient();
 var app = builder.Build();

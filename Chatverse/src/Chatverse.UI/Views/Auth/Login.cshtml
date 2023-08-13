@@ -1,6 +1,10 @@
-﻿@using Chatverse.UI.ViewModels.Auth;
+﻿@using Chatverse.UI.DTOs.Error;
+@using Chatverse.UI.ViewModels.Auth;
 @{
     Layout = null;
+}
+@{
+    ErrorsContentDto errors = ViewBag.ErrorsList as ErrorsContentDto;
 }
 @model LoginViewModel
 <!DOCTYPE html>
@@ -81,6 +85,13 @@
                                 <label class="form-check-label font-xsss text-grey-500" for="exampleCheck5">Remember me</label>
                                 <a href="forgot.html" class="fw-600 font-xsss text-grey-700 mt-1 float-right">Forgot your Password?</a>
                             </div>
+                            @if (errors is not null)
+                            {
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>System!</strong> @errors.Message
+                                </div>
+                            }
+                                
                             <button class="form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0 " type="submit" href="/Home/Index">Login</button>
                         </form>
 
