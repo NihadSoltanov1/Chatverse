@@ -4,6 +4,7 @@ using Chatverse.Domain.Identity;
 using Chatverse.Infrastructure.Persistance.Interceptors;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,11 +30,48 @@ namespace Chatverse.Infrastructure.Persistance
         public DbSet<PostImage> PostImages { get ; set ; }
         public DbSet<City> Cities { get ; set; }
         public DbSet<Country> Countries { get; set; }
-
+        public DbSet<NotificationCategory> NotificationCategories { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
+
+
+
+
+
             base.OnModelCreating(builder);
+
+            builder.Entity<Notification>()
+                .HasOne(n => n.Comment)
+                .WithMany(n => n.Notifications)
+                .HasForeignKey(n => n.CommentId)
+                 .OnDelete(DeleteBehavior.Restrict);
+
+
+            builder.Entity<Notification>()
+               .HasOne(n => n.CurrentUser)
+               .WithMany(n => n.CurrentNotifications)
+               .HasForeignKey(n => n.CurrentUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Notification>()
+               .HasOne(n => n.SenderUser)
+               .WithMany(n => n.SenderNotifications)
+               .HasForeignKey(n => n.SenderUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+            builder.Entity<Notification>()
+                .HasOne(n => n.Post)
+                .WithMany(n => n.Notifications)
+                .HasForeignKey(n => n.PostId)
+                 .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Notification>()
+                .HasOne(n=>n.NotificationCategory)
+                .WithMany(n=>n.Notifications)
+                .HasForeignKey(n=>n.CategoryId)
+                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Friendship>()
                 .HasOne(f => f.Sender)
@@ -87,6 +125,10 @@ namespace Chatverse.Infrastructure.Persistance
                 .WithMany(u => u.Likes)
                 .HasForeignKey(l => l.AppUserId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
+           
+
 
             builder.Entity<Like>()
                 .HasOne(l => l.Post)

@@ -19,6 +19,7 @@ namespace Chatverse.Domain.Entities
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Like> Likes { get; set; }
         public ICollection<PostImage> PostImages { get; set; }
+        public ICollection<Notification> Notifications { get; set; }
         public bool State { get; set; }
 
     }

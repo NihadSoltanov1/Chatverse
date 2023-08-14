@@ -27,6 +27,10 @@ namespace Chatverse.Domain.Identity
         public ICollection<Post> Posts { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Like> Likes { get; set; }
+        [InverseProperty("CurrentUser")]
+        public ICollection<Notification> CurrentNotifications { get; set; }
+        [InverseProperty("SenderUser")]
+        public ICollection<Notification> SenderNotifications { get; set; }
 
         [InverseProperty("Sender")]
         public ICollection<Friendship> SentFriendRequests { get; set; }

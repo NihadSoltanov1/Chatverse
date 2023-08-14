@@ -20,5 +20,6 @@ namespace Chatverse.Domain.Entities
         [ForeignKey("Post")]
         public int PostId { get; set; }
         public Post Post { get; set; }
+        public ICollection<Notification> Notifications { get; set; }
     }
 }

@@ -159,6 +159,67 @@ namespace Chatverse.Infrastructure.Migrations
                     b.ToTable("Likes");
                 });
 
+            modelBuilder.Entity("Chatverse.Domain.Entities.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CommentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CurrentUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SenderUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("CurrentUserId");
+
+                    b.HasIndex("PostId");
+
+                    b.HasIndex("SenderUserId");
+
+                    b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("Chatverse.Domain.Entities.NotificationCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NotificationCategories");
+                });
+
             modelBuilder.Entity("Chatverse.Domain.Entities.Post", b =>
                 {
                     b.Property<int>("Id")
@@ -515,6 +576,47 @@ namespace Chatverse.Infrastructure.Migrations
                     b.Navigation("Post");
                 });
 
+            modelBuilder.Entity("Chatverse.Domain.Entities.Notification", b =>
+                {
+                    b.HasOne("Chatverse.Domain.Entities.NotificationCategory", "NotificationCategory")
+                        .WithMany("Notifications")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Chatverse.Domain.Entities.Comment", "Comment")
+                        .WithMany("Notifications")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Chatverse.Domain.Identity.AppUser", "CurrentUser")
+                        .WithMany("CurrentNotifications")
+                        .HasForeignKey("CurrentUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Chatverse.Domain.Entities.Post", "Post")
+                        .WithMany("Notifications")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Chatverse.Domain.Identity.AppUser", "SenderUser")
+                        .WithMany("SenderNotifications")
+                        .HasForeignKey("SenderUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("CurrentUser");
+
+                    b.Navigation("NotificationCategory");
+
+                    b.Navigation("Post");
+
+                    b.Navigation("SenderUser");
+                });
+
             modelBuilder.Entity("Chatverse.Domain.Entities.Post", b =>
                 {
                     b.HasOne("Chatverse.Domain.Identity.AppUser", "AppUser")
@@ -610,11 +712,21 @@ namespace Chatverse.Infrastructure.Migrations
                     b.Navigation("AppUsers");
                 });
 
+            modelBuilder.Entity("Chatverse.Domain.Entities.Comment", b =>
+                {
+                    b.Navigation("Notifications");
+                });
+
             modelBuilder.Entity("Chatverse.Domain.Entities.Country", b =>
                 {
                     b.Navigation("AppUsers");
 
                     b.Navigation("Cities");
+                });
+
+            modelBuilder.Entity("Chatverse.Domain.Entities.NotificationCategory", b =>
+                {
+                    b.Navigation("Notifications");
                 });
 
             modelBuilder.Entity("Chatverse.Domain.Entities.Post", b =>
@@ -623,6 +735,8 @@ namespace Chatverse.Infrastructure.Migrations
 
                     b.Navigation("Likes");
 
+                    b.Navigation("Notifications");
+
                     b.Navigation("PostImages");
                 });
 
@@ -630,11 +744,15 @@ namespace Chatverse.Infrastructure.Migrations
                 {
                     b.Navigation("Comments");
 
+                    b.Navigation("CurrentNotifications");
+
                     b.Navigation("Likes");
 
                     b.Navigation("Posts");
 
                     b.Navigation("ReceivedFriendRequests");
+
+                    b.Navigation("SenderNotifications");
 
                     b.Navigation("SentFriendRequests");
                 });
