@@ -11,6 +11,13 @@ builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(20);
 });
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    // ...
+    options.ExpireTimeSpan = TimeSpan.FromDays(7); // Örnek olarak 7 gün
+    // ...
+});
+
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddHttpClient();
 var app = builder.Build();

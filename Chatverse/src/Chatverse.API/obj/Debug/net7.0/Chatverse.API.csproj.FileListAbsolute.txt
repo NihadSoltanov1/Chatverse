@@ -87,7 +87,6 @@ C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\Chatverse.API.Generate
 C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\Chatverse.API.AssemblyInfoInputs.cache
 C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\Chatverse.API.AssemblyInfo.cs
 C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\Chatverse.API.csproj.CoreCompileInputs.cache
-C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\Chatverse.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\Chatverse.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\staticwebassets\msbuild.Chatverse.API.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\staticwebassets\msbuild.build.Chatverse.API.props

@@ -32,6 +32,9 @@
                         }
                         else
                         {
+                           
+                           int count = 1;
+                            
                             foreach(var user in Model)
                             {
                                 <div class="col-md-6 col-sm-6 pe-2 ps-2">
@@ -44,11 +47,12 @@
                                             <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@user.Username</p>
                                             <span class="position-absolute right-15 top-0 d-flex align-items-center">
 
-                                                <a href="#" class="text-center p-2 lh-24 w100 ms-1 ls-3 d-inline-block rounded-xl bg-current font-xsssss fw-700 ls-lg text-white">Add Friend</a>
+                                                <a id="addFriend{@count}" href="/Friends/AddFriend/@user.UserId" class="text-center p-2 lh-24 w100 ms-1 ls-3 d-inline-block rounded-xl bg-current font-xsssss fw-700 ls-lg text-white add-friend-c">Add Friend</a>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
+                                count++;
                             }
                             
 

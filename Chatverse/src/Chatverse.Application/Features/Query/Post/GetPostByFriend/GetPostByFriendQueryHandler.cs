@@ -29,7 +29,7 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByFriend
             var currentUser = await _userManager.FindByNameAsync(_currentUserService.UserName);
             Domain.Entities.Friendship friendship = await _context.Friendships.FirstOrDefaultAsync(x => x.SenderId == currentUser.Id);
             if (friendship is null) throw new Exception();
-            if (friendship.State == true && friendship.Accept == true)
+            if (friendship.Accept == true)
             {
                 List<Domain.Entities.Post> getPostByFriend = await _context.Posts.Where(x => x.AppUserId == friendship.ReceiverId).ToListAsync();
                 if (getPostByFriend is null) throw new Exception();

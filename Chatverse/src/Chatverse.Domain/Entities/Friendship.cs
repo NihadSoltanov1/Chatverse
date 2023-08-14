@@ -18,7 +18,6 @@ namespace Chatverse.Domain.Entities
         public string ReceiverId { get; set; }
 
         public bool Accept { get; set; } = false;
-        public bool State { get; set; } = true;
         public AppUser Sender { get; set; }
         public AppUser Receiver { get; set; }
     }

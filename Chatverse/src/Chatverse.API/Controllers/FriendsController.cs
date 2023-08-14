@@ -17,6 +17,7 @@ namespace Chatverse.API.Controllers
         {
             _mediator = mediator;
         }
+       
         [HttpGet]
         public async Task<IActionResult> FindFriend()
         {

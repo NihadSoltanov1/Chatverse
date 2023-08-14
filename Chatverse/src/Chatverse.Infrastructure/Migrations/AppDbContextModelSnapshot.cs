@@ -120,9 +120,6 @@ namespace Chatverse.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("State")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ReceiverId");

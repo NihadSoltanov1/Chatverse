@@ -526,8 +526,63 @@
             }
         });
     </script>
-*@    
+*@
+    $.ajax({
+    type: 'POST',
+    url: '/Comments/CreateComment',
+    data: JSON.stringify(data),
+    contentType: 'application/json',
+    success: function (response) {
+    var newComment = document.createElement('div');
+    newComment.className = 'card-body border-top-xs pt-4 pb-3 pe-4 d-block ps-5 commentSection';
+    newComment.innerHTML = `
+
+    <div class="chat p-3 myCustomCommentBgColor  rounded-xxl d-block text-left theme-dark-bg">
+        <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">${fullname} <a href="#" class="ms-auto"><i class="ti-more-alt float-right text-grey-800font-xsss"></i></a></h4>
+        <p class="fw-500 myCustomCommentTxtColor lh-20 font-xssss w-100 mt-2 mb-0">${content}</p>
+    </div>
+    `;
+
+
+    var formElement = document.getElementById(formElementId);
+    formElement.parentNode.insertBefore(newComment, formElement);
+
+
+    },
+    error: function () {
+    console.error('Ajax isteği başarısız.');
+    }
+    });
+<script>
+    console.log("ust script")
+        document.querySelectorAll('.add-friend-c').forEach(item => {
+            item.addEventListener('click', e => {
+                e.preventDefault();
+
+                console.log("Button Click");
+                var targetElement1 = e.target;
+                var hrefValue = targetElement1.getAttribute('href');
+                    
+                console.log(targetElement1);
+                const targetElementId = targetElement1.getAttribute('id');
+                console.log(targetElementId);
+
+                $.ajax({
+                    type: 'GET',
+                    url: hrefValue
+                })
+                targetElement1.style.backgroundColor = 'grey';
+                targetElement1.style.color = 'white';
+                targetElement1.innerHTML = 'Pedding';
+                targetElement1.removeAttribute('href');
+                targetElement1.classList.remove('bg-current');
+                console.log(hrefValue);
+            })
+        })
+</script>
     <script>
+        
+
         document.getElementById("uploadLink").addEventListener("click", function () {
             document.getElementById("fileInput").click();
         });
@@ -632,8 +687,7 @@
             })
         })
 
-
-
+        console.log('Alt script ');
     </script>
     @RenderSection("JS",false);
     <script src="~/chatverse/uitheme.net/sociala/js/plugin.js"></script>

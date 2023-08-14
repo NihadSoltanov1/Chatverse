@@ -1,4 +1,5 @@
-﻿using Chatverse.Application.Features.Command.Friendship.CreateFriendship;
+﻿using Chatverse.Application.DTOs.SingleDto;
+using Chatverse.Application.Features.Command.Friendship.CreateFriendship;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +19,15 @@ namespace Chatverse.API.Controllers
         {
             _mediator = mediator;
         }
+        [HttpPost]
+        public async Task<IActionResult> AddFriend(IdDto idDto)
+        {
+            CreateFriendshipCommandRequest createFriendshipCommandRequest = new CreateFriendshipCommandRequest();
+            createFriendshipCommandRequest.ReceiverId = idDto.Id;
+            var response = await _mediator.Send(createFriendshipCommandRequest);
+            return Ok(response);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> SendFriendRequest(CreateFriendshipCommandRequest createFriendshipCommandRequest)

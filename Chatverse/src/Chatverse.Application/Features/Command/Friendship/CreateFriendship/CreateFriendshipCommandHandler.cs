@@ -31,28 +31,34 @@ namespace Chatverse.Application.Features.Command.Friendship.CreateFriendship
             var currentUserId = currentUser.Id;
             var receiverUser = await _userManager.FindByIdAsync(request.ReceiverId);
             if (receiverUser is null) throw new NotFoundException("This user can not found");
-            var isFriend = await _context.Friendships.FirstOrDefaultAsync(x => x.SenderId == currentUserId && x.ReceiverId == request.ReceiverId && x.State == true);
+            var isFriend = await _context.Friendships.FirstOrDefaultAsync(x => x.SenderId == currentUserId && x.ReceiverId == request.ReceiverId);
 
             if (isFriend is not null)
             {
-                if (isFriend.Accept == false) throw new WaitingAcceptToFriendRequestException();
-                throw new AlreadyFriendEachOtherException();
+                if (isFriend.Accept == false) throw new WaitingAcceptToFriendRequestException("You sent friend's request already.");
+                throw new AlreadyFriendEachOtherException("You are already friend.");
             }
-            var _isFriend = await _context.Friendships.FirstOrDefaultAsync(x => x.SenderId == request.ReceiverId && x.ReceiverId == currentUserId && x.State == true);
+            var _isFriend = await _context.Friendships.FirstOrDefaultAsync(x => x.SenderId == request.ReceiverId && x.ReceiverId == currentUserId );
             if (_isFriend is not null)
             {
-                if (_isFriend.Accept == false) throw new WaitingAcceptToFriendRequestException();
-                throw new AlreadyFriendEachOtherException();
+                if (_isFriend.Accept == false) throw new WaitingAcceptToFriendRequestException("You sent friend's request already.");
+                throw new AlreadyFriendEachOtherException("You are already friend.");
             }
 
-            Domain.Entities.Friendship newFriendship = new()
+            Domain.Entities.Friendship newFriendship1 = new()
             {
                 SenderId = currentUserId,
                 ReceiverId = receiverUser.Id
             };
-            await _context.Friendships.AddAsync(newFriendship);
+            await _context.Friendships.AddAsync(newFriendship1);
             await _context.SaveChangesAsync(cancellationToken);
-
+            Domain.Entities.Friendship newFriendship2 = new()
+            {
+                SenderId = receiverUser.Id,
+                ReceiverId = currentUserId
+            };
+            await _context.Friendships.AddAsync(newFriendship2);
+            await _context.SaveChangesAsync(cancellationToken);
             return new SuccessDataResult<CreateFriendshipCommandRequest>(request, "Send friend request successfully");
 
 
