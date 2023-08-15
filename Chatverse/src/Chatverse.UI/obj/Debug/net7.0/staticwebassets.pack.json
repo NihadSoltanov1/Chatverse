@@ -7861,30 +7861,6 @@
       "PackagePath": "staticwebassets\\chatverse\\uitheme.net\\sociala\\user-page.html"
     },
     {
-      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\microsoft\\js\\jquery.js",
-      "PackagePath": "staticwebassets\\microsoft\\js\\jquery.js"
-    },
-    {
-      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\microsoft\\js\\jquery.min.js",
-      "PackagePath": "staticwebassets\\microsoft\\js\\jquery.min.js"
-    },
-    {
-      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\microsoft\\js\\jquery.min.map",
-      "PackagePath": "staticwebassets\\microsoft\\js\\jquery.min.map"
-    },
-    {
-      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\microsoft\\js\\site.js",
-      "PackagePath": "staticwebassets\\microsoft\\js\\site.js"
-    },
-    {
-      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\microsoft\\signalr\\dist\\browser\\signalr.js",
-      "PackagePath": "staticwebassets\\microsoft\\signalr\\dist\\browser\\signalr.js"
-    },
-    {
-      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\microsoft\\signalr\\dist\\browser\\signalr.min.js",
-      "PackagePath": "staticwebassets\\microsoft\\signalr\\dist\\browser\\signalr.min.js"
-    },
-    {
       "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\202300090800_design-medium.jpg",
       "PackagePath": "staticwebassets\\postfiles\\202300090800_design-medium.jpg"
     },

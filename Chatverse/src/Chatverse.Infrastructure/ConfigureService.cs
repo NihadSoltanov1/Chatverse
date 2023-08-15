@@ -31,6 +31,7 @@ namespace Chatverse.Infrastructure
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddScoped<AppDbContextInitialiser>();
+           
             services.AddScoped<IEmailService, EmailConfirmService>();
             services.AddScoped<IGoogleCloudService, GoogleCloudService>();
             services.AddScoped<ITokenHandler, TokenHandler>();

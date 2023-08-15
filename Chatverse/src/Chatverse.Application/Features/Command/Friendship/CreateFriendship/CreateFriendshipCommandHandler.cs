@@ -1,6 +1,7 @@
 ﻿using Chatverse.Application.Common.Interfaces;
 using Chatverse.Application.Common.Results;
 using Chatverse.Application.Exceptions;
+using Chatverse.Application.Features.Command.Notification.CreateNotification;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,12 +18,13 @@ namespace Chatverse.Application.Features.Command.Friendship.CreateFriendship
         private readonly UserManager<Domain.Identity.AppUser> _userManager;
         private readonly ICurrentUserService _currentUserService;
         private readonly IApplicationDbContext _context;
-
-        public CreateFriendshipCommandHandler(UserManager<Domain.Identity.AppUser> userManager, ICurrentUserService currentUserService, IApplicationDbContext context)
+        private readonly IMediator _mediator;
+        public CreateFriendshipCommandHandler(UserManager<Domain.Identity.AppUser> userManager, ICurrentUserService currentUserService, IApplicationDbContext context, IMediator mediator)
         {
             _userManager = userManager;
             _currentUserService = currentUserService;
             _context = context;
+            _mediator = mediator;
         }
 
         public async Task<IDataResult<CreateFriendshipCommandRequest>> Handle(CreateFriendshipCommandRequest request, CancellationToken cancellationToken)
@@ -59,6 +61,12 @@ namespace Chatverse.Application.Features.Command.Friendship.CreateFriendship
             };
             await _context.Friendships.AddAsync(newFriendship2);
             await _context.SaveChangesAsync(cancellationToken);
+            CreateNotificationCommandRequest createNotificationCommandRequest = new CreateNotificationCommandRequest()
+            {
+                CategoryName = "FR",
+                CurrentUserId = newFriendship2.SenderId
+            };
+            await _mediator.Send(createNotificationCommandRequest);
             return new SuccessDataResult<CreateFriendshipCommandRequest>(request, "Send friend request successfully");
 
 

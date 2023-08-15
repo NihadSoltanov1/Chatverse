@@ -1,0 +1,5 @@
+C:\Chatverse\Chatverse\src\Chatverse.SignalR\obj\Debug\net7.0\Chatverse.SignalR.csproj.AssemblyReference.cache
+C:\Chatverse\Chatverse\src\Chatverse.SignalR\obj\Debug\net7.0\Chatverse.SignalR.GeneratedMSBuildEditorConfig.editorconfig
+C:\Chatverse\Chatverse\src\Chatverse.SignalR\obj\Debug\net7.0\Chatverse.SignalR.AssemblyInfoInputs.cache
+C:\Chatverse\Chatverse\src\Chatverse.SignalR\obj\Debug\net7.0\Chatverse.SignalR.AssemblyInfo.cs
+C:\Chatverse\Chatverse\src\Chatverse.SignalR\obj\Debug\net7.0\Chatverse.SignalR.csproj.CoreCompileInputs.cache

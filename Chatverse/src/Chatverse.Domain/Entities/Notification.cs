@@ -1,4 +1,5 @@
-﻿using Chatverse.Domain.Identity;
+﻿using Chatverse.Domain.Common;
+using Chatverse.Domain.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Chatverse.Domain.Entities
 {
-    public class Notification
+    public class Notification : BaseAuditableEntity
     {
-        public int Id { get; set; }
+      
         [ForeignKey("CurrentUser")]
         public string CurrentUserId { get; set; }
         [ForeignKey("SenderUser")]
         public string SenderUserId { get; set; }
-
+        public string? MessageType { get; set; }
         public string Content { get; set; }
         [ForeignKey("Post")]
         public int? PostId { get; set; }

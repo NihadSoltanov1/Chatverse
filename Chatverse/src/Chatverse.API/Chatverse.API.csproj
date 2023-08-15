@@ -23,10 +23,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Chatverse.Application\Chatverse.Application.csproj" />
     <ProjectReference Include="..\Chatverse.Infrastructure\Chatverse.Infrastructure.csproj" />
+    <ProjectReference Include="..\Chatverse.SignalR\Chatverse.SignalR.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Middlewares\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
