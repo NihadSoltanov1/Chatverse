@@ -1,4 +1,5 @@
-﻿using Chatverse.Application.Features.Command.Comment.CreateComment;
+﻿using Chatverse.Application.Common.Hubs;
+using Chatverse.Application.Features.Command.Comment.CreateComment;
 using Chatverse.Application.Features.Command.HubConnection.CreateHubConnection;
 using Chatverse.Application.Features.Command.HubConnection.DeleteHubConnection;
 using Chatverse.Domain.Entities;
@@ -10,38 +11,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Chatverse.SignalR.Hubs
 {
     public class NotificationHub : Hub
     {
-        private readonly IMediator _mediator;
+        private readonly INotificationHubService _notificationHubService;
 
-        public NotificationHub(IMediator mediator)
+        public NotificationHub(INotificationHubService notificationHubService)
         {
-            _mediator = mediator;
+            _notificationHubService = notificationHubService;
         }
 
-        public override Task OnConnectedAsync()
+        public override async Task OnConnectedAsync()
         {
-            Clients.Caller.SendAsync("OnConnected");
-            return base.OnConnectedAsync();
-        }
-        public override  Task OnDisconnectedAsync(Exception? exception)
-        {
-            var connectionId = Context.ConnectionId;
-            DeleteHubConnectionCommandRequest deleteHubConnectionCommandRequest = new DeleteHubConnectionCommandRequest();
-            deleteHubConnectionCommandRequest.ConnecitionId = connectionId;
-             _mediator.Send(deleteHubConnectionCommandRequest);
 
-            return base.OnDisconnectedAsync(exception);
+           
+            await base.OnConnectedAsync();
+            await Clients.Client(Context.ConnectionId).SendAsync("OnConnected");
+        }
+        public override async Task OnDisconnectedAsync(Exception? exception)
+        {
+            await base.OnDisconnectedAsync(exception);
+            await _notificationHubService.SendDisConnectedMessage(Context.ConnectionId);
         }
         public async Task SaveUserConnection()
         {
-            var connectionId = Context.ConnectionId;
-            CreateHubConnectionCommandRequest createHubConnectionCommandRequest = new CreateHubConnectionCommandRequest();
-            createHubConnectionCommandRequest.ConnectionId = connectionId;
-            await _mediator.Send(createHubConnectionCommandRequest);
+           string connectionId = Context.ConnectionId;
+           await _notificationHubService.SaveUserToHub(connectionId);
         }
     }
 }

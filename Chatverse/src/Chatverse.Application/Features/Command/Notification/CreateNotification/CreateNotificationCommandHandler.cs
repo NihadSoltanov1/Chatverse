@@ -1,7 +1,7 @@
-﻿using Chatverse.Application.Common.Hubs;
-using Chatverse.Application.Common.Interfaces;
+﻿using Chatverse.Application.Common.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +15,12 @@ namespace Chatverse.Application.Features.Command.Notification.CreateNotification
         private readonly ICurrentUserService _currentUserService;
         private readonly UserManager<Domain.Identity.AppUser> _userManager;
         private readonly IApplicationDbContext _context;
-        private readonly INotificationHubService _notificationHubService;
         private readonly IMediator _mediator;
-        public CreateNotificationCommandHandler(ICurrentUserService currentUserService, UserManager<Domain.Identity.AppUser> userManager, IApplicationDbContext context, INotificationHubService notificationHubService, IMediator mediator)
+        public CreateNotificationCommandHandler(ICurrentUserService currentUserService, UserManager<Domain.Identity.AppUser> userManager, IApplicationDbContext context, IMediator mediator)
         {
             _currentUserService = currentUserService;
             _userManager = userManager;
             _context = context;
-            _notificationHubService = notificationHubService;
             _mediator = mediator;
         }
 
@@ -58,8 +56,8 @@ namespace Chatverse.Application.Features.Command.Notification.CreateNotification
             notification.SenderUserId = senderCurrentUser.Id;
             notification.CategoryId = category.Id;
             _context.Notifications.Add(notification);
-           await _context.SaveChangesAsync(cancellationToken);
-     
+            await _context.SaveChangesAsync(cancellationToken);
+         
             return new CreateNotificationCommandResponse();
         }
     }

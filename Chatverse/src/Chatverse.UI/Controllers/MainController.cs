@@ -1,4 +1,5 @@
-﻿using Chatverse.UI.ViewModels.Post;
+﻿using Chatverse.UI.ViewModels.Friends;
+using Chatverse.UI.ViewModels.Post;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -18,9 +19,25 @@ namespace Chatverse.UI.Controllers
             HttpResponseMessage response = await client.GetAsync($"{baseUrl}/Posts/GetPostsByFriend");
             if (response.IsSuccessStatusCode)
             {
+                
                 string jsonResponse = await response.Content.ReadAsStringAsync(); // JSON yanıtı string olarak al
 
                 List<GetPostsViewModel> posts = JsonConvert.DeserializeObject<List<GetPostsViewModel>>(jsonResponse); // JSON'u List<string> olarak deserialize et
+
+
+
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                HttpResponseMessage response1 = await client.GetAsync($"{baseUrl}/Friendships/GetAllFriendRequest");
+                if (response1.IsSuccessStatusCode)
+                {
+                    var message = await  response1.Content.ReadAsStringAsync();
+                    List<GetAllFriendsRequestViewModel> getAllFriendsRequestViewModels = JsonConvert.DeserializeObject<List<GetAllFriendsRequestViewModel>>(message);
+                    List<GetAllFriendsRequestViewModel> takeFour = getAllFriendsRequestViewModels.Take(4).ToList();
+                    ViewBag.friends = takeFour;
+                }
+
+
+
                 return View(model: posts);
             }
             return View();

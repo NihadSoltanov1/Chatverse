@@ -1,5 +1,6 @@
 ﻿using Chatverse.Application.DTOs.SingleDto;
 using Chatverse.Application.Features.Command.Friendship.CreateFriendship;
+using Chatverse.Application.Features.Query.Friendship.GetAllRequest;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +28,15 @@ namespace Chatverse.API.Controllers
             var response = await _mediator.Send(createFriendshipCommandRequest);
             return Ok(response);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllFriendRequest()
+        {
+            GetAllRequestQueryRequest getAllRequestQueryRequest = new GetAllRequestQueryRequest();
+            var response = await _mediator.Send(getAllRequestQueryRequest);
+            return Ok(response);
+        }
+
 
 
         [HttpPost]

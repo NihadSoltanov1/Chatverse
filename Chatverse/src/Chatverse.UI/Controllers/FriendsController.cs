@@ -16,7 +16,7 @@ namespace Chatverse.UI.Controllers
         {
             _httpClient = httpClient;
         }
-
+        
         [HttpGet]
         public async Task<IActionResult> FindFriend()
         {

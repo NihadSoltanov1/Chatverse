@@ -107,6 +107,4 @@ C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\runtimes\win7-x64\nati
 C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\runtimes\win7-x86\native\sni.dll
 C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\runtimes\unix\lib\netstandard1.3\System.Data.SqlClient.dll
 C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\runtimes\win\lib\netstandard1.3\System.Data.SqlClient.dll
-C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\Chatverse.SignalR.dll
-C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\Chatverse.SignalR.pdb
 C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\Chatverse.API.MvcApplicationPartsAssemblyInfo.cs

@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatverse.API", "src\Chatve
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatverse.UI", "src\Chatverse.UI\Chatverse.UI.csproj", "{BDBB1668-8035-460D-9E34-D9442DF402AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatverse.SignalR", "src\Chatverse.SignalR\Chatverse.SignalR.csproj", "{23ED68AB-94E6-41FD-837C-0208A7897BD3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,10 +41,6 @@ Global
 		{BDBB1668-8035-460D-9E34-D9442DF402AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDBB1668-8035-460D-9E34-D9442DF402AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDBB1668-8035-460D-9E34-D9442DF402AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23ED68AB-94E6-41FD-837C-0208A7897BD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23ED68AB-94E6-41FD-837C-0208A7897BD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23ED68AB-94E6-41FD-837C-0208A7897BD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23ED68AB-94E6-41FD-837C-0208A7897BD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,7 +51,6 @@ Global
 		{99FD7C1D-E03B-4089-9EBC-0C8C228CB553} = {75E728BD-14F4-47F7-B84B-ED2CE46F7823}
 		{89D25D5C-A10C-4C9D-903A-BCC20C88EB67} = {75E728BD-14F4-47F7-B84B-ED2CE46F7823}
 		{BDBB1668-8035-460D-9E34-D9442DF402AD} = {75E728BD-14F4-47F7-B84B-ED2CE46F7823}
-		{23ED68AB-94E6-41FD-837C-0208A7897BD3} = {75E728BD-14F4-47F7-B84B-ED2CE46F7823}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7ECAFD0C-2112-4CD0-B8C2-77B7A27725FC}

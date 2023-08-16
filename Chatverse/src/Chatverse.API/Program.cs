@@ -11,7 +11,6 @@ using Chatverse.Domain.Identity;
 using Chatverse.Infrastructure.Persistance;
 using Chatverse.Infrastructure.Filters;
 using Chatverse.API.Extensions;
-using Chatverse.SignalR;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,7 +22,7 @@ var connectionString = configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddControllers(options=> options.Filters.Add<ValidationFilter>()).ConfigureApiBehaviorOptions(options=>options.SuppressModelStateInvalidFilter = true);
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.WithOrigins("http://localhost:5273").AllowAnyHeader().AllowAnyMethod().AllowCredentials()));
 builder.Services.AddInfrastructureServices(configuration);
-builder.Services.AddSignalRServices(configuration);
+
 builder.Services.AddApplicationServices(configuration);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -59,5 +58,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors();
 app.MapControllers();
-app.MapHubs();
+
 app.Run();

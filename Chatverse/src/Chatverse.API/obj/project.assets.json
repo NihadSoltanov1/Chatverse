@@ -3074,22 +3074,6 @@
         "runtime": {
           "bin/placeholder/Chatverse.Infrastructure.dll": {}
         }
-      },
-      "Chatverse.SignalR/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "Chatverse.Application": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Chatverse.SignalR.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Chatverse.SignalR.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
       }
     }
   },
@@ -8907,18 +8891,12 @@
       "type": "project",
       "path": "../Chatverse.Infrastructure/Chatverse.Infrastructure.csproj",
       "msbuildProject": "../Chatverse.Infrastructure/Chatverse.Infrastructure.csproj"
-    },
-    "Chatverse.SignalR/1.0.0": {
-      "type": "project",
-      "path": "../Chatverse.SignalR/Chatverse.SignalR.csproj",
-      "msbuildProject": "../Chatverse.SignalR/Chatverse.SignalR.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "Chatverse.Application >= 1.0.0",
       "Chatverse.Infrastructure >= 1.0.0",
-      "Chatverse.SignalR >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.9",
       "Microsoft.AspNetCore.OpenApi >= 7.0.5",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.9",
@@ -8965,9 +8943,6 @@
             },
             "C:\\Chatverse\\Chatverse\\src\\Chatverse.Infrastructure\\Chatverse.Infrastructure.csproj": {
               "projectPath": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Infrastructure\\Chatverse.Infrastructure.csproj"
-            },
-            "C:\\Chatverse\\Chatverse\\src\\Chatverse.SignalR\\Chatverse.SignalR.csproj": {
-              "projectPath": "C:\\Chatverse\\Chatverse\\src\\Chatverse.SignalR\\Chatverse.SignalR.csproj"
             }
           }
         }
