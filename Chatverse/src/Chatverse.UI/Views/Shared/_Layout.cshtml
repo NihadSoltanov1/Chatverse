@@ -20,7 +20,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
 
-      
+        .bg-green-gradiant {
+            background: linear-gradient(135deg, #00ff00, #00a300);
+        }
+
         .owl-stage {
             display: flex;
         }
@@ -95,9 +98,14 @@
             <a href="default-video.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-video font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="default-group.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-user font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="shop-2.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i class="feather-shopping-bag font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+            
+            <a href="/Notifications/GetNotification" class="p-2 text-center ms-auto menu-icon">
+                <span class="dot-count bg-warning"></span>
+                <i class="feather-bell font-xl text-current"></i>
+            </a>
+        
+        
 
-            <a href="#" class="p-2 text-center ms-auto menu-icon" id="dropdownMenu3" data-bs-toggle="dropdown" aria-expanded="false"><span class="dot-count bg-warning"></span><i class="feather-bell font-xl text-current"></i></a>
-           @await Component.InvokeAsync("Notification")
             <a href="#" class="p-2 text-center ms-3 menu-icon chat-active-btn"><i class="feather-message-square font-xl text-current"></i></a>
             <div class="p-2 text-center ms-3 position-relative dropdown-menu-icon menu-icon cursor-pointer">
                 <i class="feather-settings animation-spin d-inline-block font-xl text-current"></i>
@@ -493,8 +501,20 @@
         </div>
     </div>
 
-<script>
-    console.log("ust script")
+
+
+
+
+    
+
+
+
+
+
+
+
+    <script>
+        console.log("ust script")
         document.querySelectorAll('.add-friend-c').forEach(item => {
             item.addEventListener('click', e => {
                 e.preventDefault();
@@ -502,7 +522,7 @@
                 console.log("Button Click");
                 var targetElement1 = e.target;
                 var hrefValue = targetElement1.getAttribute('href');
-                    
+
                 console.log(targetElement1);
                 const targetElementId = targetElement1.getAttribute('id');
                 console.log(targetElementId);
@@ -519,9 +539,9 @@
                 console.log(hrefValue);
             })
         })
-</script>
+    </script>
     <script>
-        
+
 
         document.getElementById("uploadLink").addEventListener("click", function () {
             document.getElementById("fileInput").click();
@@ -587,14 +607,14 @@
                         var newComment = document.createElement('div');
                         newComment.className = 'card-body border-top-xs pt-4 pb-3 pe-4 d-block ps-5 commentSection';
                         newComment.innerHTML = `
-                    
-            <div class="chat p-3 myCustomCommentBgColor  rounded-xxl d-block text-left theme-dark-bg">
-                        <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">${fullname} <a href="#" class="ms-auto"><i class="ti-more-alt float-right text-grey-800font-xsss"></i></a></h4>
-                        <p class="fw-500 myCustomCommentTxtColor lh-20 font-xssss w-100 mt-2 mb-0">${content}</p>
-            </div>
-        `;
 
-                       
+                    <div class="chat p-3 myCustomCommentBgColor  rounded-xxl d-block text-left theme-dark-bg">
+                                <h4 class="fw-700 text-grey-900 font-xssss mt-0 mb-1">${fullname} <a href="#" class="ms-auto"><i class="ti-more-alt float-right text-grey-800font-xsss"></i></a></h4>
+                                <p class="fw-500 myCustomCommentTxtColor lh-20 font-xssss w-100 mt-2 mb-0">${content}</p>
+                    </div>
+                `;
+
+
                         var formElement = document.getElementById(formElementId);
                         formElement.parentNode.insertBefore(newComment, formElement);
 

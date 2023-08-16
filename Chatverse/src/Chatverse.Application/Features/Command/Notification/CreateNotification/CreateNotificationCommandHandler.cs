@@ -16,12 +16,14 @@ namespace Chatverse.Application.Features.Command.Notification.CreateNotification
         private readonly UserManager<Domain.Identity.AppUser> _userManager;
         private readonly IApplicationDbContext _context;
         private readonly INotificationHubService _notificationHubService;
-        public CreateNotificationCommandHandler(ICurrentUserService currentUserService, UserManager<Domain.Identity.AppUser> userManager, IApplicationDbContext context, INotificationHubService notificationHubService)
+        private readonly IMediator _mediator;
+        public CreateNotificationCommandHandler(ICurrentUserService currentUserService, UserManager<Domain.Identity.AppUser> userManager, IApplicationDbContext context, INotificationHubService notificationHubService, IMediator mediator)
         {
             _currentUserService = currentUserService;
             _userManager = userManager;
             _context = context;
             _notificationHubService = notificationHubService;
+            _mediator = mediator;
         }
 
         public async Task<CreateNotificationCommandResponse> Handle(CreateNotificationCommandRequest request, CancellationToken cancellationToken)
@@ -32,18 +34,23 @@ namespace Chatverse.Application.Features.Command.Notification.CreateNotification
             Domain.Entities.Notification notification = new Domain.Entities.Notification();
             switch (request.CategoryName)
             {
-                case "FR": notification.Content = "Sent you a friend request."; break;
+                case "FR": notification.Content = "sent you a friend request."; break;
                 case "WC":
                     {
-                        notification.Content = "Wrote a comment on your post.";
+                        notification.Content = $"write a comment on your post: '{request.CommentContent}...'";
                         notification.PostId = request.PostId;
                         notification.CommentId = request.CommentId;
                         break;
                     }
                 case "SP":
                     {
-                        notification.Content = "Shared a new post.";
+                        notification.Content = "shared a new post. Check your friend's profile to see posts.";
                         notification.PostId = request.PostId;
+                        break;
+                    }
+                case "LP":
+                    {
+                        notification.Content = "liked your post: Says to thanks to your friend.";
                         break;
                     }
             }
@@ -52,7 +59,7 @@ namespace Chatverse.Application.Features.Command.Notification.CreateNotification
             notification.CategoryId = category.Id;
             _context.Notifications.Add(notification);
            await _context.SaveChangesAsync(cancellationToken);
-           await _notificationHubService.NotificationAddedMessageAsync("urun eklendi");
+     
             return new CreateNotificationCommandResponse();
         }
     }

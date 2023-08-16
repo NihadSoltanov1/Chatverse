@@ -19,6 +19,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<IDateTimeConvertService, DateTimeConvertService>();
 builder.Services.AddHttpClient();
 var app = builder.Build();
 

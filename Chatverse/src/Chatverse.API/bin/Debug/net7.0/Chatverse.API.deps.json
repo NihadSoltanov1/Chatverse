@@ -10,6 +10,7 @@
         "dependencies": {
           "Chatverse.Application": "1.0.0",
           "Chatverse.Infrastructure": "1.0.0",
+          "Chatverse.SignalR": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.9",
           "Microsoft.AspNetCore.OpenApi": "7.0.5",
           "Microsoft.EntityFrameworkCore.Design": "7.0.9",
@@ -1651,6 +1652,14 @@
         "runtime": {
           "Chatverse.Infrastructure.dll": {}
         }
+      },
+      "Chatverse.SignalR/1.0.0": {
+        "dependencies": {
+          "Chatverse.Application": "1.0.0"
+        },
+        "runtime": {
+          "Chatverse.SignalR.dll": {}
+        }
       }
     }
   },
@@ -2903,6 +2912,11 @@
       "sha512": ""
     },
     "Chatverse.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Chatverse.SignalR/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

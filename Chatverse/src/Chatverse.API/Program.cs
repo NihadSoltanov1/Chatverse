@@ -57,6 +57,7 @@ app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors();
 app.MapControllers();
 app.MapHubs();
 app.Run();

@@ -58,7 +58,7 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByFriend
                     Posts = postsList
                 };
             }
-            throw new Exception();
+            return new GetPostByFriendQueryResponse();
 
 
         }

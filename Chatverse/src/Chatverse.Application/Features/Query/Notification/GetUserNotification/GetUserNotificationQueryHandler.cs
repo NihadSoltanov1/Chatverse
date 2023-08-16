@@ -38,19 +38,22 @@ namespace Chatverse.Application.Features.Query.Notification.GetUserNotification
 
             if (allNotifications is not null)
             {
-                var latestNotifications = allNotifications.OrderByDescending(n => n.CreatedDate).Take(4).ToList();
+                var latestNotifications = allNotifications.OrderByDescending(n => n.CreatedDate).ToList();
                 foreach(var notification in latestNotifications)
                 {
                     var category = await _context.NotificationCategories
                         .FirstOrDefaultAsync(n => n.Id == notification.CategoryId);
                     var requester = await _userManager.FindByIdAsync(notification.SenderUserId);
 
-                    GetUserNotificationQueryResponse notifc =  new GetUserNotificationQueryResponse()
+                    GetUserNotificationQueryResponse notifc = new GetUserNotificationQueryResponse()
                     {
                         CategoryName = category?.Name,
                         Content = notification.Content,
                         Id = notification.Id,
-                        RequestFriend = requester?.FullName
+                        FullName = requester?.FullName,
+                        CreateDate = notification.CreatedDate,
+                        Icon=category?.Icon
+                       
                     };
                     getUserNotificationQueryResponses.Add(notifc);
                 }

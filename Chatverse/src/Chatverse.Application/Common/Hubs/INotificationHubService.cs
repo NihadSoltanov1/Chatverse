@@ -8,6 +8,7 @@ namespace Chatverse.Application.Common.Hubs
 {
     public interface INotificationHubService
     {
-        Task NotificationAddedMessageAsync(string message);
+        Task SendNotificationToClient(string message, string username, string connectionId);
+
     }
 }
