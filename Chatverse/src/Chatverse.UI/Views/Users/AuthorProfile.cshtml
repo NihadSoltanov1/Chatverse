@@ -236,11 +236,12 @@
 
                                             }
                                         }
-                                        <form method="post" asp-action="CreateComment" asp-controller="Comments">
+                                        <form id="commentFormow{@count}">
                                             <div class="modal-popup-footer w-100 border-top">
-                                                <input type="hidden" name="PostId" value="@post.PostId">
+                                                <input type="hidden" id="commentPostId" name="PostId" value="@post.PostId">
+                                                <input type="hidden" id="commentPostFullName" value="@post.FullName">
                                                 <div class="card p-3 d-block border-0 d-block">
-                                                    <div class="form-group icon-right-input style1-input mb-0"><input type="text" name="Content" placeholder="Start typing.." class="form-control rounded-xl bg-greylight border-0 font-xssss fw-500 ps-3"><button type="submit" href="#" class="p-2 lh-20 bg-primary-gradiant text-white font-xssss fw-600 ls-1 rounded-xl">Send</button></div>
+                                                    <div class="form-group icon-right-input style1-input mb-0"><input type="text" name="Content" id="commentContent" placeholder="Start typing.." class="form-control rounded-xl bg-greylight border-0 font-xssss fw-500 ps-3"><button type="submit" id="ow{@count}" class="p-2 lh-20 bg-primary-gradiant text-white font-xssss fw-600 ls-1 rounded-xl mySendCommentButton">Send</button></div>
                                                 </div>
                                             </div>
                                         </form>

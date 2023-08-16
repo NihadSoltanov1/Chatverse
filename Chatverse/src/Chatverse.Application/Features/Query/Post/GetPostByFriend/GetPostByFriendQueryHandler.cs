@@ -1,4 +1,5 @@
 ﻿using Chatverse.Application.Common.Interfaces;
+using Chatverse.Application.Features.Query.Comment.GetCommentByPostId;
 using Chatverse.Domain.Entities;
 using Chatverse.Domain.Identity;
 using MediatR;
@@ -17,11 +18,13 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByFriend
         private readonly IApplicationDbContext _context;
         private readonly ICurrentUserService _currentUserService;
         private readonly UserManager<Domain.Identity.AppUser> _userManager;
-        public GetPostByFriendQueryHandler(IApplicationDbContext context, ICurrentUserService currentUserService, UserManager<Domain.Identity.AppUser> userManager)
+        private readonly IMediator _mediator;
+        public GetPostByFriendQueryHandler(IApplicationDbContext context, ICurrentUserService currentUserService, UserManager<Domain.Identity.AppUser> userManager, IMediator mediator)
         {
             _context = context;
             _currentUserService = currentUserService;
             _userManager = userManager;
+            _mediator = mediator;
         }
 
         public async Task<GetPostByFriendQueryResponse> Handle(GetPostByFriendQueryRequest request, CancellationToken cancellationToken)
@@ -41,13 +44,17 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByFriend
                 foreach (var post in getPostByFriend)
                 {
                     var sharePostUser = await _userManager.FindByIdAsync(post.AppUserId);
+                    var comment = await _mediator.Send(new GetCommentByPostIdQueryRequest() { PostId = post.Id });
                     var friendsPost = new GetFriendsPosts
                     {
                         FullName = sharePostUser.FullName,
                         Content = post.Content,
                         Media = _context.PostImages.Where(p => p.PostId == post.Id)
-                        .Select(i=>i.FilePath).ToList(),
-                        CreateDate = post.CreatedDate
+                        .Select(i => i.FilePath).ToList(),
+                        CreateDate = post.CreatedDate,
+                        PostId = post.Id,
+                        Comments = comment.Comments,
+                        CurrentUser = currentUser.FullName
                     };
 
                     postsList.Add(friendsPost);
