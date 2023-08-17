@@ -567,7 +567,34 @@
                 }, 3000);
             })
         })
+        document.querySelectorAll(".myAcceptRequest").forEach(button => {
+            button.addEventListener('click', e => {
+                e.preventDefault();
 
+                var targetElement3 = e.target;
+                const buttonId2 = targetElement3.getAttribute('id');
+                console.log(buttonId2);
+                var acceptElementId = 'del'+buttonId2+'ection';
+                console.log(acceptElementId);
+                var acceptElement = document.getElementById(acceptElementId);
+                console.log(acceptElement);
+                var hrefValue3 = targetElement3.getAttribute('href');
+                var mainRequest1 = document.getElementById('mainRequestelement');
+
+                $.ajax({
+                    type: 'GET',
+                    url: hrefValue3
+                })
+                mainRequest1.removeChild(acceptElement);
+                var alertDiv1 = document.getElementById('acceptMessageAlert');
+                alertDiv1.style.display = "block";
+
+                // 3 saniye sonra tekrar none yapmak için setTimeout kullanalım
+                setTimeout(function () {
+                    alertDiv1.style.display = "none";
+                }, 3000);
+            })
+        })
     </script>
     <script>
 

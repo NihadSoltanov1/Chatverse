@@ -32,11 +32,19 @@ namespace Chatverse.UI.Controllers
                 {
                     var message = await  response1.Content.ReadAsStringAsync();
                     List<GetAllFriendsRequestViewModel> getAllFriendsRequestViewModels = JsonConvert.DeserializeObject<List<GetAllFriendsRequestViewModel>>(message);
-                    List<GetAllFriendsRequestViewModel> takeFour = getAllFriendsRequestViewModels.Take(4).ToList();
+                    List<GetAllFriendsRequestViewModel> takeFour = getAllFriendsRequestViewModels.Take(3).ToList();
                     ViewBag.friends = takeFour;
                 }
 
-
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                HttpResponseMessage response2 = await client.GetAsync($"{baseUrl}/Friendships/GetAllFriends");
+                if (response2.IsSuccessStatusCode)
+                {
+                    var message1 = await response2.Content.ReadAsStringAsync();
+                    List<GetAllFriendsViewModel> getAllFriends = JsonConvert.DeserializeObject<List<GetAllFriendsViewModel>>(message1);
+                    List<GetAllFriendsViewModel> takePartFriend = getAllFriends.Take(3).ToList();
+                    ViewBag.allFriends = takePartFriend;
+                }
 
                 return View(model: posts);
             }

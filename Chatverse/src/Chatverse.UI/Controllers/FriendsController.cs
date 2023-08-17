@@ -68,8 +68,57 @@ namespace Chatverse.UI.Controllers
             return NotFound();
 
         }
+        [HttpGet]
+        public async Task<IActionResult> RemoveFriend(string id)
+        {
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null) return RedirectToAction("Login", "Auth");
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+
+            HttpResponseMessage response = await _httpClient.DeleteAsync($"{baseUrl}/Friendships/RemoveFriend/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var message = await response.Content.ReadAsStringAsync();
+                return Json(message);
+            }
+            return RedirectToAction("HomePage", "Main");
+        }
+        [HttpGet]
+        public async Task<IActionResult> SeeAllFriends()
+        {
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null) return RedirectToAction("Login", "Auth");
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+
+            HttpResponseMessage response = await _httpClient.GetAsync($"{baseUrl}/Friendships/GetAllFriends");
+            if (response.IsSuccessStatusCode)
+            {
+                var message = await response.Content.ReadAsStringAsync();
+                List<GetAllFriendsViewModel> getAllFriends = JsonConvert.DeserializeObject<List<GetAllFriendsViewModel>>(message);
+                return View(model: getAllFriends);
+            }
+            return RedirectToAction("HomePage", "Main");
+           
+        }
 
 
+
+
+        [HttpGet]
+        public async Task<IActionResult> AcceptFriendRequest(int id)
+        {
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null) return RedirectToAction("Login", "Auth");
+
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            HttpResponseMessage response = await _httpClient.GetAsync($"{baseUrl}/Friendships/AcceptFriendRequest/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                string message = await response.Content.ReadAsStringAsync();
+                return Json(message);
+            };
+            return NotFound();
+        }
 
 
         [HttpGet]

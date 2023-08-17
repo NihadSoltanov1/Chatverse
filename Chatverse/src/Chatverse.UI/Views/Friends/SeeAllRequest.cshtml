@@ -23,6 +23,9 @@
                         <div class="alert alert-success" id="deleteMessageAlert" role="alert" style="display:none">
                             Friend request deleted successfully
                         </div>
+                        <div class="alert alert-success" id="acceptMessageAlert" role="alert" style="display:none">
+                            Friend request accepted successfully
+                        </div>
                         @{
                             int count = 1;
                         }
@@ -39,7 +42,7 @@
                                             <h4 class="fw-700 font-xsss mt-3 mb-1">@req.Fullname </h4>
                                             <p class="fw-500 font-xsssss text-grey-500 mt-0 mb-3">@req.Username</p>
                                             <div class="card-body d-flex align-items-center pt-0 ps-4 pe-4 pb-4">
-                                                <a href="#" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl">Confirm</a>
+                                                <a id="{@count}S" href="/Friends/AcceptFriendRequest/@req.Id" class="p-2 lh-20 w100 bg-primary-gradiant me-2 text-white text-center font-xssss fw-600 ls-1 rounded-xl myAcceptRequest">Confirm</a>
                                                 <a id="del{@count}" href="/Friends/DeleteFriendRequest/@req.Id" class="p-2 lh-20 w100 bg-grey text-grey-800 text-center font-xssss fw-600 ls-1 rounded-xl myDeleteRequest">Delete</a>
                                             </div>
                                         </div>
