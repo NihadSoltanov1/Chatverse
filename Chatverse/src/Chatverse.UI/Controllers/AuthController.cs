@@ -83,6 +83,27 @@ namespace Chatverse.UI.Controllers
             return View(registerViewModel);
 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> LogOut()
+        {
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            HttpContext.Session.Clear();  
+            return RedirectToAction("Login", "Auth");
+
+        }
+
+        public async Task<IActionResult> Help()
+        {
+            return View();
+        }
+
+
+
         [HttpGet]
         public async Task<IActionResult> CheckEmail()
         {
