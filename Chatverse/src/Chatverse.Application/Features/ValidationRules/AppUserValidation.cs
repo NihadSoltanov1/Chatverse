@@ -1,4 +1,5 @@
-﻿using Chatverse.Application.Features.Command.AppUser.Login;
+﻿using Chatverse.Application.Features.Command.AppUser.ChangePassword;
+using Chatverse.Application.Features.Command.AppUser.Login;
 using Chatverse.Application.Features.Command.AppUser.Register;
 using FluentValidation;
 using System;
@@ -31,6 +32,23 @@ namespace Chatverse.Application.Features.ValidationRules
             .Equal(x => x.Password).WithMessage("Passwords do not match.");
 
             RuleFor(x => x.IsAgree).Equal(true).WithMessage("Accept the terms for the sign up");
+        }
+    }
+    public class ChangePasswordAppUserValidation : AbstractValidator<ChangePasswordCommandRequest>
+    {
+        public ChangePasswordAppUserValidation()
+        {
+            RuleFor(x => x.NewPassword)
+         .NotEmpty().WithMessage("Password is required.")
+         .MinimumLength(8).WithMessage("Password must be at least 8 characters long.")
+         .Matches("[A-Z]").WithMessage("Password must contain at least one uppercase letter.")
+         .Matches("[a-z]").WithMessage("Password must contain at least one lowercase letter.")
+         .Matches("[0-9]").WithMessage("Password must contain at least one digit.")
+         .Matches("[^a-zA-Z0-9]").WithMessage("Password must contain at least one special character.");
+
+            RuleFor(x => x.ConfirmNewPassword)
+            .NotEmpty().WithMessage("Confirm Password is required.")
+            .Equal(x => x.NewPassword).WithMessage("Passwords do not match.");
         }
     }
 }

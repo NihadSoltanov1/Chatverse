@@ -78,8 +78,16 @@ namespace Chatverse.UI.Controllers
             var response = await _httpClient.PostAsync($"{baseUrl}/Auth/Register", content);
             if (response.IsSuccessStatusCode) return RedirectToAction("CheckEmail");
             string responseMessage = await response.Content.ReadAsStringAsync();
-            List<ValidationErrorsViewModel> errors = JsonConvert.DeserializeObject<List<ValidationErrorsViewModel>>(responseMessage);
-            ViewBag.Errors = errors;
+            if (responseMessage.Contains("Message") || responseMessage.Contains("StatusCode") || responseMessage.Contains("Error"))
+            {
+                ErrorsContentDto error = JsonConvert.DeserializeObject<ErrorsContentDto>(responseMessage);
+                ViewBag.Error = error;
+            }
+            else
+            {
+                List<ValidationErrorsViewModel> valError = JsonConvert.DeserializeObject<List<ValidationErrorsViewModel>>(responseMessage);
+                ViewBag.valError = valError;
+            }
             return View(registerViewModel);
 
         }

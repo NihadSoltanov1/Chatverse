@@ -1,9 +1,11 @@
-﻿@using Chatverse.UI.ViewModels.Auth;
+﻿@using Chatverse.UI.DTOs.Error;
+@using Chatverse.UI.ViewModels.Auth;
 @{
     Layout = null;
 }
 @{
-    List<ValidationErrorsViewModel> errors = ViewBag.Errors as List<ValidationErrorsViewModel>;
+    ErrorsContentDto error = ViewBag.Error as ErrorsContentDto;
+    List<ValidationErrorsViewModel> valError = ViewBag.valError as List<ValidationErrorsViewModel>;
 }
 @model RegisterViewModel;
 <!DOCTYPE html>
@@ -94,19 +96,26 @@
                             <input type="checkbox" asp-for="IsAgree" class="form-check-input mt-2" id="exampleCheck2">
                                 <label class="form-check-label font-xsss text-grey-500" for="exampleCheck2">Accept Term and Conditions</label>
                             </div>
-                        @if(errors is not null)
+                        @if (error is not null)
                         {
                             <div class="alert alert-danger" role="alert">
-                            @foreach(var s in errors)
-                            {
-                                 
-                                        @foreach(var c in @s.Value)
-                                        {
-                                            <strong>-</strong>@c<br />
-                                        }
-                                    
-                                }
+                                <strong>*</strong> @error.Message
                             </div>
+                        }
+                        else
+                        {
+                            if (valError is not null)
+                            {
+                                foreach (var val in valError)
+                                {
+                                    foreach (var i in val.Value)
+                                    {
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong>-</strong> @i
+                                        </div>
+                                    }
+                                }
+                            }
                         }
                         <button type="submit" class="form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0" >Register</button>
                         </form>
