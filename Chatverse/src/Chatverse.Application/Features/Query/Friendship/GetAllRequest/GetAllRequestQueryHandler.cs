@@ -24,7 +24,8 @@ namespace Chatverse.Application.Features.Query.Friendship.GetAllRequest
 
             if(friendShips is not null)
             {
-                foreach(var friendship in friendShips) {
+                var latestRequest = friendShips.OrderByDescending(n => n.CreatedDate).ToList();
+                foreach (var friendship in latestRequest) {
                     var senderUser = await _userManager.FindByIdAsync(friendship.SenderId);
                     GetAllRequestQueryResponse getAllRequestQueryResponse = new GetAllRequestQueryResponse()
                     {

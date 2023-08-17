@@ -539,6 +539,35 @@
                 console.log(hrefValue);
             })
         })
+
+
+        document.querySelectorAll(".myDeleteRequest").forEach(button=>{
+            button.addEventListener('click',e=>{
+                e.preventDefault();
+
+                var targetElement2 = e.target;
+                const buttonId = targetElement2.getAttribute('id');
+                console.log(buttonId);
+                var deleteElementId = buttonId + 'Section';
+                var deleteElement = document.getElementById(deleteElementId);
+                var hrefValue2 = targetElement2.getAttribute('href');
+                var mainRequest = document.getElementById('mainRequestelement');
+
+                $.ajax({
+                    type: 'GET',
+                    url: hrefValue2
+                })
+                mainRequest.removeChild(deleteElement);
+                var alertDiv = document.getElementById('deleteMessageAlert');
+                alertDiv.style.display = "block";
+
+                // 3 saniye sonra tekrar none yapmak için setTimeout kullanalım
+                setTimeout(function () {
+                    alertDiv.style.display = "none";
+                }, 3000);
+            })
+        })
+
     </script>
     <script>
 

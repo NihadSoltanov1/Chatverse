@@ -1,5 +1,6 @@
 ﻿using Chatverse.Application.DTOs.SingleDto;
 using Chatverse.Application.Features.Command.Friendship.CreateFriendship;
+using Chatverse.Application.Features.Command.Friendship.DeleteFriendshipRequest;
 using Chatverse.Application.Features.Query.Friendship.GetAllRequest;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -46,5 +47,18 @@ namespace Chatverse.API.Controllers
             return Ok();
 
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteFriendRequest([FromRoute]int id)
+        {
+            DeleteFriendshipRequestCommandRequest deleteFriendshipRequestCommandRequest = new DeleteFriendshipRequestCommandRequest();
+            deleteFriendshipRequestCommandRequest.FriendshipId = id;
+           var response =  await _mediator.Send(deleteFriendshipRequestCommandRequest);
+            return Ok(response.Message);
+        }
+
+
+
+
     }
 }

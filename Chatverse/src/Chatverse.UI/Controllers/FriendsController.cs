@@ -50,6 +50,46 @@ namespace Chatverse.UI.Controllers
            
             return Json(await responseMessage.Content.ReadAsStringAsync());
         }
-    
+
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteFriendRequest(int id)
+        {
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null) return RedirectToAction("Login", "Auth");
+
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            HttpResponseMessage response = await _httpClient.DeleteAsync($"{baseUrl}/Friendships/DeleteFriendRequest/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+               string message = await response.Content.ReadAsStringAsync();
+                return Json(message);
+            };
+            return NotFound();
+
+        }
+
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> SeeAllRequest()
+        {
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null) return RedirectToAction("Login", "Auth");
+
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+
+            HttpResponseMessage response = await _httpClient.GetAsync($"{baseUrl}/Friendships/GetAllFriendRequest");
+            if (response.IsSuccessStatusCode)
+            {
+                var message = await response.Content.ReadAsStringAsync();
+                List<GetAllFriendsRequestViewModel> getAllFriendsRequestViewModels = JsonConvert.DeserializeObject<List<GetAllFriendsRequestViewModel>>(message);
+                return View(model: getAllFriendsRequestViewModels);
+            }
+
+            return RedirectToAction("HomePage","Main");
+        }
+
     }
 }

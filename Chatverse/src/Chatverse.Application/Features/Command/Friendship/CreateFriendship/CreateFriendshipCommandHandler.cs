@@ -54,17 +54,11 @@ namespace Chatverse.Application.Features.Command.Friendship.CreateFriendship
             };
             await _context.Friendships.AddAsync(newFriendship1);
             await _context.SaveChangesAsync(cancellationToken);
-            Domain.Entities.Friendship newFriendship2 = new()
-            {
-                SenderId = receiverUser.Id,
-                ReceiverId = currentUserId
-            };
-            await _context.Friendships.AddAsync(newFriendship2);
-            await _context.SaveChangesAsync(cancellationToken);
+         
             CreateNotificationCommandRequest createNotificationCommandRequest = new CreateNotificationCommandRequest()
             {
                 CategoryName = "FR",
-                CurrentUserId = newFriendship2.SenderId
+                CurrentUserId = newFriendship1.ReceiverId
             };
             await _mediator.Send(createNotificationCommandRequest);
             return new SuccessDataResult<CreateFriendshipCommandRequest>(request, "Send friend request successfully");
