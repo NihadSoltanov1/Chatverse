@@ -1,0 +1,66 @@
+﻿@using Chatverse.UI.ViewModels.Settings;
+
+@{
+    ViewData["Title"] = "Media";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<SocialMediaViewModel>
+
+<div class="main-content right-chat-active">
+
+    <div class="middle-sidebar-bottom">
+        <div class="middle-sidebar-left pe-0">
+            <div class="row">
+                <div class="col-xl-12">
+                    @foreach(var social in Model)
+                    {
+
+                        @switch (social.Category)
+                        {
+                            case "Facebook":
+                                {
+                                    <a class="btn btn-primary" style="background-color: #045ce1; display:block;padding:20px; color:white; font-weight:bold" href="@social.Url" role="button">
+                                        <span class="ti-facebook"></span>
+                                        Facebook
+                                    </a>
+                                    <br />
+                                    break;
+                                }
+                            case "Instagram":
+                                {
+                                    <a class="btn btn-primary" style="background-color: #a70036; display:block;padding:20px; color:white; font-weight:bold" href="#!" role="button">
+                                        <span class="ti-instagram"></span>
+                                        Instagram
+                                    </a>
+                                    <br />
+                                    break;
+                                }
+                            case "Linkedin":
+                                {
+                                    <a class="btn btn-primary" style="background-color: #045ce1; display:block;padding:20px; color:white; font-weight:bold" href="#!" role="button">
+                                        <span class="ti-linkedin"></span>
+                                        Linkedin
+                                    </a>
+                                    <br />
+                                    break;
+                                }
+                            case "Github":
+                                {
+                                    <a class="btn btn-primary" style="background-color: #464b53; display:block;padding:20px; color:white; font-weight:bold" href="#!" role="button">
+                            <span class="ti-github"></span>
+                            Github
+                        </a>
+                                    <br />
+                                    break;
+                                }
+
+                        }
+                        
+                    }
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

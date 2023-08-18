@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\postfiles\" />
-    <Folder Include="wwwroot\profilepictures\" />
   </ItemGroup>
 
 </Project>

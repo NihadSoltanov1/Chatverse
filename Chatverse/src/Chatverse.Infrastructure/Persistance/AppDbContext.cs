@@ -33,6 +33,7 @@ namespace Chatverse.Infrastructure.Persistance
         public DbSet<Country> Countries { get; set; }
         public DbSet<NotificationCategory> NotificationCategories { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<SocialAccount> SocialAccounts { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
@@ -85,6 +86,14 @@ namespace Chatverse.Infrastructure.Persistance
                 .WithMany(u => u.ReceivedFriendRequests)
                 .HasForeignKey(f => f.ReceiverId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<SocialAccount>()
+                .HasOne(s => s.AppUser)
+                .WithMany(s => s.SocialAccounts)
+                .HasForeignKey(s => s.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
 
             builder.Entity<Post>()
                 .HasOne(p => p.AppUser)

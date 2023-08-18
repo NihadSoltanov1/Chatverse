@@ -1081,3 +1081,16 @@
 .ti-rss-alt:before {
 	content: "\e75f";
 }
+.ti-facebook:before {
+	content: "\f09a"; /* Unicode karakter kodu */
+}
+.ti-instagram:before {
+	content: "\f16d"; /* Unicode karakter kodu */
+}
+.ti-linkedin:before {
+	content: "\f0e1"; /* Unicode karakter kodu */
+}
+.ti-github:before {
+	content: "\e73f"; /* GitHub ikonunun karakter kodu */
+}
+

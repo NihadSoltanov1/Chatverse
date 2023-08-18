@@ -1,4 +1,5 @@
 ﻿using Chatverse.UI.ViewModels.Post;
+using Chatverse.UI.ViewModels.Settings;
 using Chatverse.UI.ViewModels.Users;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -29,6 +30,28 @@ namespace Chatverse.UI.Controllers
             return null;
             
         }
+        [HttpGet]
+        public async Task<IActionResult> Media()
+        {
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null) return RedirectToAction("Login", "Auth");
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            HttpResponseMessage response = await _httpClient.GetAsync($"{baseUrl}/Settings/GetAllSocialMedia");
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                List<SocialMediaViewModel> socialMediaViewModels = JsonConvert.DeserializeObject<List<SocialMediaViewModel>>(content);
+                return View(model: socialMediaViewModels);
+            }
+            return RedirectToAction("AuthorProfile","Users");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AccountInformation()
+        {
+            return View();
+        }
+
         [HttpGet]
         public async Task<IActionResult> AuthorProfile()
         {

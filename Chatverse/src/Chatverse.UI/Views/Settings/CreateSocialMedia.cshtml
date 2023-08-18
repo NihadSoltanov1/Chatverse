@@ -1,0 +1,102 @@
+﻿@using Chatverse.UI.DTOs.Error;
+@using Chatverse.UI.ViewModels.Auth;
+@{
+    ViewData["Title"] = "CreateSocialMedia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ErrorsContentDto error = ViewBag.Error as ErrorsContentDto;
+    List<ValidationErrorsViewModel> valError = ViewBag.valError as List<ValidationErrorsViewModel>;
+}
+<div class="main-content bg-lightblue theme-dark-bg right-chat-active">
+
+    <div class="middle-sidebar-bottom">
+        <div class="middle-sidebar-left">
+            <div class="middle-wrap">
+                <div class="card w-100 border-0 bg-white shadow-xs p-0 mb-4">
+                    <div class="card-body p-4 w-100 bg-current border-0 d-flex rounded-3">
+                        <a href="/Settings/Properties" class="d-inline-block mt-2"><i class="ti-arrow-left font-sm text-white"></i></a>
+                        <h4 class="font-xs text-white fw-600 ms-4 mb-0 mt-2">Social Network</h4>
+                    </div>
+                    <div class="card-body p-lg-5 p-4 w-100 border-0">
+                        <form asp-action="CreateSocialMedia" asp-controller="Settings" method="post">
+
+
+                            <div class="row">
+
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="mont-font fw-600 font-xsss">Facebook</label>
+                                        <input type="text" name="socialMediaViewModels[0].Url" class="form-control">
+                                        <input type="hidden" name="socialMediaViewModels[0].Category" value="Facebook" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="mont-font fw-600 font-xsss">Linkedin</label>
+                                        <input type="text" name="socialMediaViewModels[1].Url" class="form-control">
+                                        <input type="hidden" name="socialMediaViewModels[1].Category" value="Linkedin" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                               
+
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="mont-font fw-600 font-xsss">Instagram</label>
+                                        <input type="text" name="socialMediaViewModels[2].Url" class="form-control">
+                                        <input type="hidden" name="socialMediaViewModels[2].Category" value="Instagram" class="form-control">
+                                    </div>
+                                </div>
+
+                              
+
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="mont-font fw-600 font-xsss">Github</label>
+                                        <input type="text" name="socialMediaViewModels[3].Url" class="form-control">
+                                        <input type="hidden" name="socialMediaViewModels[3].Category" value="Github" class="form-control">
+                                    </div>
+                                </div>
+                             </div>
+                           
+                                <div class="col-lg-6 mb-3">
+                                @if (error is not null)
+                                {
+                                    <div class="alert alert-danger" role="alert">
+                                        <strong>*</strong> @error.Message
+                                    </div>
+                                }
+                                else if (error is null)
+                                {
+                                    if (valError is not null)
+                                    {
+                                        foreach (var val in valError)
+                                        {
+                                            foreach (var i in val.Value)
+                                            {
+                                                <div class="alert alert-danger" role="alert">
+                                                    <strong>-</strong> @i
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                }
+
+                                <div class="col-lg-12 mb-0 mt-2">
+                                    <button type="submit" class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

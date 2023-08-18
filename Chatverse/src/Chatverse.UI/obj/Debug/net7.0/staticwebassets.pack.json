@@ -7873,12 +7873,8 @@
       "PackagePath": "staticwebassets\\postfiles\\202300090800_download.jpg"
     },
     {
-      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\design-medium.jpg",
-      "PackagePath": "staticwebassets\\profilepictures\\design-medium.jpg"
-    },
-    {
-      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\downl6oad.jpeg",
-      "PackagePath": "staticwebassets\\profilepictures\\downl6oad.jpeg"
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\defaultprofilepicture.png",
+      "PackagePath": "staticwebassets\\profilepictures\\defaultprofilepicture.png"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Chatverse.UI.Microsoft.AspNetCore.StaticWebAssets.props",

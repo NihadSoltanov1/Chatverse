@@ -1,6 +1,7 @@
 ﻿using Chatverse.UI.DTOs.Error;
 using Chatverse.UI.DTOs.Post;
 using Chatverse.UI.ViewModels.Auth;
+using Chatverse.UI.ViewModels.Settings;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -56,6 +57,52 @@ namespace Chatverse.UI.Controllers
             
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateSocialMedia()
+        {
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null) return RedirectToAction("Login", "Auth");
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            return View();
+        }
+
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> CreateSocialMedia(List<SocialMediaViewModel> socialMediaViewModels)
+        {
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null) return RedirectToAction("Login", "Auth");
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            string jsonData = JsonConvert.SerializeObject(socialMediaViewModels);
+
+            // İsteğin içeriğini ayarla
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _httpClient.PostAsync($"{baseUrl}/Settings/CreateSocialMedia", content);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Media", "Users");
+            }
+            var responseMessage = await response.Content.ReadAsStringAsync();
+            if (responseMessage.Contains("Message") || responseMessage.Contains("StatusCode") || responseMessage.Contains("Error"))
+            {
+                ErrorsContentDto error = JsonConvert.DeserializeObject<ErrorsContentDto>(responseMessage);
+                ViewBag.Error = error;
+            }
+            else
+            {
+                List<ValidationErrorsViewModel> valError = JsonConvert.DeserializeObject<List<ValidationErrorsViewModel>>(responseMessage);
+                ViewBag.valError = valError;
+            }
+
+
+            return View();
+        }
+
+
         public IActionResult Properties()
         {
             var accessToken = HttpContext.Session.GetString("JWToken");

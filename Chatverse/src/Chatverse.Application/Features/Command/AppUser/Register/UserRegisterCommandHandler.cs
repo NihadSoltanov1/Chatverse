@@ -37,7 +37,7 @@ namespace Chatverse.Application.Features.Command.AppUser.Register
                 FullName = request.FullName,
                 UserName = request.Username,
                 Email = request.Email,
-                ProfilePicture = request.ProfilePicture
+                ProfilePicture = "profilepictures/defaultprofilepicture.png"
             };
 
             IdentityResult identityResult = await _userManager.CreateAsync(newUser, request.Password);      

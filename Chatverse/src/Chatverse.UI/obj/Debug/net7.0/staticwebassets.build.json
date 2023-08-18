@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mThP0JhQs4twUMsOf4GZamzokl8dGdGePs179emkur4=",
+  "Hash": "5jNfyb8bSIx44r4QTvXsJeKX3fHVQHpnhgP+v7kw7kA=",
   "Source": "Chatverse.UI",
   "BasePath": "_content/Chatverse.UI",
   "Mode": "Default",
@@ -33490,12 +33490,12 @@
       "OriginalItemSpec": "wwwroot\\postfiles\\202300090800_download.jpg"
     },
     {
-      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\design-medium.jpg",
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\defaultprofilepicture.png",
       "SourceId": "Chatverse.UI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\",
       "BasePath": "_content/Chatverse.UI",
-      "RelativePath": "profilepictures/design-medium.jpg",
+      "RelativePath": "profilepictures/defaultprofilepicture.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33504,24 +33504,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\profilepictures\\design-medium.jpg"
-    },
-    {
-      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\downl6oad.jpeg",
-      "SourceId": "Chatverse.UI",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\",
-      "BasePath": "_content/Chatverse.UI",
-      "RelativePath": "profilepictures/downl6oad.jpeg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\profilepictures\\downl6oad.jpeg"
+      "OriginalItemSpec": "wwwroot\\profilepictures\\defaultprofilepicture.png"
     }
   ]
 }

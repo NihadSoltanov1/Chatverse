@@ -1,4 +1,5 @@
-﻿using Chatverse.Application.Features.Query.Notification.GetUserNotification;
+﻿using Chatverse.Application.Features.Command.SocialAccount.CreateSocialAccount;
+using Chatverse.Application.Features.Query.Notification.GetUserNotification;
 using Chatverse.Application.Features.Query.Notification.GetUserNotificationQuery;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -25,5 +26,10 @@ namespace Chatverse.API.Controllers
             List<GetUserNotificationQueryResponse> response = await _mediator.Send(getUserNotificationQueryRequest);
             return Ok(response);
         }
+
+
+       
+
+
     }
 }
