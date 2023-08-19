@@ -41,7 +41,34 @@ namespace Chatverse.UI.Services
             return paths;
         
         }
+        public string FileUploadToRoot(IFormFile file)
+        {
+            string paths = String.Empty;
+            if (file is null) return null;
+       
+                if (file != null && file.Length > 0)
+                {
+                    var fileUniqueName = DateTime.Now.ToString("yyyymmddMMss") + "_" + Path.GetFileName(file.FileName);
+                var folderName = "profilepictures";
+                    var folderPath = Path.Combine(_env.WebRootPath, folderName);
+                    var fullPath = Path.Combine(folderPath, fileUniqueName);
+                    string rootFolder = @"wwwroot\";
+                    string returnPath = fullPath.Substring(fullPath.IndexOf(rootFolder, StringComparison.OrdinalIgnoreCase) + rootFolder.Length).Replace("\\", "/");
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+                    using (FileStream fs = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(fs);
+                    }
+                var dbPath =folderName + '/' + fileUniqueName;
+                    paths = dbPath;
+                }
 
+            return paths;
+
+        }
         public void FileDeleteFromRoot(string responsePath)
         {
             List<PostFilePathDto> FilesPath = JsonConvert.DeserializeObject<List<PostFilePathDto>>(responsePath);

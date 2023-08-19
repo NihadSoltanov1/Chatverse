@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5jNfyb8bSIx44r4QTvXsJeKX3fHVQHpnhgP+v7kw7kA=",
+  "Hash": "mPv2/CAO0YcyIT1L4KWxlzjr3ZFuV9xsePd5NNu5xnY=",
   "Source": "Chatverse.UI",
   "BasePath": "_content/Chatverse.UI",
   "Mode": "Default",
@@ -33488,6 +33488,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\postfiles\\202300090800_download.jpg"
+    },
+    {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\postfiles\\202301180810_images.jpg",
+      "SourceId": "Chatverse.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\",
+      "BasePath": "_content/Chatverse.UI",
+      "RelativePath": "postfiles/202301180810_images.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\postfiles\\202301180810_images.jpg"
     },
     {
       "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\defaultprofilepicture.png",

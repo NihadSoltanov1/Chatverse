@@ -1,18 +1,22 @@
-﻿using Chatverse.UI.ViewModels.Post;
+﻿using Chatverse.UI.DTOs.Post;
+using Chatverse.UI.Services;
+using Chatverse.UI.ViewModels.Post;
 using Chatverse.UI.ViewModels.Settings;
 using Chatverse.UI.ViewModels.Users;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace Chatverse.UI.Controllers
 {
     public class UsersController : Controller
     {
         private readonly HttpClient _httpClient;
-
-        public UsersController(HttpClient httpClient)
+        private readonly IFileService _fileService;
+        public UsersController(HttpClient httpClient, IFileService fileService)
         {
             _httpClient = httpClient;
+            _fileService = fileService;
         }
 
         private const string baseUrl = "http://localhost:5273/api";
@@ -49,7 +53,50 @@ namespace Chatverse.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> AccountInformation()
         {
-            return View();
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null) return RedirectToAction("Login", "Auth");
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            HttpResponseMessage response = await _httpClient.GetAsync($"{baseUrl}/Users/GetAccountInformation");
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+               GetAccountInformationViewModel accountInformation = JsonConvert.DeserializeObject<GetAccountInformationViewModel>(content);
+                return View(model: accountInformation);
+            }
+            return RedirectToAction("AuthorProfile", "Users");
+        }
+        [HttpPost]
+        public async Task<IActionResult> AccountInformation(UpdateAccountInformationViewModel updateAccountInformationViewModel)
+        {
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null) return RedirectToAction("Login", "Auth");
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+
+
+            string path = _fileService.FileUploadToRoot(updateAccountInformationViewModel.ProfilePicture);
+            GetAccountInformationViewModel getAccountInformationViewModel = new GetAccountInformationViewModel();
+            if (path is not null)
+            {
+                getAccountInformationViewModel.About = updateAccountInformationViewModel.About;
+                getAccountInformationViewModel.Privicy = updateAccountInformationViewModel.Privicy;
+                getAccountInformationViewModel.ProfilePicture = path;
+                getAccountInformationViewModel.Fullname = updateAccountInformationViewModel.Fullname;
+                getAccountInformationViewModel.Username = updateAccountInformationViewModel.Username;
+                getAccountInformationViewModel.Email = updateAccountInformationViewModel.Email;
+                
+            }
+            string jsonData = JsonConvert.SerializeObject(getAccountInformationViewModel);
+
+            // İsteğin içeriğini ayarla
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _httpClient.PutAsync($"{baseUrl}/Users/UpdateInformation", content);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("AccountInformation", "Users");
+            }
+
+            return View(updateAccountInformationViewModel);
         }
 
         [HttpGet]

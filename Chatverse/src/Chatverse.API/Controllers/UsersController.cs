@@ -1,4 +1,6 @@
-﻿using Chatverse.Application.Features.Query.AppUser.GetAuthorUserShortInformation;
+﻿using Chatverse.Application.Features.Command.AppUser.UpdateInformation;
+using Chatverse.Application.Features.Query.AppUser.GetAuthorUserShortInformation;
+using Chatverse.Application.Features.Query.AppUser.GetUserInformation;
 using Chatverse.Application.Features.Query.Post.GetPostByAuthorUserId;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -32,5 +34,21 @@ namespace Chatverse.API.Controllers
             GetAuthorUserShortInformationQueryResponse response = await _mediator.Send(getAuthorUserShortInformationQueryRequest);
             return Ok(response);
         }
+        [HttpPut]
+        public async Task<IActionResult> UpdateInformation(UpdateInformationCommandRequest updateInformationCommandRequest)
+        {
+            var response = await _mediator.Send(updateInformationCommandRequest);
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAccountInformation()
+        {
+            GetUserInformationCommandRequest getUserInformationCommandRequest = new GetUserInformationCommandRequest();
+            var response = await _mediator.Send(getUserInformationCommandRequest);
+            return Ok(response);
+        }
+
+
     }
 }
