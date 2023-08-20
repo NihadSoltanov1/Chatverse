@@ -24,5 +24,6 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByAuthorUserId
         public List<GetCommentByPostId> Comments { get; set; }
 
         public DateTime CreateDate { get; set; }
+        public bool? IsLike { get; set; }
     }
 }

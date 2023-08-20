@@ -11,5 +11,6 @@ namespace Chatverse.UI.ViewModels.Post
         public List<string>? Media { get; set; }
         public List<GetCommentsByPostIdViewModel>? Comments { get; set; }
         public DateTime? CreateDate { get; set; }
+        public bool? IsLike { get; set; }
     }
 }

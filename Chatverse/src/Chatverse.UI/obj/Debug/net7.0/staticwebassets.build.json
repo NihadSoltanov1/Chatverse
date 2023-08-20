@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mPv2/CAO0YcyIT1L4KWxlzjr3ZFuV9xsePd5NNu5xnY=",
+  "Hash": "EMMiI4KtgQ19gYfifWkMHTwAi2NOEqPxmEZOpXG0OZQ=",
   "Source": "Chatverse.UI",
   "BasePath": "_content/Chatverse.UI",
   "Mode": "Default",
@@ -33505,6 +33505,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\postfiles\\202301180810_images.jpg"
+    },
+    {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\202346190855_t-11.jpg",
+      "SourceId": "Chatverse.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\",
+      "BasePath": "_content/Chatverse.UI",
+      "RelativePath": "profilepictures/202346190855_t-11.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\profilepictures\\202346190855_t-11.jpg"
     },
     {
       "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\defaultprofilepicture.png",

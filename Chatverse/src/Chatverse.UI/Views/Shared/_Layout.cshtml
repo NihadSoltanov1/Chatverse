@@ -32,11 +32,7 @@
 
 
 
-        .image-container {
-            display: inline-block;
-            position: relative;
-            margin-right: 10px;
-        }
+       
 
         .delete-icon {
             color: white;
@@ -51,7 +47,49 @@
             top: 5px;
             right: 5px;
         }
+        /* Your custom styles */
+        .like-link {
+            display: inline-flex;
+            align-items: center;
+           ; /* Yuvarlak kenarlık için */
+            padding: 5px 10px;
+            
+            text-decoration: none;
+            color: #007bff;
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+        }
 
+            .like-link:hover {
+                background-color: #007bff;
+                color: #fff;
+                cursor:pointer;
+                border: 2px solid #007bff; /* Mavi border rengi */
+                border-radius: 50px;
+            }
+
+       .isSelectedLikeButton{
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border: 2px solid #007bff; /* Mavi border rengi */
+            border-radius: 50px;
+       }
+     
+        .img-container {
+               display: inline-block;
+            position: relative;
+            margin-right: 10px;
+            width: 100px; /* Ayarlamak istediğiniz boyutu burada belirtebilirsiniz */
+            height: 100px; /* Ayarlamak istediğiniz boyutu burada belirtebilirsiniz */
+            overflow: hidden;
+            position: relative;
+        }
+
+            .img-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         #myCommentSection {
             display:none!important;
         }
@@ -598,6 +636,39 @@
                 }, 3000);
             })
         })
+
+       document.querySelectorAll(".like-link").forEach(like=>{
+           like.addEventListener('click',e=>{
+               e.preventDefault();
+               var targetElement4 = e.target;
+               console.log(targetElement4);
+                if (targetElement4.tagName === 'I') {
+                    targetElement4 = $(targetElement4).closest('a')[0];
+                }
+               const likeButtonId = targetElement4.getAttribute('id');
+                var hrefValue4 = targetElement4.getAttribute('href');
+                console.log(hrefValue4);
+               console.log(likeButtonId);
+                $.ajax({
+                    type: 'GET',
+                    url: hrefValue4
+                })
+                var isSelectedClass = 'isSelectedLikeButton'
+                if (targetElement4.classList.contains(isSelectedClass)){
+                    targetElement4.classList.remove(isSelectedClass);
+                    var newHref = hrefValue4.replace('UnlikePost','LikePost')
+                    targetElement4.href = newHref;
+
+                }
+                else{
+                    targetElement4.classList.add(isSelectedClass);
+                    var newHref = hrefValue4.replace('LikePost', 'UnlikePost')
+                    targetElement4.href = newHref;
+                }
+           })
+       })
+
+
     </script>
     <script>
 

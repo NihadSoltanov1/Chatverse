@@ -43,16 +43,19 @@ namespace Chatverse.Application.Features.Query.Post.GetPostByAuthorUserId
                 if (post.State == true)
                 {
                 var comment = await _mediator.Send(new GetCommentByPostIdQueryRequest() { PostId = post.Id });
-               
-                var getPosts = new GetMyPosts()
-                {
-                    PostId = post.Id,
-                    Content = post.Content,
-                    FullName = currentUser.FullName,
-                    Media = _context.PostImages.Where(p => p.PostId == post.Id)
-                        .Select(i => i.FilePath).ToList(),
-                    CreateDate = post.CreatedDate,
-                    Comments = comment.Comments
+                    bool isLike = false;
+                    var like = _context.Likes.FirstOrDefault(l => l.PostId == post.Id && l.AppUserId == currentUser.Id);
+                    isLike = like == null ? false : true;
+                    var getPosts = new GetMyPosts()
+                    {
+                        PostId = post.Id,
+                        Content = post.Content,
+                        FullName = currentUser.FullName,
+                        Media = _context.PostImages.Where(p => p.PostId == post.Id)
+                            .Select(i => i.FilePath).ToList(),
+                        CreateDate = post.CreatedDate,
+                        Comments = comment.Comments,
+                        IsLike = isLike
 
                 };
                 getMyPosts.Add(getPosts);
