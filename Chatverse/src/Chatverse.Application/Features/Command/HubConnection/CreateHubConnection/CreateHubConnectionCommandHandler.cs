@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Chatverse.Application.Features.Command.HubConnection.CreateHubConnection
 {
-    public class CreateHubConnectionCommandHandler : IRequestHandler<CreateHubConnectionCommandRequest, IResult>
+    public class CreateHubConnectionCommandHandler : IRequestHandler<CreateHubConnectionCommandRequest, CreateHubConnectionCommandResponse>
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IApplicationDbContext _context;
@@ -22,7 +22,7 @@ namespace Chatverse.Application.Features.Command.HubConnection.CreateHubConnecti
             _userManager = userManager;
         }
 
-        public async Task<IResult> Handle(CreateHubConnectionCommandRequest request, CancellationToken cancellationToken)
+        public async Task<CreateHubConnectionCommandResponse> Handle(CreateHubConnectionCommandRequest request, CancellationToken cancellationToken)
         {
 
             var currentUser = await _userManager.FindByNameAsync(_currentUserService.UserName);
@@ -35,9 +35,13 @@ namespace Chatverse.Application.Features.Command.HubConnection.CreateHubConnecti
                 };
                 _context.HubConnections.Add(hubConnection);
                 await _context.SaveChangesAsync(cancellationToken);
-                return new Result(true, "success");
+                return new CreateHubConnectionCommandResponse()
+                {
+                    Id = currentUser.Id,
+                    Username = currentUser.UserName
+                };
             }
-            return new Result(false, "failed");
+            throw new Exception();
         }
     }
 }

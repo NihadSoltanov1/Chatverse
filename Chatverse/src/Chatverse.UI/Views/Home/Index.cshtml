@@ -1,9 +1,52 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = null;
 }
-@model string
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <p>@Model</p>
+
+@{
+    ViewData["Title"] = "Real Time Chat";
+}
+
+<h1>Real Time Chat</h1>
+
+<div id="chatContainer">
+    <ul id="messagesList"></ul>
 </div>
+
+<form id="chatForm">
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="text" id="message" placeholder="Message" required />
+    <button type="submit">Send</button>
+</form>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
+
+    <script>
+        var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+
+        connection.on("ReceiveMessage", function (user, message) {
+            var li = document.createElement("li");
+            li.textContent = `${user} says: ${message}`;
+            document.getElementById("messagesList").appendChild(li);
+        });
+
+        connection.start().then(function () {
+            console.log("Connected to SignalR Hub.");
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        document.getElementById("chatForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var username = document.getElementById("username").value;
+            var message = document.getElementById("message").value;
+
+            connection.invoke("SendMessage", username, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+
+            document.getElementById("message").value = "";
+        });
+    </script>
+}

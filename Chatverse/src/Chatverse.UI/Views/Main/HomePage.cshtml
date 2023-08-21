@@ -279,18 +279,7 @@
                                         <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">@posts.Content
                                     </div>
                                     <div class="card-body d-flex p-0">
-                                        @if (post.IsLike == true)
-                                        {
-                                            <a id="like{@count}" href="/Likes/UnlikePost/@post.PostId" class="d-flex align-items-center fw-600  text-dark lh-26 font-xssss me-3 like-link  isSelectedLikeButton">
-                                                <i class="feather-thumbs-up  bg-outline-primary me-1 btn-round-xs font-xss"></i>Like
-                                            </a>
-                                        }
-                                        else if (post.IsLike == false)
-                                        {
-                                            <a id="like{@count}" href="/Likes/LikePost/@post.PostId" class="d-flex align-items-center fw-600  text-dark lh-26 font-xssss me-3 like-link ">
-                                                <i class="feather-thumbs-up  bg-outline-primary me-1 btn-round-xs font-xss"></i>Like
-                                            </a>
-                                        }
+                                       
                                         <div class="emoji-wrap">
                                             <ul class="emojis list-inline mb-0">
                                                 <li class="emoji list-inline-item"><i class="em em---1"></i> </li>

@@ -1,0 +1,141 @@
+{
+  "Version": 1,
+  "Hash": "VGfYEJaG9ZY0sQlLSn+6B95A/wF5P3/qrriwpsJ0Leg=",
+  "Source": "Chatverse.Chat.UI",
+  "BasePath": "_content/Chatverse.Chat.UI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.API\\Chatverse.API.csproj",
+      "Version": 2,
+      "Source": "Chatverse.API",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Chatverse.API\\wwwroot",
+      "Source": "Chatverse.API",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.API\\wwwroot\\",
+      "BasePath": "_content/Chatverse.API",
+      "Pattern": "**"
+    },
+    {
+      "Name": "Chatverse.Chat.UI\\wwwroot",
+      "Source": "Chatverse.Chat.UI",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\wwwroot\\",
+      "BasePath": "_content/Chatverse.Chat.UI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\obj\\Debug\\net7.0\\scopedcss\\bundle\\Chatverse.Chat.UI.styles.css",
+      "SourceId": "Chatverse.Chat.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/Chatverse.Chat.UI",
+      "RelativePath": "Chatverse.Chat.UI.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\obj\\Debug\\net7.0\\scopedcss\\bundle\\Chatverse.Chat.UI.styles.css"
+    },
+    {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Chatverse.Chat.UI.bundle.scp.css",
+      "SourceId": "Chatverse.Chat.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/Chatverse.Chat.UI",
+      "RelativePath": "Chatverse.Chat.UI.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Chatverse.Chat.UI.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\wwwroot\\ChatApp.whtt",
+      "SourceId": "Chatverse.Chat.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\wwwroot\\",
+      "BasePath": "_content/Chatverse.Chat.UI",
+      "RelativePath": "ChatApp.whtt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ChatApp.whtt"
+    },
+    {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\wwwroot\\js\\chat.js",
+      "SourceId": "Chatverse.Chat.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\wwwroot\\",
+      "BasePath": "_content/Chatverse.Chat.UI",
+      "RelativePath": "js/chat.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\chat.js"
+    },
+    {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\wwwroot\\microsoft\\signalr\\dist\\browser\\signalr.js",
+      "SourceId": "Chatverse.Chat.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\wwwroot\\",
+      "BasePath": "_content/Chatverse.Chat.UI",
+      "RelativePath": "microsoft/signalr/dist/browser/signalr.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\microsoft\\signalr\\dist\\browser\\signalr.js"
+    },
+    {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\wwwroot\\microsoft\\signalr\\dist\\browser\\signalr.min.js",
+      "SourceId": "Chatverse.Chat.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Chat.UI\\wwwroot\\",
+      "BasePath": "_content/Chatverse.Chat.UI",
+      "RelativePath": "microsoft/signalr/dist/browser/signalr.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\microsoft\\signalr\\dist\\browser\\signalr.min.js"
+    }
+  ]
+}

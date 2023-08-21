@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.11/signalr.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet" />
+
+    <style>
+        .container {
+            max-width: 1170px;
+            margin: auto;
+        }
+
+        /* Your CSS Styles Here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3 class="text-center">Messaging</h3>
+        <div class="messaging">
+            <!-- Your HTML Content Here -->
+        </div>
+
+        <p class="text-center top_spac">Design by <a target="_blank" href="https://www.linkedin.com/in/sunil-rajput-nattho-singh/">Sunil Rajput</a></p>
+    </div>
+
+    <script>
+        $(document).ready(() => {
+            const connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
+
+            connection.start().then(() => {
+                console.log("Connection established.");
+            }).catch(error => {
+                console.error("Error while starting connection: " + error);
+            });
+        });
+    </script>
+</body>
+</html>

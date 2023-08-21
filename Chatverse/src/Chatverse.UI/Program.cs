@@ -1,4 +1,4 @@
-
+ï»¿
 
 using Chatverse.UI.Services;
 
@@ -7,7 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
-
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://localhost:5223") // MVC projesinin URL'si
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
 
 builder.Services.AddSession(options =>
 {
@@ -16,7 +24,7 @@ builder.Services.AddSession(options =>
 builder.Services.ConfigureApplicationCookie(options =>
 {
     // ...
-    options.ExpireTimeSpan = TimeSpan.FromDays(7); // Örnek olarak 7 gün
+    options.ExpireTimeSpan = TimeSpan.FromDays(7); // Ã–rnek olarak 7 gÃ¼n
     // ...
 });
 
@@ -35,11 +43,13 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseCors();
 app.UseRouting();
 app.UseSession();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Main}/{action=HomePage}/{id?}");
+    pattern: "{controller=Auth}/{action=Login}/{id?}");
+
 
 app.Run();

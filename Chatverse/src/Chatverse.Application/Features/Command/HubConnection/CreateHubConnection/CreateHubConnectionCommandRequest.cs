@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Chatverse.Application.Features.Command.HubConnection.CreateHubConnection
 {
-    public class CreateHubConnectionCommandRequest : IRequest<IResult>
+    public class CreateHubConnectionCommandRequest : IRequest<CreateHubConnectionCommandResponse>
     {
         public string ConnectionId { get; set; }
     }

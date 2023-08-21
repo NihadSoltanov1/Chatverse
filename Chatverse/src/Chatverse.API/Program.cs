@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Configuration;
+Ôªøusing Microsoft.Extensions.Configuration;
 using Chatverse.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -11,6 +11,8 @@ using Chatverse.Domain.Identity;
 using Chatverse.Infrastructure.Persistance;
 using Chatverse.Infrastructure.Filters;
 using Chatverse.API.Extensions;
+using Chatverse.UI.Hubs;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -20,9 +22,19 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
                 .Build();
 var connectionString = configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddControllers(options=> options.Filters.Add<ValidationFilter>()).ConfigureApiBehaviorOptions(options=>options.SuppressModelStateInvalidFilter = true);
-builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.WithOrigins("http://localhost:5273").AllowAnyHeader().AllowAnyMethod().AllowCredentials()));
-builder.Services.AddInfrastructureServices(configuration);
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://localhost:5223") // MVC projesinin URL'si
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials(); // ƒ∞steƒüin credentials modunu ayarla
+    });
+});
 
+builder.Services.AddSignalR();
+builder.Services.AddInfrastructureServices(configuration);
 builder.Services.AddApplicationServices(configuration);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -32,10 +44,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     {
         options.TokenValidationParameters = new()
         {
-            ValidateAudience = true, //Olu˛turulacak token deerini kimlerin/hangi originlerin/sitelerin kullan˝c˝ belirlediimiz deerdir. -> www.bilmemne.com
-            ValidateIssuer = true, //Olu˛turulacak token deerini kimin da˝tt˝n˝ ifade edeceimiz aland˝r. -> www.myapi.com
-            ValidateLifetime = true, //Olu˛turulan token deerinin s¸resini kontrol edecek olan dorulamad˝r.
-            ValidateIssuerSigningKey = true, //‹retilecek token deerinin uygulamam˝za ait bir deer olduunu ifade eden suciry key verisinin dorulanmas˝d˝r.
+            ValidateAudience = true, //Olu√æturulacak token de√∞erini kimlerin/hangi originlerin/sitelerin kullan√Ωc√Ω belirledi√∞imiz de√∞erdir. -> www.bilmemne.com
+            ValidateIssuer = true, //Olu√æturulacak token de√∞erini kimin da√∞√Ωtt√Ωn√Ω ifade edece√∞imiz aland√Ωr. -> www.myapi.com
+            ValidateLifetime = true, //Olu√æturulan token de√∞erinin s√ºresini kontrol edecek olan do√∞rulamad√Ωr.
+            ValidateIssuerSigningKey = true, //√úretilecek token de√∞erinin uygulamam√Ωza ait bir de√∞er oldu√∞unu ifade eden suciry key verisinin do√∞rulanmas√Ωd√Ωr.
 
             ValidAudience = builder.Configuration["Token:Audience"],
             ValidIssuer = builder.Configuration["Token:Issuer"],
@@ -52,11 +64,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.ConfigureExceptionHandler<Program>(app.Services.GetRequiredService<ILogger<Program>>());
-app.UseStaticFiles();
+//app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseCors();
-app.MapControllers();
 
+app.MapControllers();
+app.UseCors();
+app.MapHub<ChatHub>("/chatHub");
 app.Run();
