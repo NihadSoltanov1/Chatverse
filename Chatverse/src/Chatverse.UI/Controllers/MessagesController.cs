@@ -25,6 +25,7 @@ namespace Chatverse.UI.Controllers
             {
                 var message = await response.Content.ReadAsStringAsync();
                 List<GetAllFriendsViewModel> getAllFriends = JsonConvert.DeserializeObject<List<GetAllFriendsViewModel>>(message);
+                ViewBag.Token = accessToken;
                 return View(model: getAllFriends);
             }
             return RedirectToAction("HomePage", "Main");

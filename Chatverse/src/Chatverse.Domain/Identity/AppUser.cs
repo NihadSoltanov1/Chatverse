@@ -40,5 +40,10 @@ namespace Chatverse.Domain.Identity
         public bool Privicy { get; set; }
         public DateTime? BirthDate { get; set; }
         public ICollection<SocialAccount> SocialAccounts { get; set; }
+
+        [InverseProperty("MessageSender")]
+        public ICollection<Message> SenderMessage { get; set; }
+        [InverseProperty("MessageReceiver")]
+        public ICollection<Message> ReceiverMessage { get; set; }
     }
 }

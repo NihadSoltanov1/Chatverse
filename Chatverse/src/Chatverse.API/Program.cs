@@ -29,10 +29,10 @@ builder.Services.AddCors(options =>
         builder.WithOrigins("http://localhost:5223") // MVC projesinin URL'si
                .AllowAnyHeader()
                .AllowAnyMethod()
-               .AllowCredentials(); // İsteğin credentials modunu ayarla
+               .AllowCredentials()
+               .SetIsOriginAllowed((host) => true); // Tüm istek kaynaklarına izin ver
     });
 });
-
 builder.Services.AddSignalR();
 builder.Services.AddInfrastructureServices(configuration);
 builder.Services.AddApplicationServices(configuration);
@@ -66,10 +66,11 @@ if (app.Environment.IsDevelopment())
 app.ConfigureExceptionHandler<Program>(app.Services.GetRequiredService<ILogger<Program>>());
 //app.UseStaticFiles();
 app.UseHttpsRedirection();
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseCors();
+
 app.MapHub<ChatHub>("/chatHub");
 app.Run();

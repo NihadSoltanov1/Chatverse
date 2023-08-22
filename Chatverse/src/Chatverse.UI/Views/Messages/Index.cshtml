@@ -2,6 +2,9 @@
 @{
     Layout = null;
 }
+@{
+    string accessToken = ViewBag.Token as string;
+}
 @model List<GetAllFriendsViewModel>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,20 +15,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sociala - Social Network App HTML Template </title>
-
     <link rel="stylesheet" href="~/chatverse/uitheme.net/sociala/css/themify-icons.css">
     <link rel="stylesheet" href="~/chatverse/uitheme.net/sociala/css/feather.css">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="~/chatverse/uitheme.net/sociala/images/favicon.png">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="~/chatverse/uitheme.net/sociala/css/style.css">
-
+    <script>
+        localStorage.setItem("JWToken", "@accessToken");
+       
+       console.log("SAlam");
+    </script>
 </head>
 
 <body class="color-theme-blue mont-font">
 
     <div class="preloader"></div>
-
+    
 
     <div class="main-wrapper">
 
@@ -220,6 +226,14 @@
                     <!-- loader wrapper -->
 
                     <div class="section full pe-3 ps-4 pt-4 position-relative feed-body">
+                        <h4 class="font-xsssss text-grey-500 text-uppercase fw-700 ls-3">Online</h4>
+                        <ul class="list-group list-group-flush" id="onlineUserList">
+                         
+                                    
+                           
+
+
+                        </ul>
                         <h4 class="font-xsssss text-grey-500 text-uppercase fw-700 ls-3">CONTACTS</h4>
                         <ul class="list-group list-group-flush">
                             @if(Model is not null)
@@ -259,6 +273,12 @@
                             <div class="chat-wrapper pt-0 w-100 position-relative scroll-bar bg-white theme-dark-bg">
                                 <div class="chat-body p-3 ">
                                     <div class="messages-content pb-5">
+                                        <!--
+
+                                        CHAT SECTION
+                                        
+                                        -->
+                                        
                                         <div class="message-item">
                                             <div class="message-user">
                                                 <figure class="avatar">
@@ -285,62 +305,6 @@
                                             <div class="message-wrap">I want those files for you. I want you to send 1 PDF and 1 image file.</div>
                                         </div>
 
-                                        <div class="message-item">
-                                            <div class="message-user">
-                                                <figure class="avatar">
-                                                    <img src="~/chatverse/uitheme.net/sociala/images/user-9.png" alt="image">
-                                                </figure>
-                                                <div>
-                                                    <h5>Byrom Guittet</h5>
-                                                    <div class="time">01:35 PM</div>
-                                                </div>
-                                            </div>
-                                            <div class="message-wrap">I've found some cool photos for our travel app.</div>
-                                        </div>
-
-                                        <div class="message-item outgoing-message">
-                                            <div class="message-user">
-                                                <figure class="avatar">
-                                                    <img src="~/chatverse/uitheme.net/sociala/images/user-1.png" alt="image">
-                                                </figure>
-                                                <div>
-                                                    <h5>Byrom Guittet</h5>
-                                                    <div class="time">01:35 PM<i class="ti-double-check text-info"></i></div>
-                                                </div>
-                                            </div>
-                                            <div class="message-wrap">Hey mate! How are things going ?</div>
-                                        </div>
-
-                                        <div class="message-item">
-                                            <div class="message-user">
-                                                <figure class="avatar">
-                                                    <img src="~/chatverse/uitheme.net/sociala/images/user-9.png" alt="image">
-                                                </figure>
-                                                <div>
-                                                    <h5>Byrom Guittet</h5>
-                                                    <div class="time">01:35 PM</div>
-                                                </div>
-                                            </div>
-                                            <figure>
-                                                <img src="~/chatverse/uitheme.net/sociala/images/bb-9.jpg" class="w-25 img-fluid rounded-3" alt="image">
-                                            </figure>
-
-
-                                        </div>
-
-                                        <div class="message-item outgoing-message">
-                                            <div class="message-user">
-                                                <figure class="avatar">
-                                                    <img src="~/chatverse/uitheme.net/sociala/images/user-1.png" alt="image">
-                                                </figure>
-                                                <div>
-                                                    <h5>Byrom Guittet</h5>
-                                                    <div class="time">01:35 PM<i class="ti-double-check text-info"></i></div>
-                                                </div>
-                                            </div>
-                                            <div class="message-wrap" style="margin-bottom: 90px;">Hey mate! How are things going ?</div>
-
-                                        </div>
                                         <div class="clearfix"></div>
 
 
@@ -351,7 +315,7 @@
                                 <form class="chat-form">
                                     <button class="bg-grey float-left"><i class="ti-microphone text-grey-600"></i></button>
                                     <div class="form-group"><input type="text" placeholder="Start typing.."></div>
-                                    <button class="bg-current"><i class="ti-arrow-right text-white"></i></button>
+                                    <button id="stopConnection" class="bg-current"><i class="ti-arrow-right text-white"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -410,7 +374,7 @@
         </div>
     </div>
 
-
+    
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/chatverse/uitheme.net/sociala/js/plugin.js"></script>

@@ -1,17 +1,103 @@
 ﻿
+using Chatverse.Application.Common.Interfaces;
+using Chatverse.Application.Features.Command.HubConnection.CreateHubConnection;
+using Chatverse.Application.Features.Command.HubConnection.DeleteHubConnection;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace Chatverse.UI.Hubs
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class ChatHub : Hub
     {
-       
+        private readonly IMediator _mediator;
+        private readonly IApplicationDbContext _context;
+        private readonly UserManager<Domain.Identity.AppUser> _userManager;
+        public ChatHub(IMediator mediator, IApplicationDbContext context, UserManager<Domain.Identity.AppUser> userManager)
+        {
+            _mediator = mediator;
+            _context = context;
+            _userManager = userManager;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public override async Task OnConnectedAsync()
-        {               
+        {
+           
+
+            CreateHubConnectionCommandRequest createHubConnectionCommandRequest = new CreateHubConnectionCommandRequest();
+            createHubConnectionCommandRequest.ConnectionId = Context.ConnectionId;
+            createHubConnectionCommandRequest.UserId = Context.UserIdentifier;
+            await _mediator.Send(createHubConnectionCommandRequest);
+
+            var currentUser = await _userManager.FindByIdAsync(Context.UserIdentifier);
+            var getFriends1 = await _context.Friendships.Where(x => x.SenderId == Context.UserIdentifier && x.Accept == true).ToListAsync();
+            if (getFriends1.Count != 0)
+            {
+                foreach(var friend in getFriends1)
+                {
+                    var friend1 = await _userManager.FindByIdAsync(friend.ReceiverId);
+                    var hubConnection1 = await _context.HubConnections.FirstOrDefaultAsync(x => x.Username == friend1.UserName);
+                    if(hubConnection1 is not null)
+                    {
+                       await Clients.Client(hubConnection1.ConnectionId).SendAsync("seeOnlineFriend", currentUser.UserName,currentUser.ProfilePicture,Context.ConnectionId);
+                        await Clients.Client(Context.ConnectionId).SendAsync("seeMyOnlineFriend", friend1.UserName, friend1.ProfilePicture, hubConnection1.ConnectionId);
+                    }
+                }
+                
+            }
+
+
+           
+
             await base.OnConnectedAsync();
+        }
+        public override async Task OnDisconnectedAsync(Exception? exception)
+        {
+            DeleteHubConnectionCommandRequest deleteHubConnectionCommand = new DeleteHubConnectionCommandRequest();
+            deleteHubConnectionCommand.ConnecitionId = Context.ConnectionId;
+            await _mediator.Send(deleteHubConnectionCommand);
+
+
+
+
+
+            var currentUser = await _userManager.FindByIdAsync(Context.UserIdentifier);
+            var getFriends1 = await _context.Friendships.Where(x => x.SenderId == Context.UserIdentifier && x.Accept == true).ToListAsync();
+            if (getFriends1.Count != 0)
+            {
+                foreach (var friend in getFriends1)
+                {
+                    var friend1 = await _userManager.FindByIdAsync(friend.ReceiverId);
+                    var hubConnection1 = await _context.HubConnections.FirstOrDefaultAsync(x => x.Username == friend1.UserName);
+                    if (hubConnection1 is not null)
+                    {
+                        await Clients.Client(hubConnection1.ConnectionId).SendAsync("deleteOnlineUser", Context.ConnectionId);
+                    }
+                }
+
+            }
+
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }

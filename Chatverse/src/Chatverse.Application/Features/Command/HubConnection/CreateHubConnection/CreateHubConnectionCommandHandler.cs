@@ -12,12 +12,10 @@ namespace Chatverse.Application.Features.Command.HubConnection.CreateHubConnecti
 {
     public class CreateHubConnectionCommandHandler : IRequestHandler<CreateHubConnectionCommandRequest, CreateHubConnectionCommandResponse>
     {
-        private readonly ICurrentUserService _currentUserService;
         private readonly IApplicationDbContext _context;
         private readonly UserManager<Domain.Identity.AppUser> _userManager;
-        public CreateHubConnectionCommandHandler(ICurrentUserService currentUserService, IApplicationDbContext context, UserManager<Domain.Identity.AppUser> userManager)
+        public CreateHubConnectionCommandHandler(IApplicationDbContext context, UserManager<Domain.Identity.AppUser> userManager)
         {
-            _currentUserService = currentUserService;
             _context = context;
             _userManager = userManager;
         }
@@ -25,7 +23,7 @@ namespace Chatverse.Application.Features.Command.HubConnection.CreateHubConnecti
         public async Task<CreateHubConnectionCommandResponse> Handle(CreateHubConnectionCommandRequest request, CancellationToken cancellationToken)
         {
 
-            var currentUser = await _userManager.FindByNameAsync(_currentUserService.UserName);
+            var currentUser = await _userManager.FindByIdAsync(request.UserId);
             if(request.ConnectionId != null)
             {
                 Domain.Entities.HubConnection hubConnection = new Domain.Entities.HubConnection()
