@@ -69,6 +69,7 @@ if (storedToken) {
         var ulElement = document.getElementById('onlineUserList');
         ulElement.removeChild(getliElement);
     });
+    
 
     document.querySelectorAll('.myMessageFriends').forEach(item => {
         item.addEventListener('click', e => {
@@ -82,6 +83,7 @@ if (storedToken) {
                 url: '/Messages/GetAllMessage/' + targetElementId,
                 success: function (data) {
                     var divElement = document.querySelector('.messages-content');
+                    var fromButton = document.querySelector('.chat-form');
                     divElement.innerHTML = '';
 
                     if (data != null) {
@@ -100,6 +102,8 @@ if (storedToken) {
                         <div class="time">${item.sendDate}<i class="ti-double-check text-info"></i></div>
                     </div>
                 </div>
+                <input type="hidden" class="receiverIdHiddeninput" id="${item.receiverId}">
+
                 <div class="message-wrap myMessageContent">${item.content}</div>
             `;
 
@@ -128,9 +132,8 @@ if (storedToken) {
                         });
                     }
 
-                
-
-            },
+                    fromButton.style.display = 'block';
+                },
                 error: function (error) {
                     // AJAX isteği başarısız olduğunda burası çalışır
                     console.error(error); // Hata mesajını konsolda gösterme, isteğe bağlı
@@ -138,15 +141,54 @@ if (storedToken) {
             })
 
 
+        })
     })
-})
+    document.querySelectorAll('.sendMessage').forEach(item => {
+        item.addEventListener('click', function (e) {
+            e.preventDefault();
+            console.log("Hello");
+            var targetButton = e.target;
 
-window.addEventListener("unload", function (event) {
-    connection.stop();
-});
-window.addEventListener("beforeunload", function (event) {
-    connection.stop();
-});
+            var messagePart = document.getElementById('messageContent');
+            var content = messagePart.value;
+
+            var receiverInput = document.querySelectorAll(".receiverIdHiddeninput")[0];
+            var receiverId = receiverInput.id; // receiverInput öğesinin id değeri alınır
+            console.log(receiverId); // id değeri konsola yazdırılır
+
+            var data = {
+                Content: content,
+                ToUserId: receiverId
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/Messages/SendMessage',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function (response) {
+                    messagePart.value = "";
+                    messagePart.placeholder = "Start typing...";
+                    console.log("Mesaj Yarandi")
+                },
+                error: function () {
+                    console.error('Ajax isteği başarısız.');
+                }
+            });
+
+
+
+
+
+        });
+    })
+
+    window.addEventListener("unload", function (event) {
+        connection.stop();
+    });
+    window.addEventListener("beforeunload", function (event) {
+        connection.stop();
+    });
 
 
 }

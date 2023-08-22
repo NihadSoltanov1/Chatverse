@@ -1,12 +1,15 @@
 ﻿using Chatverse.UI.DTOs.Message;
 using Chatverse.UI.DTOs.Notification;
+using Chatverse.UI.DTOs.Post;
 using Chatverse.UI.DTOs.SingleDto;
 using Chatverse.UI.Services;
 using Chatverse.UI.ViewModels.Friends;
 using Chatverse.UI.ViewModels.Message;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 using System.Net.Http;
+using System.Text;
 
 namespace Chatverse.UI.Controllers
 {
@@ -20,6 +23,26 @@ namespace Chatverse.UI.Controllers
             _httpClient = httpClient;
             _convertDate = convertDate;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SendMessage([FromBody]object message)
+        {
+            var accessToken = HttpContext.Session.GetString("JWToken");
+            if (accessToken == null) return RedirectToAction("Login", "Auth");
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            SendMessageViewModel sendMessage = JsonConvert.DeserializeObject<SendMessageViewModel>(message.ToString());
+            var jsonLogin = JsonConvert.SerializeObject(sendMessage);
+            StringContent content = new StringContent(jsonLogin, Encoding.UTF8, "application/json");
+            var responseMessage = await _httpClient.PostAsync($"{baseUrl}/Messages/SendMessage", content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                string response = await responseMessage.Content.ReadAsStringAsync();
+                return Json(response);
+            }
+            return  NotFound();
+        }
+
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -69,10 +92,6 @@ namespace Chatverse.UI.Controllers
                     };
                     messages.Add(mesaj);
                 }
-
-
-
-
                 return Json(messages);
             }
             return NotFound();

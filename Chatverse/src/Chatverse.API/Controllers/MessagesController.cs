@@ -1,4 +1,5 @@
-﻿using Chatverse.Application.Features.Query.Message.GetMessageByFriend;
+﻿using Chatverse.Application.Features.Command.Message.CreateMessage;
+using Chatverse.Application.Features.Query.Message.GetMessageByFriend;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -17,7 +18,12 @@ namespace Chatverse.API.Controllers
         {
             _mediator = mediator;
         }
-
+        [HttpPost]
+        public async Task<IActionResult> SendMessage(SendMessageCommandRequest sendMessageCommandRequest)
+        {
+            var response = await _mediator.Send(sendMessageCommandRequest);
+            return Ok(response);
+        }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetMessage([FromRoute]string id)
         {

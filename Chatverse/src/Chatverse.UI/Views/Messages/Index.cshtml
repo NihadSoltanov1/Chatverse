@@ -278,54 +278,21 @@
                             <div class="chat-wrapper pt-0 w-100 position-relative scroll-bar bg-white theme-dark-bg">
                                 <div class="chat-body p-3 ">
                                     <div class="messages-content pb-5 customMessageContent">
-                                        <!--
-
-                                        CHAT SECTION
-                                        
-                                        -->
-                                        
-                                        <div class="message-item receiverMessage">
-                                            <div class="message-user">
-                                                <figure class="avatar">
-                                                    <img src="~/chatverse/uitheme.net/sociala/images/user-9.png" alt="image">
-                                                </figure>
-                                                <div>
-                                                    <!--Full name-->
-                                                    <h5></h5>
-                                                    <div class="time">01:35 PM</div>
-                                                </div>
-                                            </div>
-                                            <!--Content-->
-                                            <div class="message-wrap"></div>
-                                        </div>
-
-                                        <div class="message-item outgoing-message">
-                                            <div class="message-user">
-                                                <figure class="avatar">
-                                                    <img src="~/chatverse/uitheme.net/sociala/images/user-1.png" alt="image">
-                                                </figure>
-                                                <div>
-                                                    <!--Full name-->
-                                                    <h5></h5>
-                                                    <div class="time">01:35 PM<i class="ti-double-check text-info"></i></div>
-                                                </div>
-                                            </div>
-                                            <!--Content-->
-                                            <div class="message-wrap myMessageContent"></div>
-                                        </div>
-
-                                        <div class="clearfix"></div>
+                                      
 
 
                                     </div>
                                 </div>
                             </div>
-                            <div class="chat-bottom dark-bg p-3 shadow-none theme-dark-bg" style="width: 98%;">
-                                <form class="chat-form">
-                                    <button class="bg-grey float-left"><i class="ti-microphone text-grey-600"></i></button>
-                                    <div class="form-group"><input type="text" placeholder="Start typing.."></div>
-                                    <button id="stopConnection" class="bg-current"><i class="ti-arrow-right text-white"></i></button>
-                                </form>
+                            <div class="chat-bottom dark-bg p-3 shadow-none theme-dark-bg customSendButton" style="width: 98%;">
+
+                               <form class="chat-form" style="display: none;">
+                                    <button class="bg-grey float-left "><i class="ti-microphone text-grey-600"></i></button>
+                                    <div class="form-group"><input id="messageContent" type="text" placeholder="Start typing.."></div>
+                                    <button class="bg-current sendMessage"><i class="ti-arrow-right text-white "></i></button>
+                               </form>
+                                    
+         
                             </div>
                         </div>
 
