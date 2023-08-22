@@ -16,5 +16,6 @@ namespace Chatverse.Application.Features.Command.Message.CreateMessage
         public string? ReceiverUsername { get; set; }
         public string? ReceiverProfilePicture { get; set; }
         public string  Content { get; set; }
+        public DateTime SendDate { get; set; }
     }
 }

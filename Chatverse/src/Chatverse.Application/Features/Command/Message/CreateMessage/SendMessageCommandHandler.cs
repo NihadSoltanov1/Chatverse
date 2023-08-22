@@ -49,7 +49,8 @@ namespace Chatverse.Application.Features.Command.Message.CreateMessage
                 SenderProfilePicture = currentUser.ProfilePicture,
                 ReceiverId = receiverUser.Id,
                 ReceiverProfilePicture = receiverUser.ProfilePicture,
-                ReceiverUsername = receiverUser.UserName
+                ReceiverUsername = receiverUser.UserName,
+                SendDate=  newMessage.CreatedDate
             };
 
 

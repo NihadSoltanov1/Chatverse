@@ -102,7 +102,6 @@ if (storedToken) {
                         <div class="time">${item.sendDate}<i class="ti-double-check text-info"></i></div>
                     </div>
                 </div>
-                <input type="hidden" class="receiverIdHiddeninput" id="${item.receiverId}">
 
                 <div class="message-wrap myMessageContent">${item.content}</div>
             `;
@@ -131,7 +130,13 @@ if (storedToken) {
                             }
                         });
                     }
+                    var hiddenElement = document.createElement('div');
+                    hiddenElement.style.display = 'none';
+                    var hiddenContent = `<input type="hidden" class="receiverIdHiddeninput" value="${targetElementId}">`;
+                    
 
+                    hiddenElement.innerHTML = hiddenContent;
+                    divElement.appendChild(hiddenElement);
                     fromButton.style.display = 'block';
                 },
                 error: function (error) {
@@ -146,35 +151,22 @@ if (storedToken) {
     document.querySelectorAll('.sendMessage').forEach(item => {
         item.addEventListener('click', function (e) {
             e.preventDefault();
-            console.log("Hello");
-            var targetButton = e.target;
 
             var messagePart = document.getElementById('messageContent');
             var content = messagePart.value;
 
             var receiverInput = document.querySelectorAll(".receiverIdHiddeninput")[0];
-            var receiverId = receiverInput.id; // receiverInput öğesinin id değeri alınır
+            var receiverId = receiverInput.value; // receiverInput öğesinin id değeri alınır
             console.log(receiverId); // id değeri konsola yazdırılır
 
-            var data = {
-                Content: content,
-                ToUserId: receiverId
-            };
+            connection.invoke('SendMessageAsync', receiverId, content);
+            
 
-            $.ajax({
-                type: 'POST',
-                url: '/Messages/SendMessage',
-                data: JSON.stringify(data),
-                contentType: 'application/json',
-                success: function (response) {
-                    messagePart.value = "";
-                    messagePart.placeholder = "Start typing...";
-                    console.log("Mesaj Yarandi")
-                },
-                error: function () {
-                    console.error('Ajax isteği başarısız.');
-                }
-            });
+            messagePart.value = "";
+            messagePart.focus();
+
+
+           
 
 
 
@@ -182,6 +174,51 @@ if (storedToken) {
 
         });
     })
+    connection.on('seeSendMessage', (SenderUsername, SenderProfilePicture, hour, content) => {
+        var divElement = document.querySelector('.messages-content');
+        var receiverElement = document.createElement('div');
+        receiverElement.className = 'message-item receiverMessage';
+
+        var content1 = `
+                <div class="message-user">
+                    <figure class="avatar">
+                        <img src="/${SenderProfilePicture}" alt="image">
+                    </figure>
+                    <div>
+                        <h5>${SenderUsername}</h5>
+                        <div class="time">${hour}</div>
+                    </div>
+                </div>
+                <div class="message-wrap">${content}</div>
+            `;
+
+        receiverElement.innerHTML = content1;
+        divElement.appendChild(receiverElement);
+    });
+
+    connection.on('seeMySendMessage', (SenderUsername, SenderProfilePicture, content, hour) => {
+        var divElement = document.querySelector('.messages-content');
+        var newElement = document.createElement('div');
+        newElement.className = 'message-item outgoing-message';
+
+        var content2 = `
+                <div class="message-user">
+                    <figure class="avatar">
+                        <img src="/${SenderProfilePicture}" alt="image">
+                    </figure>
+                    <div>
+                        <h5>${SenderUsername}</h5>
+                        <div class="time">${hour}<i class="ti-double-check text-info"></i></div>
+                    </div>
+                </div>
+              
+
+                <div class="message-wrap myMessageContent">${content}</div>
+            `;
+
+        newElement.innerHTML = content2;
+        divElement.appendChild(newElement);
+    });
 
     window.addEventListener("unload", function (event) {
         connection.stop();

@@ -2,6 +2,8 @@
 using Chatverse.Application.Common.Interfaces;
 using Chatverse.Application.Features.Command.HubConnection.CreateHubConnection;
 using Chatverse.Application.Features.Command.HubConnection.DeleteHubConnection;
+using Chatverse.Application.Features.Command.Message.CreateMessage;
+using Chatverse.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -29,7 +31,25 @@ namespace Chatverse.UI.Hubs
 
 
 
+        public async Task SendMessageAsync(string toUser, string content)
+        {
+            SendMessageCommandRequest sendMessageCommandRequest = new SendMessageCommandRequest();
+            sendMessageCommandRequest.Content = content;
+            sendMessageCommandRequest.FromUserId = Context.UserIdentifier;
+            sendMessageCommandRequest.ToUserId = toUser;
+            SendMessageCommandResponse response = await _mediator.Send(sendMessageCommandRequest);
 
+            string hour = response.SendDate.ToString("h:mm tt").ToLower();
+
+
+            var hubConnection1 = await _context.HubConnections.FirstOrDefaultAsync(x => x.Username == response.ReceiverUsername);
+
+
+
+
+            await Clients.Client(hubConnection1.ConnectionId).SendAsync("seeSendMessage", response.SenderUsername, response.SenderProfilePicture, hour,content);
+            await Clients.Client(Context.ConnectionId).SendAsync("seeMySendMessage", response.SenderUsername,response.SenderProfilePicture,content, hour);
+        }
 
 
 
