@@ -1,9 +1,15 @@
 ﻿@using Chatverse.UI.ViewModels.Friends;
+@using System.IdentityModel.Tokens.Jwt;
 @{
     Layout = null;
 }
 @{
     string accessToken = ViewBag.Token as string;
+    var tokenHandler = new JwtSecurityTokenHandler();
+    var token = tokenHandler.ReadJwtToken(accessToken);
+
+    // UserId değerini çözmek
+    string userId = token.Claims.FirstOrDefault(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value;
 }
 @model List<GetAllFriendsViewModel>
 <!DOCTYPE html>
@@ -23,8 +29,7 @@
     <link rel="stylesheet" href="~/chatverse/uitheme.net/sociala/css/style.css">
     <script>
         localStorage.setItem("JWToken", "@accessToken");
-       
-       console.log("SAlam");
+        localStorage.setItem("MyIdentifier", "@userId");
     </script>
 </head>
 
@@ -245,7 +250,7 @@
                                             <img src="~/@friend.ProfilePicture" alt="image" class="w35">
                                         </figure>
                                         <h3 class="fw-700 mb-0 mt-0">
-                                            <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat" href="#">@friend.Username</a>
+                                            <a class="font-xssss text-grey-600 d-block text-dark model-popup-chat myMessageFriends" id="@friend.SenderId" href="#">@friend.Username</a>
                                         </h3>
 
                                     </li>
@@ -272,24 +277,26 @@
                         <div class="col-lg-12 position-relative">
                             <div class="chat-wrapper pt-0 w-100 position-relative scroll-bar bg-white theme-dark-bg">
                                 <div class="chat-body p-3 ">
-                                    <div class="messages-content pb-5">
+                                    <div class="messages-content pb-5 customMessageContent">
                                         <!--
 
                                         CHAT SECTION
                                         
                                         -->
                                         
-                                        <div class="message-item">
+                                        <div class="message-item receiverMessage">
                                             <div class="message-user">
                                                 <figure class="avatar">
                                                     <img src="~/chatverse/uitheme.net/sociala/images/user-9.png" alt="image">
                                                 </figure>
                                                 <div>
-                                                    <h5>Byrom Guittet</h5>
+                                                    <!--Full name-->
+                                                    <h5></h5>
                                                     <div class="time">01:35 PM</div>
                                                 </div>
                                             </div>
-                                            <div class="message-wrap">I'm fine, how are you 😃</div>
+                                            <!--Content-->
+                                            <div class="message-wrap"></div>
                                         </div>
 
                                         <div class="message-item outgoing-message">
@@ -298,11 +305,13 @@
                                                     <img src="~/chatverse/uitheme.net/sociala/images/user-1.png" alt="image">
                                                 </figure>
                                                 <div>
-                                                    <h5>Byrom Guittet</h5>
+                                                    <!--Full name-->
+                                                    <h5></h5>
                                                     <div class="time">01:35 PM<i class="ti-double-check text-info"></i></div>
                                                 </div>
                                             </div>
-                                            <div class="message-wrap">I want those files for you. I want you to send 1 PDF and 1 image file.</div>
+                                            <!--Content-->
+                                            <div class="message-wrap myMessageContent"></div>
                                         </div>
 
                                         <div class="clearfix"></div>

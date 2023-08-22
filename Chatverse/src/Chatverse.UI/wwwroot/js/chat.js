@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 var storedToken = localStorage.getItem("JWToken");
-
+var MyUserId = localStorage.getItem("MyIdentifier");
 if (storedToken) {
     var headers = {
         Authorization: "Bearer " + storedToken
@@ -70,14 +70,83 @@ if (storedToken) {
         ulElement.removeChild(getliElement);
     });
 
+    document.querySelectorAll('.myMessageFriends').forEach(item => {
+        item.addEventListener('click', e => {
+            e.preventDefault();
+            var targetElement = e.target;
+            console.log(targetElement);
+            const targetElementId = targetElement.getAttribute('id');
+            console.log(targetElementId);
+            $.ajax({
+                type: 'GET',
+                url: '/Messages/GetAllMessage/' + targetElementId,
+                success: function (data) {
+                    var divElement = document.querySelector('.messages-content');
+                    divElement.innerHTML = '';
+
+                    if (data != null) {
+                        data.forEach(function (item) {
+                            if (item.senderId == MyUserId) {
+                                var newElement = document.createElement('div');
+                                newElement.className = 'message-item outgoing-message';
+
+                                var content = `
+                <div class="message-user">
+                    <figure class="avatar">
+                        <img src="/${item.senderProfilePicture}" alt="image">
+                    </figure>
+                    <div>
+                        <h5>${item.senderUsername}</h5>
+                        <div class="time">${item.sendDate}<i class="ti-double-check text-info"></i></div>
+                    </div>
+                </div>
+                <div class="message-wrap myMessageContent">${item.content}</div>
+            `;
+
+                                newElement.innerHTML = content;
+                                divElement.appendChild(newElement);
+                            } else {
+                                var receiverElement = document.createElement('div');
+                                receiverElement.className = 'message-item receiverMessage';
+
+                                var content = `
+                <div class="message-user">
+                    <figure class="avatar">
+                        <img src="/${item.senderProfilePicture}" alt="image">
+                    </figure>
+                    <div>
+                        <h5>${item.senderUsername}</h5>
+                        <div class="time">${item.sendDate}</div>
+                    </div>
+                </div>
+                <div class="message-wrap">${item.content}</div>
+            `;
+
+                                receiverElement.innerHTML = content;
+                                divElement.appendChild(receiverElement);
+                            }
+                        });
+                    }
+
+                
+
+            },
+                error: function (error) {
+                    // AJAX isteği başarısız olduğunda burası çalışır
+                    console.error(error); // Hata mesajını konsolda gösterme, isteğe bağlı
+                }
+            })
 
 
-    window.addEventListener("unload", function (event) {
-        connection.stop();
-    });
-    window.addEventListener("beforeunload", function (event) {
-        connection.stop();
-    });
+    })
+})
+
+window.addEventListener("unload", function (event) {
+    connection.stop();
+});
+window.addEventListener("beforeunload", function (event) {
+    connection.stop();
+});
 
 
 }

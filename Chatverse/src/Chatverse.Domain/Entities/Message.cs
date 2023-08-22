@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace Chatverse.Domain.Entities
 {
-    public class Message : BaseEntity<Guid>
+    public class Message : BaseAuditableEntity
     {
+
         public string Content { get; set; }
         [ForeignKey("MessageSender")]
         public string SenderId { get; set; }
