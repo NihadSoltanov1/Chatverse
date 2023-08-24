@@ -191,7 +191,9 @@ if (storedToken) {
                 </div>
                 <div class="message-wrap">${content}</div>
             `;
-
+        var audioElement2 = document.getElementById("receiveMessageAudio");
+        audioElement2.currentTime = 0; // Sesi sıfırla (eğer zaten çalıyorsa)
+        audioElement2.play(); // Sesi çal
         receiverElement.innerHTML = content1;
         divElement.appendChild(receiverElement);
     });
@@ -215,7 +217,12 @@ if (storedToken) {
 
                 <div class="message-wrap myMessageContent">${content}</div>
             `;
+        
 
+        var audioElement1 = document.getElementById("sentMessageAudio");
+            audioElement1.currentTime = 0; // Sesi sıfırla (eğer zaten çalıyorsa)
+            audioElement1.play(); // Sesi çal
+       
         newElement.innerHTML = content2;
         divElement.appendChild(newElement);
     });

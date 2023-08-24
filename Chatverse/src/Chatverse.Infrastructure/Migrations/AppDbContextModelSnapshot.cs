@@ -180,41 +180,6 @@ namespace Chatverse.Infrastructure.Migrations
                     b.ToTable("Likes");
                 });
 
-            modelBuilder.Entity("Chatverse.Domain.Entities.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ReceiverId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("SenderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ReceiverId");
-
-                    b.HasIndex("SenderId");
-
-                    b.ToTable("Messages");
-                });
-
             modelBuilder.Entity("Chatverse.Domain.Entities.Notification", b =>
                 {
                     b.Property<int>("Id")
@@ -676,25 +641,6 @@ namespace Chatverse.Infrastructure.Migrations
                     b.Navigation("Post");
                 });
 
-            modelBuilder.Entity("Chatverse.Domain.Entities.Message", b =>
-                {
-                    b.HasOne("Chatverse.Domain.Identity.AppUser", "MessageReceiver")
-                        .WithMany("ReceiverMessage")
-                        .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Chatverse.Domain.Identity.AppUser", "MessageSender")
-                        .WithMany("SenderMessage")
-                        .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("MessageReceiver");
-
-                    b.Navigation("MessageSender");
-                });
-
             modelBuilder.Entity("Chatverse.Domain.Entities.Notification", b =>
                 {
                     b.HasOne("Chatverse.Domain.Entities.NotificationCategory", "NotificationCategory")
@@ -881,10 +827,6 @@ namespace Chatverse.Infrastructure.Migrations
                     b.Navigation("Posts");
 
                     b.Navigation("ReceivedFriendRequests");
-
-                    b.Navigation("ReceiverMessage");
-
-                    b.Navigation("SenderMessage");
 
                     b.Navigation("SenderNotifications");
 

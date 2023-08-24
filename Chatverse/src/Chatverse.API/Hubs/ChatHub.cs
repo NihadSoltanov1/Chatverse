@@ -47,7 +47,11 @@ namespace Chatverse.UI.Hubs
 
 
 
-            await Clients.Client(hubConnection1.ConnectionId).SendAsync("seeSendMessage", response.SenderUsername, response.SenderProfilePicture, hour,content);
+            if(hubConnection1 is not null)
+            {
+                await Clients.Client(hubConnection1.ConnectionId).SendAsync("seeSendMessage", response.SenderUsername, response.SenderProfilePicture, hour, content);
+            }
+           
             await Clients.Client(Context.ConnectionId).SendAsync("seeMySendMessage", response.SenderUsername,response.SenderProfilePicture,content, hour);
         }
 

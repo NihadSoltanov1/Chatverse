@@ -21,6 +21,7 @@ namespace Chatverse.Application
                 // cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
             });
             services.AddFluentValidationAutoValidation();
+
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             return services;
         }

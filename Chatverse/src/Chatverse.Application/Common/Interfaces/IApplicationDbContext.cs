@@ -22,7 +22,6 @@ namespace Chatverse.Application.Common.Interfaces
         public DbSet<NotificationCategory> NotificationCategories { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<SocialAccount> SocialAccounts { get; set; }
-        public DbSet<Message> Messages { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

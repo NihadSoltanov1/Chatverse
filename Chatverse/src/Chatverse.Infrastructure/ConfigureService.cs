@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Chatverse.Application.Common.Security.Jwt;
 using Microsoft.AspNetCore.Identity;
+using Chatverse.Infrastructure.MongoDB.Persistance.Settings;
+using Chatverse.Application.Common.Interfaces.MongoDb;
+using Microsoft.Extensions.Options;
 
 namespace Chatverse.Infrastructure
 {
@@ -31,7 +34,9 @@ namespace Chatverse.Infrastructure
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddScoped<AppDbContextInitialiser>();
-           
+            services.Configure<DatabaseSettings>(configuration.GetSection("DatabaseSettings"));
+            services.AddSingleton<IDatabaseSettings>(serviceProvider => serviceProvider.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+
             services.AddScoped<IEmailService, EmailConfirmService>();
             services.AddScoped<IGoogleCloudService, GoogleCloudService>();
             services.AddScoped<ITokenHandler, TokenHandler>();
