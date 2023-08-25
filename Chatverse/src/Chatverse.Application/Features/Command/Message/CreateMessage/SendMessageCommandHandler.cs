@@ -49,7 +49,7 @@ namespace Chatverse.Application.Features.Command.Message.CreateMessage
                 Content = request.Content,
                 ReceiverId = request.ToUserId,
                 SenderId = currentUser.Id,
-                SendDate = DateTime.UtcNow,
+                SendDate = DateTime.Now,
                 Image = request.Image
             };
 

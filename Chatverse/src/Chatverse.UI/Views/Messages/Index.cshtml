@@ -31,6 +31,22 @@
         localStorage.setItem("JWToken", "@accessToken");
         localStorage.setItem("MyIdentifier", "@userId");
     </script>
+    <style>
+        .delete-icon {
+            color: white;
+            background-color: darkred;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+    </style>
+    
 </head>
 
 <body class="color-theme-blue mont-font">
@@ -292,12 +308,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="chat-bottom dark-bg p-3 shadow-none theme-dark-bg customSendButton" style="width: 98%;">
-
-                               <form class="chat-form" style="display: none;">
-                                    <button class="bg-grey float-left "><i class="ti-microphone text-grey-600"></i></button>
-                                    <div class="form-group"><input id="messageContent" style="color:black!important;" type="text" placeholder="Start typing.."></div>
-                                    
+                            
+                            <div  class="chat-bottom dark-bg p-3 shadow-none theme-dark-bg customSendButton" style="width: 98%;background-color:#FBFCFE;">
+                                <div id="imagePreview" class="card-body position-relative" style="display: none;">
+                                    <!-- Resim önizleme alanı -->
+                                </div>
+                               <form class="chat-form" style="display: none;" enctype="multipart/form-data">
+                                    <button style="margin-right:3px;" class="bg-grey float-left "><i class="ti-microphone text-grey-600"></i></button>
+                                    <button class="bg-grey float-left uploadMessageImage"><i class="ti-upload text-grey-600"></i></button>
+                                 <input type="file" id="messageImageInput" style="display:none">
+                                    <div class="form-group" style="width: calc(100% - 150px)!important;"><input id="messageContent" style="color:black!important;" type="text" placeholder="Start typing.."></div>
+                                   
                                     <button class="bg-current sendMessage"><i class="ti-arrow-right text-white "></i></button>
                                </form>
                                     
@@ -359,7 +380,45 @@
         </div>
     </div>
 
-    
+    <script>
+        document.querySelectorAll('.uploadMessageImage').forEach(item => {
+            item.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById("messageImageInput").click();
+            });
+        })
+        document.getElementById("messageImageInput").addEventListener("change", function () {
+            var imagePreview = document.getElementById('imagePreview');
+            imagePreview.innerHTML = ''; // Önceki resim önizlemelerini temizleyelim.
+
+            var images = Array.from(this.files);
+            images.forEach(function (image, index) {
+                var div = document.createElement('div');
+                div.className = 'image-container';
+
+                var img = document.createElement('img');
+                img.src = URL.createObjectURL(image);
+                img.style.width = '100px';
+                img.style.height = '100px';
+
+                var deleteIcon = document.createElement('span');
+                deleteIcon.innerHTML = 'X';
+                deleteIcon.className = 'delete-icon';
+                deleteIcon.addEventListener('click', function () {
+                    imagePreview.removeChild(div);
+                });
+
+                div.appendChild(img);
+                div.appendChild(deleteIcon);
+
+                imagePreview.appendChild(div);
+            });
+
+            // Görsel önizlemeyi göster
+            imagePreview.style.display = 'block';
+        });
+
+    </script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/chatverse/uitheme.net/sociala/js/plugin.js"></script>

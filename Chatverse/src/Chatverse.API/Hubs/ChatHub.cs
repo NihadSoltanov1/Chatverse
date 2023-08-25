@@ -31,12 +31,13 @@ namespace Chatverse.UI.Hubs
 
 
 
-        public async Task SendMessageAsync(string toUser, string content)
+        public async Task SendMessageAsync(string toUser, string content, string imagePath)
         {
             SendMessageCommandRequest sendMessageCommandRequest = new SendMessageCommandRequest();
             sendMessageCommandRequest.Content = content;
             sendMessageCommandRequest.FromUserId = Context.UserIdentifier;
             sendMessageCommandRequest.ToUserId = toUser;
+            sendMessageCommandRequest.Image = imagePath;
             SendMessageCommandResponse response = await _mediator.Send(sendMessageCommandRequest);
 
             string hour = response.SendDate.ToString("h:mm tt").ToLower();
@@ -49,10 +50,10 @@ namespace Chatverse.UI.Hubs
 
             if(hubConnection1 is not null)
             {
-                await Clients.Client(hubConnection1.ConnectionId).SendAsync("seeSendMessage", response.SenderUsername, response.SenderProfilePicture, hour, content);
+                await Clients.Client(hubConnection1.ConnectionId).SendAsync("seeSendMessage", response.SenderUsername, response.SenderProfilePicture, hour, content, imagePath);
             }
            
-            await Clients.Client(Context.ConnectionId).SendAsync("seeMySendMessage", response.SenderUsername,response.SenderProfilePicture,content, hour);
+            await Clients.Client(Context.ConnectionId).SendAsync("seeMySendMessage", response.SenderUsername,response.SenderProfilePicture,content, hour, imagePath);
         }
 
 

@@ -89,10 +89,11 @@ if (storedToken) {
                     if (data != null) {
                         data.forEach(function (item) {
                             if (item.senderId == MyUserId) {
-                                var newElement = document.createElement('div');
-                                newElement.className = 'message-item outgoing-message';
+                                if (item.content != null && item.image != null) {
+                                    var newElement = document.createElement('div');
+                                    newElement.className = 'message-item outgoing-message';
 
-                                var content = `
+                                    var content = `
                 <div class="message-user">
                     <figure class="avatar">
                         <img src="/${item.senderProfilePicture}" alt="image">
@@ -104,15 +105,69 @@ if (storedToken) {
                 </div>
 
                 <div class="message-wrap myMessageContent">${item.content}</div>
+                <br/>
+                <figure>
+    <img src="/${item.image}" class="img-fluid rounded-3" style="max-width: 100px; max-height: 100px;" alt="image">
+</figure>
             `;
 
-                                newElement.innerHTML = content;
-                                divElement.appendChild(newElement);
-                            } else {
-                                var receiverElement = document.createElement('div');
-                                receiverElement.className = 'message-item receiverMessage';
+                                    newElement.innerHTML = content;
+                                    divElement.appendChild(newElement);
+                                }
+                                else if (item.content != null && item.image == null) {
+                                    var newElement = document.createElement('div');
+                                    newElement.className = 'message-item outgoing-message';
 
-                                var content = `
+                                    var content = `
+                <div class="message-user">
+                    <figure class="avatar">
+                        <img src="/${item.senderProfilePicture}" alt="image">
+                    </figure>
+                    <div>
+                        <h5>${item.senderUsername}</h5>
+                        <div class="time">${item.sendDate}<i class="ti-double-check text-info"></i></div>
+                    </div>
+                </div>
+
+                <div class="message-wrap myMessageContent">${item.content}</div>
+                
+               
+            `;
+
+                                    newElement.innerHTML = content;
+                                    divElement.appendChild(newElement);
+                                }
+                                else if (item.content == null && item.image != null) {
+                                    var newElement = document.createElement('div');
+                                    newElement.className = 'message-item outgoing-message';
+
+                                    var content = `
+                <div class="message-user">
+                    <figure class="avatar">
+                        <img src="/${item.senderProfilePicture}" alt="image">
+                    </figure>
+                    <div>
+                        <h5>${item.senderUsername}</h5>
+                        <div class="time">${item.sendDate}<i class="ti-double-check text-info"></i></div>
+                    </div>
+                </div>
+
+                <br/>
+                <figure>
+    <img src="/${item.image}" class="img-fluid rounded-3" style="max-width: 100px; max-height: 100px;" alt="image">
+</figure>
+            `;
+
+                                    newElement.innerHTML = content;
+                                    divElement.appendChild(newElement);
+                                }
+                              
+                            } else {
+                                if (item.content != null && item.image != null) {
+                                    var receiverElement = document.createElement('div');
+                                    receiverElement.className = 'message-item receiverMessage';
+
+                                    var content = `
                 <div class="message-user">
                     <figure class="avatar">
                         <img src="/${item.senderProfilePicture}" alt="image">
@@ -123,10 +178,59 @@ if (storedToken) {
                     </div>
                 </div>
                 <div class="message-wrap">${item.content}</div>
+                 <br/>
+                <figure>
+    <img src="/${item.image}" class="img-fluid rounded-3" style="max-width: 100px; max-height: 100px;" alt="image">
+</figure>
             `;
 
-                                receiverElement.innerHTML = content;
-                                divElement.appendChild(receiverElement);
+                                    receiverElement.innerHTML = content;
+                                    divElement.appendChild(receiverElement);
+                                }
+                                else if (item.content != null && item.image == null) {
+                                    var receiverElement = document.createElement('div');
+                                    receiverElement.className = 'message-item receiverMessage';
+
+                                    var content = `
+                <div class="message-user">
+                    <figure class="avatar">
+                        <img src="/${item.senderProfilePicture}" alt="image">
+                    </figure>
+                    <div>
+                        <h5>${item.senderUsername}</h5>
+                        <div class="time">${item.sendDate}</div>
+                    </div>
+                </div>
+                <div class="message-wrap">${item.content}</div>
+       
+            `;
+
+                                    receiverElement.innerHTML = content;
+                                    divElement.appendChild(receiverElement);
+                                }
+                                else if (item.content == null && item.image != null) {
+                                    var receiverElement = document.createElement('div');
+                                    receiverElement.className = 'message-item receiverMessage';
+
+                                    var content = `
+                <div class="message-user">
+                    <figure class="avatar">
+                        <img src="/${item.senderProfilePicture}" alt="image">
+                    </figure>
+                    <div>
+                        <h5>${item.senderUsername}</h5>
+                        <div class="time">${item.sendDate}</div>
+                    </div>
+                </div>
+                 <br/>
+                <figure>
+    <img src="/${item.image}" class="img-fluid rounded-3" style="max-width: 100px; max-height: 100px;" alt="image">
+</figure>
+            `;
+
+                                    receiverElement.innerHTML = content;
+                                    divElement.appendChild(receiverElement);
+                                }
                             }
                         });
                     }
@@ -148,6 +252,8 @@ if (storedToken) {
 
         })
     })
+    // Dosya seçme butonuna tıkladığınızda
+    
     document.querySelectorAll('.sendMessage').forEach(item => {
         item.addEventListener('click', function (e) {
             e.preventDefault();
@@ -158,28 +264,44 @@ if (storedToken) {
             var receiverInput = document.querySelectorAll(".receiverIdHiddeninput")[0];
             var receiverId = receiverInput.value; // receiverInput öğesinin id değeri alınır
             console.log(receiverId); // id değeri konsola yazdırılır
-
-            connection.invoke('SendMessageAsync', receiverId, content);
+            var formData = new FormData();
+            var imagePath;
+            var imageFile = $('#messageImageInput')[0].files[0];
+            formData.append('formFile', imageFile);
+            
+            
+            
+            $.ajax({
+                type: 'POST',
+                url: '/Messages/UploadImageToRoot',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    connection.invoke('SendMessageAsync', receiverId, content, response);
+                },
+                error: function () {
+                    console.error('Ajax isteği başarısız.');
+                }
+            });
             
 
             messagePart.value = "";
             messagePart.focus();
-
-
-           
-
-
-
-
+            var imagePreview = document.getElementById('imagePreview');
+            imagePreview.innerHTML = "";
+            imagePreview.style.display = 'none';
 
         });
     })
-    connection.on('seeSendMessage', (SenderUsername, SenderProfilePicture, hour, content) => {
+
+    connection.on('seeSendMessage', (SenderUsername, SenderProfilePicture, hour, content, imagePath) => {
         var divElement = document.querySelector('.messages-content');
         var receiverElement = document.createElement('div');
         receiverElement.className = 'message-item receiverMessage';
-
-        var content1 = `
+        var content1;
+        if (content != null && imagePath != null) {
+            content1 = `
                 <div class="message-user">
                     <figure class="avatar">
                         <img src="/${SenderProfilePicture}" alt="image">
@@ -190,7 +312,46 @@ if (storedToken) {
                     </div>
                 </div>
                 <div class="message-wrap">${content}</div>
+                <br/>
+                <figure>
+    <img src="/${imagePath}" class="img-fluid rounded-3" style="max-width: 100px; max-height: 100px;" alt="image">
+</figure>
+
             `;
+        }
+        else if (content != null && imagePath == null) {
+            content1 = `
+                <div class="message-user">
+                    <figure class="avatar">
+                        <img src="/${SenderProfilePicture}" alt="image">
+                    </figure>
+                    <div>
+                        <h5>${SenderUsername}</h5>
+                        <div class="time">${hour}</div>
+                    </div>
+                </div>
+                <div class="message-wrap">${content}</div>
+                
+            `;
+        }
+        else if (content == null && imagePath != null) {
+            content1 = `
+                <div class="message-user">
+                    <figure class="avatar">
+                        <img src="/${SenderProfilePicture}" alt="image">
+                    </figure>
+                    <div>
+                        <h5>${SenderUsername}</h5>
+                        <div class="time">${hour}</div>
+                    </div>
+                </div>
+                <br/>
+                <figure>
+    <img src="/${imagePath}" class="img-fluid rounded-3" style="max-width: 100px; max-height: 100px;" alt="image">
+</figure>
+            `;
+        }
+       
         var audioElement2 = document.getElementById("receiveMessageAudio");
         audioElement2.currentTime = 0; // Sesi sıfırla (eğer zaten çalıyorsa)
         audioElement2.play(); // Sesi çal
@@ -198,12 +359,12 @@ if (storedToken) {
         divElement.appendChild(receiverElement);
     });
 
-    connection.on('seeMySendMessage', (SenderUsername, SenderProfilePicture, content, hour) => {
+    connection.on('seeMySendMessage', (SenderUsername, SenderProfilePicture, content, hour, imagePath) => {
         var divElement = document.querySelector('.messages-content');
         var newElement = document.createElement('div');
         newElement.className = 'message-item outgoing-message';
-
-        var content2 = `
+        if (content != null && imagePath != null) {
+            var content2 = `
                 <div class="message-user">
                     <figure class="avatar">
                         <img src="/${SenderProfilePicture}" alt="image">
@@ -213,11 +374,46 @@ if (storedToken) {
                         <div class="time">${hour}<i class="ti-double-check text-info"></i></div>
                     </div>
                 </div>
-              
-
                 <div class="message-wrap myMessageContent">${content}</div>
+               < br/>
+                <figure>
+    <img src="/${imagePath}" class="img-fluid rounded-3" style="max-width: 100px; max-height: 100px;" alt="image">
+</figure>
             `;
-        
+        }
+        else if (content != null && imagePath == null) {
+            var content2 = `
+                <div class="message-user">
+                    <figure class="avatar">
+                        <img src="/${SenderProfilePicture}" alt="image">
+                    </figure>
+                    <div>
+                        <h5>${SenderUsername}</h5>
+                        <div class="time">${hour}<i class="ti-double-check text-info"></i></div>
+                    </div>
+                </div>
+                <div class="message-wrap myMessageContent">${content}</div>
+             
+            `;
+        }
+
+        else if (content == null && imagePath != null) {
+            var content2 = `
+                <div class="message-user">
+                    <figure class="avatar">
+                        <img src="/${SenderProfilePicture}" alt="image">
+                    </figure>
+                    <div>
+                        <h5>${SenderUsername}</h5>
+                        <div class="time">${hour}<i class="ti-double-check text-info"></i></div>
+                    </div>
+                </div>
+                <br/>
+                <figure>
+    <img src="/${imagePath}" class="img-fluid rounded-3" style="max-width: 400px; max-height: 400px;" alt="image">
+</figure>
+            `;
+        }
 
         var audioElement1 = document.getElementById("sentMessageAudio");
             audioElement1.currentTime = 0; // Sesi sıfırla (eğer zaten çalıyorsa)
@@ -226,6 +422,21 @@ if (storedToken) {
         newElement.innerHTML = content2;
         divElement.appendChild(newElement);
     });
+
+
+
+
+
+
+
+
+   
+
+    // Dosya seçme alanında değişiklik olduğunda
+
+
+
+
 
     window.addEventListener("unload", function (event) {
         connection.stop();

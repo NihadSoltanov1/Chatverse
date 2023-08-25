@@ -5,6 +5,7 @@ using Chatverse.UI.DTOs.SingleDto;
 using Chatverse.UI.Services;
 using Chatverse.UI.ViewModels.Friends;
 using Chatverse.UI.ViewModels.Message;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json;
@@ -18,10 +19,12 @@ namespace Chatverse.UI.Controllers
         private readonly HttpClient _httpClient;
         private const string baseUrl = "http://localhost:5273/api";
         private readonly IDateTimeConvertService _convertDate;
-        public MessagesController(HttpClient httpClient, IDateTimeConvertService convertDate)
+        private readonly IFileService _fileService;
+        public MessagesController(HttpClient httpClient, IDateTimeConvertService convertDate, IFileService fileService)
         {
             _httpClient = httpClient;
             _convertDate = convertDate;
+            _fileService = fileService;
         }
 
         [HttpPost]
@@ -61,6 +64,20 @@ namespace Chatverse.UI.Controllers
             return RedirectToAction("HomePage", "Main");
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> UploadImageToRoot(IFormFile formFile)
+        {
+            IFormFile file = formFile;
+            var filePath = _fileService.FileUploadToRoot(file);
+            return Json(filePath);
+        }
+
+
+
+
+
+
         [HttpGet]
         public async Task<IActionResult> GetAllMessage([FromRoute]string id)
         {
@@ -88,15 +105,15 @@ namespace Chatverse.UI.Controllers
                         SenderUsername = i.SenderUsername,
                         ReceiverProfilePicture = i.ReceiverProfilePicture,
                         SenderProfilePicture = i.SenderProfilePicture,
-                        SendDate = newDate.Hour
+                        SendDate = newDate.Hour,
+                        Image = i.Image
                     };
                     messages.Add(mesaj);
                 }
                 return Json(messages);
             }
             return NotFound();
-        }
 
-       
+        }
     }
 }
