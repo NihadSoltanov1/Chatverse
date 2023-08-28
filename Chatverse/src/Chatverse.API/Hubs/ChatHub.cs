@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -31,7 +32,7 @@ namespace Chatverse.UI.Hubs
 
 
 
-        public async Task SendMessageAsync(string toUser, string content, string imagePath)
+        public async Task SendMessageAsync(string toUser, string? content, string? imagePath) 
         {
             SendMessageCommandRequest sendMessageCommandRequest = new SendMessageCommandRequest();
             sendMessageCommandRequest.Content = content;
@@ -58,7 +59,20 @@ namespace Chatverse.UI.Hubs
 
 
 
-
+        public async Task Typing(string receiverId, bool isTyping)
+        {
+           var user = await _userManager.FindByIdAsync(receiverId);
+            var currentUser = await _userManager.FindByIdAsync(Context.UserIdentifier);
+            if (user is not null)
+            {
+                var hubConnection2 = await _context.HubConnections.FirstOrDefaultAsync(x => x.Username == user.UserName);
+                if(hubConnection2 is not null)
+                {
+                  var connectionId2 = hubConnection2.ConnectionId;
+                    await Clients.Client(connectionId2).SendAsync("showtousertyping", currentUser.ProfilePicture, currentUser.UserName,isTyping);
+                }
+            }
+        }
 
 
 
@@ -85,8 +99,9 @@ namespace Chatverse.UI.Hubs
                     if(hubConnection1 is not null)
                     {
                        await Clients.Client(hubConnection1.ConnectionId).SendAsync("seeOnlineFriend", currentUser.UserName,currentUser.ProfilePicture,Context.ConnectionId);
-                        await Clients.Client(Context.ConnectionId).SendAsync("seeMyOnlineFriend", friend1.UserName, friend1.ProfilePicture, hubConnection1.ConnectionId);
+                    await Clients.Client(Context.ConnectionId).SendAsync("seeMyOnlineFriend", friend1.UserName, friend1.ProfilePicture, hubConnection1.ConnectionId);
                     }
+                   
                 }
                 
             }

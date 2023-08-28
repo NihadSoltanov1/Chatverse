@@ -5,6 +5,226 @@
       "PackagePath": "staticwebassets\\Chatverse.UI.bundle.scp.css"
     },
     {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\backblue.gif",
+      "PackagePath": "staticwebassets\\chattemplate\\backblue.gif"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\fade.gif",
+      "PackagePath": "staticwebassets\\chattemplate\\fade.gif"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\hts-cache\\doit.log",
+      "PackagePath": "staticwebassets\\chattemplate\\hts-cache\\doit.log"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\hts-cache\\new.lst",
+      "PackagePath": "staticwebassets\\chattemplate\\hts-cache\\new.lst"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\hts-cache\\new.txt",
+      "PackagePath": "staticwebassets\\chattemplate\\hts-cache\\new.txt"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\hts-cache\\new.zip",
+      "PackagePath": "staticwebassets\\chattemplate\\hts-cache\\new.zip"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\hts-cache\\readme.txt",
+      "PackagePath": "staticwebassets\\chattemplate\\hts-cache\\readme.txt"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\hts-cache\\winprofile.ini",
+      "PackagePath": "staticwebassets\\chattemplate\\hts-cache\\winprofile.ini"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\hts-log.txt",
+      "PackagePath": "staticwebassets\\chattemplate\\hts-log.txt"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\index.html",
+      "PackagePath": "staticwebassets\\chattemplate\\index.html"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\css\\app.min.css",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\css\\app.min.css"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\css\\icons.min.css",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\css\\icons.min.css"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\materialdesignicons-webfont7e1c.eot",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\materialdesignicons-webfont7e1c.eot"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\materialdesignicons-webfont7e1c.html",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\materialdesignicons-webfont7e1c.html"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\materialdesignicons-webfont7e1c.ttf",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\materialdesignicons-webfont7e1c.ttf"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\materialdesignicons-webfont7e1c.woff",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\materialdesignicons-webfont7e1c.woff"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\materialdesignicons-webfontd41d.eot",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\materialdesignicons-webfontd41d.eot"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\remixicon8025.eot",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\remixicon8025.eot"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\remixicon8025.html",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\remixicon8025.html"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\remixicon8025.svg",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\remixicon8025.svg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\remixicon8025.ttf",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\remixicon8025.ttf"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\remixicon8025.woff",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\fonts\\remixicon8025.woff"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\favicon.ico",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\logo-dark.png",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\logo-dark.png"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\logo-light.png",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\logo-light.png"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\logo.svg",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\logo.svg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\small\\admin_v1.0.zip",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\small\\admin_v1.0.zip"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\small\\img-1.jpg",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\small\\img-1.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\small\\img-2.jpg",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\small\\img-2.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-1.jpg",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-1.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-2.jpg",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-2.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-3.jpg",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-3.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-4.jpg",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-4.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-5.jpg",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-5.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-6.jpg",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-6.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-7.jpg",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-7.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-8.jpg",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\images\\users\\avatar-8.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\js\\app.js",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\js\\app.js"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\js\\pages\\index.init.js",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\js\\pages\\index.init.js"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\bootstrap\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\bootstrap\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\jquery\\jquery.min.js",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\jquery\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\magnific-popup\\jquery.magnific-popup.min.js",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\magnific-popup\\jquery.magnific-popup.min.js"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\magnific-popup\\magnific-popup.css",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\magnific-popup\\magnific-popup.css"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\node-waves\\waves.min.js",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\node-waves\\waves.min.js"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\owl.carousel\\assets\\owl.carousel.min.css",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\owl.carousel\\assets\\owl.carousel.min.css"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\owl.carousel\\assets\\owl.theme.default.min.css",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\owl.carousel\\assets\\owl.theme.default.min.css"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\owl.carousel\\assets\\owl.video.play.png",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\owl.carousel\\assets\\owl.video.play.png"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\owl.carousel\\owl.carousel.min.js",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\owl.carousel\\owl.carousel.min.js"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\simplebar\\simplebar.min.js",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\assets\\libs\\simplebar\\simplebar.min.js"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\auth-login.html",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\auth-login.html"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\auth-recoverpw.html",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\auth-recoverpw.html"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\auth-register.html",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\auth-register.html"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\index-dark.html",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\index-dark.html"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chattemplate\\themesbrand.com\\chatvia\\layouts\\index.html",
+      "PackagePath": "staticwebassets\\chattemplate\\themesbrand.com\\chatvia\\layouts\\index.html"
+    },
+    {
       "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\chatverse\\backblue.gif",
       "PackagePath": "staticwebassets\\chatverse\\backblue.gif"
     },
@@ -7919,6 +8139,18 @@
     {
       "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\202327240845_design-medium.jpg",
       "PackagePath": "staticwebassets\\profilepictures\\202327240845_design-medium.jpg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\202327250841_downl6oad.jpeg",
+      "PackagePath": "staticwebassets\\profilepictures\\202327250841_downl6oad.jpeg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\202328250828_downl6oad.jpeg",
+      "PackagePath": "staticwebassets\\profilepictures\\202328250828_downl6oad.jpeg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\202328250837_downl6oad.jpeg",
+      "PackagePath": "staticwebassets\\profilepictures\\202328250837_downl6oad.jpeg"
     },
     {
       "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\202330240804_download.jpg",
