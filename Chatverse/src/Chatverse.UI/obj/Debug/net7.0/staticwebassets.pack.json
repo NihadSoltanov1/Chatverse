@@ -8085,6 +8085,10 @@
       "PackagePath": "staticwebassets\\js\\chat.js"
     },
     {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\js\\customStyle.css",
+      "PackagePath": "staticwebassets\\js\\customStyle.css"
+    },
+    {
       "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\js\\signalr\\dist\\browser\\signalr.js",
       "PackagePath": "staticwebassets\\js\\signalr\\dist\\browser\\signalr.js"
     },
@@ -8175,6 +8179,14 @@
     {
       "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\profilepictures\\defaultprofilepicture.png",
       "PackagePath": "staticwebassets\\profilepictures\\defaultprofilepicture.png"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\sound\\accepting.mp3",
+      "PackagePath": "staticwebassets\\sound\\accepting.mp3"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\sound\\calling.mp3",
+      "PackagePath": "staticwebassets\\sound\\calling.mp3"
     },
     {
       "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\sound\\receivermessage.mp3",

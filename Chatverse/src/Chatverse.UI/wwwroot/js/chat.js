@@ -160,7 +160,7 @@ if (storedToken) {
                         </li>
 
                         <li class="list-inline-item d-none d-lg-inline-block me-2 ms-0">
-                            <button type="button" class="btn nav-btn" data-bs-toggle="modal" data-bs-target="#videocallModal">
+                            <button type="button" class="btn nav-btn" id="openVideoCallModal">
                                 <i class="ri-vidicon-line"></i>
                             </button>
                         </li>
@@ -258,6 +258,7 @@ if (storedToken) {
 
                 </div>
             </div>
+            
         </div>
 
                 `;
@@ -553,6 +554,7 @@ if (storedToken) {
                     //fromButton.style.display = 'block';
                     setTimeout(MyButtonEventListener, 1000)
                     setTimeout(ShowTyping, 1001)
+                    setTimeout(ShowVideoCallModal(srcValue, username), 1002)
                 },
                 error: function (error) {
                     // AJAX isteği başarısız olduğunda burası çalışır
@@ -563,6 +565,39 @@ if (storedToken) {
 
         })
     })
+
+
+    function ShowVideoCallModal(image,username) {
+        var showPopupButton = document.getElementById("openVideoCallModal");
+        var customMessageContentDiv = document.querySelector('.customMessageContent');
+        showPopupButton.addEventListener("click", function () {
+            console.log('video call basladildi')
+            var callingDiv = document.createElement('div');
+            callingDiv.id = 'customVideoModal';
+            callingDiv.className = 'popup';
+            var callingDivContent = `<div class="popup-content">
+        <div class="circle-image" id="callingImage">
+            <img src="${image}" />
+        </div>
+        <br />
+        <div class="calling-animation"></div>
+        <p>${username}</p>
+        <button id="cancel-call" class="circular-button">
+            <span class="mdi mdi-phone" style="color: white; font-size: 28px;"></span>
+        </button>
+      
+    </div>`;
+            callingDiv.innerHTML = callingDivContent;
+            customMessageContentDiv.appendChild(callingDiv);
+            var audioElement2 = document.getElementById("callingMessageAudio");
+            audioElement2.currentTime = 0; // Sesi sıfırla (eğer zaten çalıyorsa)
+            audioElement2.play();
+
+        });
+
+       
+       
+    }
 
 
     function MyButtonEventListener() {

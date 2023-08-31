@@ -9,12 +9,23 @@
     var token = tokenHandler.ReadJwtToken(accessToken);
     string userId = token.Claims.FirstOrDefault(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value;
 }
+
 <audio id="sentMessageAudio" style="display:none">
     <source src="~/sound/sentmessage.mp3" type="audio/mp3">
 </audio>
+
 <audio id="receiveMessageAudio" style="display:none">
     <source src="~/sound/receivermessage.mp3" type="audio/mp3">
 </audio>
+
+<audio id="callingMessageAudio" style="display:none">
+    <source src="~/sound/calling.mp3" type="audio/mp3">
+</audio>
+
+<audio id="acceptingMessageAudio" style="display:none">
+    <source src="~/sound/accepting.mp3" type="audio/mp3">
+</audio>
+
 
 <div class="w-100 overflow-hidden position-relative messages-content customMessageContent">
    

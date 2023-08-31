@@ -45,6 +45,11 @@ namespace Chatverse.UI.Controllers
             return  NotFound();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> TestView()
+        {
+            return View();
+        }
 
         [HttpGet]
         public async Task<IActionResult> Index()
