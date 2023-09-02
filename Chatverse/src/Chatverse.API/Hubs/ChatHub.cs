@@ -30,6 +30,29 @@ namespace Chatverse.UI.Hubs
 
 
 
+        public async Task DeclineVideoCalling(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            var hubConnection = await _context.HubConnections.FirstOrDefaultAsync(x => x.Username == username);
+
+
+            if(hubConnection is not null) await Clients.Client(hubConnection.ConnectionId).SendAsync("removeVideoCallingRequest");
+            
+        }
+
+
+
+        public async Task CallingFriend(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            var currentUser = await _userManager.FindByIdAsync(Context.UserIdentifier);
+            var hubConnection =await _context.HubConnections.FirstOrDefaultAsync(x => x.Username == username);
+            if(hubConnection is not null)
+            {
+                await Clients.Client(hubConnection.ConnectionId).SendAsync("showCallingUserPopup", currentUser.UserName, currentUser.ProfilePicture);
+            }
+
+        }
 
 
         public async Task SendMessageAsync(string toUser, string? content, string? imagePath) 
@@ -69,13 +92,21 @@ namespace Chatverse.UI.Hubs
                 if(hubConnection2 is not null)
                 {
                   var connectionId2 = hubConnection2.ConnectionId;
-                    await Clients.Client(connectionId2).SendAsync("showtousertyping", currentUser.ProfilePicture, currentUser.UserName,isTyping);
+                    await Clients.Client(connectionId2).SendAsync("showtousertyping" , currentUser.ProfilePicture, currentUser.UserName,isTyping);
                 }
             }
         }
 
 
-
+        public async Task DeclineVideoCallRequest(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            var hubConnection = _context.HubConnections.FirstOrDefault(c => c.Username == username);
+            if (hubConnection is not null)
+            {
+                await Clients.Client(hubConnection.ConnectionId).SendAsync("removeVideoCallerRequest");
+            }
+        }
 
 
 

@@ -77,7 +77,6 @@ if (storedToken) {
         var ulElement = document.getElementById('onlineUserList');
         ulElement.removeChild(getliElement);
     });
-    console.log("1. Bura Isleyir.");
 
 
     document.querySelectorAll('.myMessageFriends').forEach(item => {
@@ -566,7 +565,19 @@ if (storedToken) {
         })
     })
 
-
+    function DeclineVideoCalling(username) {
+        var declineButton = document.getElementById('cancel-call');
+        declineButton.addEventListener('click', function () {
+            var CallingPopupDiv = document.getElementById('customVideoModal');
+            var customMessageContentDiv1 = document.querySelector('.customMessageContent');
+            customMessageContentDiv1.removeChild(CallingPopupDiv);
+            var audioElement2 = document.getElementById("callingMessageAudio");
+            audioElement2.pause();
+            audioElement2.currentTime = 0;
+            connection.invoke("DeclineVideoCalling", username);
+        });
+    }
+    let waitingToAnswer = false;
     function ShowVideoCallModal(image,username) {
         var showPopupButton = document.getElementById("openVideoCallModal");
         var customMessageContentDiv = document.querySelector('.customMessageContent');
@@ -589,15 +600,62 @@ if (storedToken) {
     </div>`;
             callingDiv.innerHTML = callingDivContent;
             customMessageContentDiv.appendChild(callingDiv);
-            var audioElement2 = document.getElementById("callingMessageAudio");
-            audioElement2.currentTime = 0; // Sesi sıfırla (eğer zaten çalıyorsa)
-            audioElement2.play();
+            
+            
+            waitingToAnswer = true;
+            setTimeout(function () {
+                var audioElement2 = document.getElementById("callingMessageAudio");
+                audioElement2.currentTime = 0; // Sesi sıfırla (eğer zaten çalıyorsa)
+                audioElement2.play();
+                audioElement2.addEventListener('ended', function () {
+                    this.currentTime = 2;
+                    this.play();
+                });
+
+                setTimeout(function () {
+                    connection.invoke('CallingFriend', username)
+                    console.log("Calling friend invoke")
+                }, 1000);
+
+                DeclineVideoCalling(username);
+            }, 1500);
+
+            setTimeout(function () {
+                
+                
+                var CallingPopupDiv = document.getElementById('customVideoModal');
+                console.log("CallingPopupDiv: " + CallingPopupDiv);
+                var customMessageContentDiv1 = document.querySelector('.customMessageContent');
+                console.log("CustomMessafgeContentDiv: " + customMessageContentDiv1)       
+                customMessageContentDiv1.removeChild(CallingPopupDiv);
+                    var audioElement2 = document.getElementById("callingMessageAudio");
+                    audioElement2.pause();
+                    audioElement2.currentTime = 0;
+                    connection.invoke("DeclineVideoCalling", username);
+            }, 80000);
+            
+            
 
         });
 
        
        
     }
+
+    function DeclineVideoCallRequest(username) {
+        var declineButton = document.getElementById('cancel-call');
+        declineButton.addEventListener('click', function () {
+            var CallingPopupDiv = document.getElementById('customacceptVideoModal');
+            var customMessageContentDiv1 = document.querySelector('.customMessageContent');
+            customMessageContentDiv1.removeChild(CallingPopupDiv);
+            var audioElement2 = document.getElementById("acceptingMessageAudio");
+            audioElement2.pause();
+            audioElement2.currentTime = 0;
+            connection.invoke("DeclineVideoCallRequest", username);
+            
+        });
+    }
+
 
 
     function MyButtonEventListener() {
@@ -661,6 +719,9 @@ if (storedToken) {
             
         });
     }
+
+
+
 
     connection.on('showtousertyping', (ProfilePicture, UserName,isTyping) => {
        
@@ -939,10 +1000,68 @@ if (storedToken) {
         audioElement1.currentTime = 0; // Sesi sıfırla (eğer zaten çalıyorsa)
         audioElement1.play();
         });
+
+    connection.on("showCallingUserPopup", (UserName, ProfilePicture) => {
+
+        var customMessageContentDiv = document.querySelector('.customMessageContent');
+
+        var callingDiv = document.createElement('div');
+
+        callingDiv.id = 'customacceptVideoModal';
+        callingDiv.className = 'popup';
+
+
+        var callingDivContent = `
+        <div class="popup-content">
+            <div class="circle-image" id="callingImage">
+                <img src="/${ProfilePicture}" />
+            </div>
+            <br />
+            <p>${UserName}</p>
+            <br/>
+            <p>Chatverse video çağrısı</p>
+            <div class="button-container">
+                <button id="accept-call" class="circular-button ">
+                    <i class="mdi mdi-video" style="color: white; font-size: 28px;"></i>
+                </button>
+
+                <button id="cancel-call" class="circular-button">
+                    <i class="mdi mdi-phone-hangup" style="color: white; font-size: 28px;"></i>
+                </button>
+            </div>
+        </div>`;
+
+        var audioElement3 = document.getElementById("acceptingMessageAudio");
+        audioElement3.currentTime = 0; // Sesi sıfırla (eğer zaten çalıyorsa)
+        audioElement3.play();
+        audioElement3.addEventListener('ended', function () {
+            this.currentTime = 2;
+            this.play();
+        });
+        callingDiv.innerHTML = callingDivContent;
+        customMessageContentDiv.appendChild(callingDiv);
+
+        setTimeout(DeclineVideoCallRequest(UserName), 1500);
+
+    });
     
+    connection.on("removeVideoCallingRequest", () => {
+        var customMessageContentDiv = document.querySelector('.customMessageContent');
+        var videoCallingRequestDiv = document.getElementById('customacceptVideoModal');
+        customMessageContentDiv.removeChild(videoCallingRequestDiv);
+        var audioElement2 = document.getElementById("acceptingMessageAudio");
+        audioElement2.pause();
+        audioElement2.currentTime = 0;
+    });
 
-   
-
+    connection.on("removeVideoCallerRequest", () => {
+        var customMessageContentDiv = document.querySelector('.customMessageContent');
+        var videoCallingRequestDiv = document.getElementById('customVideoModal');
+        customMessageContentDiv.removeChild(videoCallingRequestDiv);
+        var audioElement2 = document.getElementById("callingMessageAudio");
+        audioElement2.pause();
+        audioElement2.currentTime = 0;
+    });
 
 
 
