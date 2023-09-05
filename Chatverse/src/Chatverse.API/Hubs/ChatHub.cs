@@ -42,6 +42,14 @@ namespace Chatverse.UI.Hubs
 
 
 
+        public async Task JoinRoom(string roomId, string username)
+        {
+            var hubConnection = _context.HubConnections.FirstOrDefault(x => x.Username == username);
+            if(hubConnection is not null)
+            {
+              await Clients.Client(hubConnection.ConnectionId).SendAsync("user-connected",roomId);
+            }
+        }
         public async Task CallingFriend(string username)
         {
             var user = await _userManager.FindByNameAsync(username);

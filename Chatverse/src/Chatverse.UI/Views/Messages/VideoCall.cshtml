@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+    string roomId = ViewBag.RoomId as string;
+}
+
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+
+
+      
+        video {
+            border-radius: 50px;
+            width: 200px !important;
+            height: 200px !important;
+        }
+
+      
+    </style>
+</head>
+<body>
+    <div video-grid id="animation-container">
+    </div>
+
+    <script>
+
+        localStorage.setItem("RoomID", "@roomId");
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"> </script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <script src="~/js/video.js"></script>
+</body>
+</html>

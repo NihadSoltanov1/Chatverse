@@ -46,8 +46,16 @@ namespace Chatverse.UI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> TestView()
+        public async Task<IActionResult> VideoRoom([FromRoute]string id)
         {
+            TempData["RoomId"] = id;
+            return RedirectToAction("VideoCall");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> VideoCall()
+        {
+            ViewBag.RoomId = (string)TempData["RoomId"];
             return View();
         }
 

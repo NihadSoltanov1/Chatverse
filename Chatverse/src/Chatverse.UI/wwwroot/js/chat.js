@@ -19,7 +19,6 @@ if (storedToken) {
             return console.error(err.toString());
         });
     connection.on("seeOnlineFriend", (UserName, ProfilePicture, ConnectionId) => {
-        // Yeni li öğesi için gerekli HTML kodunu oluşturun
         console.log(ProfilePicture);
 
         var newLiHTML = `
@@ -45,7 +44,6 @@ if (storedToken) {
 
     });
     connection.on("seeMyOnlineFriend", (UserName, ProfilePicture, ConnectionId) => {
-        // Yeni li öğesi için gerekli HTML kodunu oluşturun
         console.log(ProfilePicture);
         var newLiHTML = `
                   <div id="${ConnectionId}" class="owl-item active" style="width: 71px; margin-right: 16px;">
@@ -63,10 +61,8 @@ if (storedToken) {
 `;
 
 
-        // Eklenecek ul elementini seçin (örneğin ul elementi)
         var ulElement = document.getElementById('onlineUserList');
 
-        // Yeni li öğesini ul elementinin içine ekleyin
         ulElement.insertAdjacentHTML('beforeend', newLiHTML);
 
     });
@@ -556,8 +552,7 @@ if (storedToken) {
                     setTimeout(ShowVideoCallModal(srcValue, username), 1002)
                 },
                 error: function (error) {
-                    // AJAX isteği başarısız olduğunda burası çalışır
-                    console.error(error); // Hata mesajını konsolda gösterme, isteğe bağlı
+                    console.error(error);
                 }
             })
 
@@ -655,8 +650,24 @@ if (storedToken) {
             
         });
     }
+    function generateGUID() {
+        const cryptoObj = window.crypto || window.msCrypto;
+        const array = new Uint16Array(8);
+        cryptoObj.getRandomValues(array);
+        return `${array[0]}-${array[1]}-${array[2]}-${array[3]}-${array[4]}-${array[5]}-${array[6]}-${array[7]}`;
+    }
+    function VideoCallingView(username) {
+        var getAnswerButton = document.getElementById("accept-call");
+        getAnswerButton.addEventListener('click', () => {
 
+            const roomId = generateGUID();
 
+            connection.invoke("JoinRoom", roomId, username);
+            window.location.href = '/Messages/VideoRoom/' + roomId;
+
+        });
+
+    }
 
     function MyButtonEventListener() {
       document.querySelectorAll('#sendMessage').forEach(item => {
@@ -666,38 +677,16 @@ if (storedToken) {
             var content = messagePart.value;
             console.log("Bura Click Edildi")
             var receiverInput = document.querySelectorAll(".receiverIdHiddeninput")[0];
-            var receiverId = receiverInput.value; // receiverInput öğesinin id değeri alınır
-            console.log(receiverId); // id değeri konsola yazdırılır
-            //var formData = new FormData();
-            //var imagePath;
-            //var imageFile = $('#messageImageInput')[0].files[0];
-            //formData.append('formFile', imageFile);
+            var receiverId = receiverInput.value;
+            console.log(receiverId);
 
-
-
-            //$.ajax({
-            //    type: 'POST',
-            //    url: '/Messages/UploadImageToRoot',
-            //    data: formData,
-            //    contentType: false,
-            //    processData: false,
-            //    success: function (response) {
             var response = null;
             connection.invoke('SendMessageAsync', receiverId, content, response);
-            //    },
-            //    error: function () {
-            //        console.error('Ajax isteği başarısız.');
-            //    }
-            //});
+
 
 
             messagePart.value = "";
             messagePart.focus();
-
-            //var imagePreview = document.getElementById('imagePreview');
-            //imagePreview.innerHTML = "";
-            //imagePreview.style.display = 'none';
-
         });
     });
        
@@ -1030,11 +1019,9 @@ if (storedToken) {
                 </button>
             </div>
         </div>`;
-
-        var audioElement3 = document.getElementById("acceptingMessageAudio");
-        audioElement3.currentTime = 0; // Sesi sıfırla (eğer zaten çalıyorsa)
-        audioElement3.play();
-        audioElement3.addEventListener('ended', function () {
+        var ses = new Audio("~/sound/accepting.mp3");
+        ses.play();
+        ses.addEventListener('ended', function () {
             this.currentTime = 2;
             this.play();
         });
@@ -1042,6 +1029,7 @@ if (storedToken) {
         customMessageContentDiv.appendChild(callingDiv);
 
         setTimeout(DeclineVideoCallRequest(UserName), 1500);
+        setTimeout(VideoCallingView(UserName), 1200);
 
     });
     
@@ -1064,8 +1052,10 @@ if (storedToken) {
     });
 
 
-
-
+    connection.on("user-connected", (roomId) => {
+        window.location.href = '/Messages/VideoRoom/' + roomId;
+    });
+   
 
     window.addEventListener("unload", function (event) {
         connection.stop();

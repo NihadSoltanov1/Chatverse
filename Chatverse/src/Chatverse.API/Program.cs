@@ -12,6 +12,7 @@ using Chatverse.Infrastructure.Persistance;
 using Chatverse.Infrastructure.Filters;
 using Chatverse.API.Extensions;
 using Chatverse.UI.Hubs;
+using Chatverse.API.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -73,4 +74,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapHub<ChatHub>("/chatHub");
+app.MapHub<CallHub>("/call");
 app.Run();
