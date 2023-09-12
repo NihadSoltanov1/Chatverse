@@ -14,11 +14,8 @@ namespace Chatverse.Application
         {
             services.AddMediatR(cfg =>
             {
-                cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()); // minimun setup
+                cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
                 cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
-                // cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
-                // cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehaviour<,>));
-                // cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
             });
             services.AddFluentValidationAutoValidation();
 

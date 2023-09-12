@@ -22,10 +22,73 @@ namespace Chatverse.UI.Controllers
             if (accessToken is not null) return RedirectToAction("HomePage", "Main");
             return View();
         }
+        [HttpGet]
+        public async Task<IActionResult> ResetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ValidEmailViewModel validEmailViewModel)
+        {
+            var jsonLogin = JsonConvert.SerializeObject(validEmailViewModel);
+            StringContent content = new StringContent(jsonLogin, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync($"{baseUrl}/Auth/ResetPassword", content);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            string responseMessage = await response.Content.ReadAsStringAsync();
+            if (responseMessage.Contains("Message") || responseMessage.Contains("StatusCode") || responseMessage.Contains("Error"))
+            {
+                ErrorsContentDto error = JsonConvert.DeserializeObject<ErrorsContentDto>(responseMessage);
+                ViewBag.Error = error;
+                return View();
+            }
+            else
+            {
+                List<ValidationErrorsViewModel> valError = JsonConvert.DeserializeObject<List<ValidationErrorsViewModel>>(responseMessage);
+                ViewBag.valError = valError;
+                return View();
+            }
+        }
+        [HttpGet]
+        [Route("auth/setnewpassword")]
+        public async Task<IActionResult> SetNewPassword(string userId, string token)
+        {
+            ViewBag.Token = token;
+            ViewBag.UserId = userId;
+            return View();
+        }
+        [HttpPost]
+
+        public async Task<IActionResult> SetNewPassword(ResetPasswordViewModel resetPasswordViewModel)
+        {
+            var jsonLogin = JsonConvert.SerializeObject(resetPasswordViewModel);
+            StringContent content = new StringContent(jsonLogin, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PutAsync($"{baseUrl}/Auth/SetNewPassword", content);
+            if (response.IsSuccessStatusCode)
+            {
+                var jwt = await response.Content.ReadAsStringAsync();
+                return RedirectToAction("Login", "Auth");
+            }
+            string responseMessage = await response.Content.ReadAsStringAsync();
+            if (responseMessage.Contains("Message") || responseMessage.Contains("StatusCode") || responseMessage.Contains("Error"))
+            {
+                ErrorsContentDto error = JsonConvert.DeserializeObject<ErrorsContentDto>(responseMessage);
+                ViewBag.Error = error;
+                return View();
+            }
+            else
+            {
+                List<ValidationErrorsViewModel> valError = JsonConvert.DeserializeObject<List<ValidationErrorsViewModel>>(responseMessage);
+                ViewBag.valError = valError;
+                return View();
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
-            if (!ModelState.IsValid) return View();
             var jsonLogin = JsonConvert.SerializeObject(loginViewModel);
             StringContent content = new StringContent(jsonLogin, Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync($"{baseUrl}/Auth/Login", content);
@@ -38,42 +101,29 @@ namespace Chatverse.UI.Controllers
 
                 return RedirectToAction("HomePage", "Main");
             }
-            var responseMessage = await response.Content.ReadAsStringAsync();
-            ErrorsContentDto error =  JsonConvert.DeserializeObject<ErrorsContentDto>(responseMessage);
-            ViewBag.ErrorsList = error;
-            return View(loginViewModel);
+            string responseMessage = await response.Content.ReadAsStringAsync();
+            if (responseMessage.Contains("Message") || responseMessage.Contains("StatusCode") || responseMessage.Contains("Error"))
+            {
+                ErrorsContentDto error = JsonConvert.DeserializeObject<ErrorsContentDto>(responseMessage);
+                ViewBag.Error = error;
+                return View(loginViewModel);
+            }
+            else
+            {
+                List<ValidationErrorsViewModel> valError = JsonConvert.DeserializeObject<List<ValidationErrorsViewModel>>(responseMessage);
+                ViewBag.valError = valError;
+                return View(loginViewModel);
+            }
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Register()
-        {
-            return View();
-        }
+       
+
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
             
-           //todo asdfasf
-            string returnPath = String.Empty;
-            if (registerViewModel.ProfilePicture != null && registerViewModel.ProfilePicture.Length > 0)
-            {
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/profilepictures", registerViewModel.ProfilePicture.FileName);
-                using var stream = new FileStream(path, FileMode.Create);
-                returnPath = "profilepictures/" + registerViewModel.ProfilePicture.FileName;
-            }
-            RegisterDto registerDto = new RegisterDto()
-            {
-                FullName = registerViewModel.FullName,
-                Email = registerViewModel.Email,
-                Password = registerViewModel.Password,
-                Username = registerViewModel.Username,
-                PasswordConfirm = registerViewModel.PasswordConfirm,
-                ProfilePicture = returnPath,
-                IsAgree =registerViewModel.IsAgree
-                
-            };
-            var jsonRegister = JsonConvert.SerializeObject(registerDto);
+            var jsonRegister = JsonConvert.SerializeObject(registerViewModel);
             StringContent content = new StringContent(jsonRegister, Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync($"{baseUrl}/Auth/Register", content);
             if (response.IsSuccessStatusCode) return RedirectToAction("CheckEmail");
@@ -135,7 +185,7 @@ namespace Chatverse.UI.Controllers
                 string deSerMessage = JsonConvert.DeserializeObject<string>(responseMessage);
                 return Convert.ToBoolean(deSerMessage) ? RedirectToAction("Login", "Auth") : NotFound();
              }
-            throw new Exception();
+            return NotFound();
 
 
         }

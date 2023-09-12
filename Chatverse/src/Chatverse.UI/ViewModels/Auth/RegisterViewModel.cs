@@ -9,7 +9,6 @@ namespace Chatverse.UI.ViewModels.Auth
         public string Email { get; set; }
         public string Password { get; set; }
         public string PasswordConfirm { get; set; }
-        public IFormFile ProfilePicture { get; set; }
         public bool IsAgree { get; set; } 
     }
 }

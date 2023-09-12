@@ -4,7 +4,8 @@
     Layout = null;
 }
 @{
-    ErrorsContentDto errors = ViewBag.ErrorsList as ErrorsContentDto;
+    ErrorsContentDto error = ViewBag.Error as ErrorsContentDto;
+    List<ValidationErrorsViewModel> valError = ViewBag.valError as List<ValidationErrorsViewModel>;
 }
 @model LoginViewModel
 <!DOCTYPE html>
@@ -24,18 +25,6 @@
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="~/chatverse/uitheme.net/sociala/css/style.css">
 
-    <style>
-        .col-xl-5 {
-            position: relative;
-            overflow: hidden;
-        }
-
-            .col-xl-5 img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-    </style>
 
 
 </head>
@@ -48,7 +37,7 @@
 
         <div class="nav-header bg-transparent shadow-none border-0">
             <div class="nav-top w-100">
-                <a href="index.html"><i class="feather-zap text-success display1-size me-2 ms-0"></i><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">Sociala. </span> </a>
+                <a href="/Auth/Login"><i class="feather-zap text-success display1-size me-2 ms-0"></i><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">Chatverse. </span> </a>
                 <a href="#" class="mob-menu ms-auto me-2 chat-active-btn"><i class="feather-message-circle text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
                 <a href="default-video.html" class="mob-menu me-2"><i class="feather-video text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
                 <a href="#" class="me-2 menu-search-icon mob-menu"><i class="feather-search text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
@@ -63,7 +52,8 @@
         </div>
 
         <div class="row">
-            <div class="col-xl-5 d-none d-xl-block p-0 vh-100 bg-image-cover bg-no-repeat"><img src="~/chatverse/uitheme.net/sociala/images/login-bg.jpg" /></div>
+            <div class="col-xl-5 d-none d-xl-block p-0 vh-100 bg-image-cover bg-no-repeat" style="background-image: url('/chatverse/uitheme.net/sociala/images/login-bg.jpg');"></div>
+
             <div class="col-xl-7 vh-100 align-items-center d-flex bg-white rounded-3 overflow-hidden">
                 <div class="card shadow-none border-0 ms-auto me-auto login-card">
                     <div class="card-body rounded-0 text-left">
@@ -81,17 +71,28 @@
                                 <span asp-validation-for="Password" style="color:darkred; font:bold;"></span>
                             </div>
                             <div class="form-check text-left mb-3">
-                                <input type="checkbox" class="form-check-input mt-2" id="exampleCheck5">
-                                <label class="form-check-label font-xsss text-grey-500" for="exampleCheck5">Remember me</label>
-                                <a href="forgot.html" class="fw-600 font-xsss text-grey-700 mt-1 float-right">Forgot your Password?</a>
+                                <a href="/Auth/ResetPassword" class="fw-600 font-xsss text-grey-700 mt-1 float-right">Forgot your Password?</a>
                             </div>
-                            @if (errors is not null)
+                            @if (error is not null)
                             {
                                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    <strong>System!</strong> @errors.Message
+                                    <strong>System:</strong> @error.Message
                                 </div>
                             }
-                                
+                            else if (valError is not null)
+                            {
+                                foreach (var val in valError)
+                                {
+                                    foreach (var i in val.Value)
+                                    {
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong>-</strong> @i
+                                        </div>
+                                    }
+                                }
+                               
+                            }
+
                             <button class="form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0 " type="submit" href="/Home/Index">Login</button>
                         </form>
 
@@ -103,13 +104,15 @@
 
                             <h6 class="mb-0 d-inline-block bg-white fw-500 font-xsss text-grey-500 mb-3">Or, Sign in with your social account </h6>
                             <div class="form-group mb-1"><a href="#" class="form-control text-left style2-input text-white fw-600 bg-facebook border-0 p-0 mb-2"><img src="~/chatverse/uitheme.net/sociala/images/icon-1.png" alt="icon" class="ms-2 w40 mb-1 me-5"> Sign in with Google</a></div>
-                            <div class="form-group mb-1"><a href="#" class="form-control text-left style2-input text-white fw-600 bg-twiiter border-0 p-0 "><img src="~/chatverse/uitheme.net/sociala/images/icon-3.png" alt="icon" class="ms-2 w40 mb-1 me-5"> Sign in with Facebook</a></div>
-                        </div>
+                                                    </div>
                     </div>
                 </div>
             </div>
+
         </div>
-    </div>
+           
+        </div>
+    
 
     <!-- Modal Login -->
     <div class="modal bottom fade" style="overflow-y: scroll;" id="Modallogin" tabindex="-1" role="dialog">
@@ -131,8 +134,6 @@
                                     <i class="font-sm ti-lock text-grey-500 pe-0"></i>
                                 </div>
                                 <div class="form-check text-left mb-3">
-                                    <input type="checkbox" class="form-check-input mt-2" id="exampleCheck2">
-                                    <label class="form-check-label font-xsss text-grey-500" for="exampleCheck2">Remember me</label>
                                     <a href="forgot.html" class="fw-600 font-xsss text-grey-700 mt-1 float-right">Forgot your Password?</a>
                                 </div>
                             </form>
@@ -161,6 +162,7 @@
 
     <script src="~/chatverse/uitheme.net/sociala/js/plugin.js"></script>
     <script src="~/chatverse/uitheme.net/sociala/js/scripts.js"></script>
+
 
 </body>
 

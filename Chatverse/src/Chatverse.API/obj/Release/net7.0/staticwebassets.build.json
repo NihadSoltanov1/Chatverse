@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "TouIaHhd9FT7IfWSqJs7L1zr35ciYVgn5/fxsGavkv0=",
+  "Source": "Chatverse.API",
+  "BasePath": "_content/Chatverse.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Chatverse.API\\wwwroot",
+      "Source": "Chatverse.API",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.API\\wwwroot\\",
+      "BasePath": "_content/Chatverse.API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

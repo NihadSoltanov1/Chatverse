@@ -121,3 +121,5 @@ C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\runtimes\linux\native\
 C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\runtimes\osx\native\libmongocrypt.dylib
 C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\runtimes\win\native\mongocrypt.dll
 C:\Chatverse\Chatverse\src\Chatverse.API\obj\Debug\net7.0\Chatverse.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\appsettings.Production.json
+C:\Chatverse\Chatverse\src\Chatverse.API\bin\Debug\net7.0\appsettings.Production.Development.json

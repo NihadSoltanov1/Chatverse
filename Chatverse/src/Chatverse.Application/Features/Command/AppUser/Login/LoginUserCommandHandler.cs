@@ -27,7 +27,7 @@ namespace Chatverse.Application.Features.Command.AppUser.Login
             if (user is null)
             {
                 user = await _userManager.FindByNameAsync(request.UsernameOrEmail);
-                if (user is null) throw new NotFoundException();
+                if (user is null) throw new NotFoundException("User not found.");
             }
             var result = await _userManager.CheckPasswordAsync(user, request.Password);
             if (!result) throw new AuthenticationErrorException();

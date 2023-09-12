@@ -23,7 +23,7 @@ namespace Chatverse.Infrastructure.Services
             _configuration = configuration;
         }
 
-        public TokenDto CreateAccessToken(int second, AppUser user)
+        public TokenDto CreateAccessToken(int minute, AppUser user)
         {
             TokenDto token = new();
 
@@ -31,7 +31,7 @@ namespace Chatverse.Infrastructure.Services
 
             SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha256);
 
-            token.Expiration = DateTime.UtcNow.AddSeconds(second);
+            token.Expiration = DateTime.UtcNow.AddMinutes(minute);
             JwtSecurityToken securityToken = new(
                 audience: _configuration["Token:Audience"],
                 issuer: _configuration["Token:Issuer"],

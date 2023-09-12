@@ -11,7 +11,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("http://localhost:5223") // MVC projesinin URL'si
+        builder.WithOrigins("http://localhost:5223")
                .AllowAnyHeader()
                .AllowAnyMethod();
     });

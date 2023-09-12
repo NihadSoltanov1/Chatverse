@@ -27,7 +27,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("http://localhost:5223") // MVC projesinin URL'si
+        builder.WithOrigins("https://chatverseui20230909154327.azurewebsites.net") // MVC projesinin URL'si
                .AllowAnyHeader()
                .AllowAnyMethod()
                .AllowCredentials()
