@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3+0ZUzguB1gnQiqP4lkCJU8AIO99RW6lRjh7Sm+DBWY=",
+  "Hash": "qXV8bWGqBOISuNNFgsvDG+4aA4X8jDDosIIegn328fE=",
   "Source": "Chatverse.UI",
   "BasePath": "_content/Chatverse.UI",
   "Mode": "Default",
@@ -34459,6 +34459,23 @@
       "OriginalItemSpec": "wwwroot\\js\\video.js"
     },
     {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\js\\voice.js",
+      "SourceId": "Chatverse.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\",
+      "BasePath": "_content/Chatverse.UI",
+      "RelativePath": "js/voice.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\voice.js"
+    },
+    {
       "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "Chatverse.UI",
       "SourceType": "Discovered",
@@ -34882,6 +34899,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\sound\\sentmessage.mp3"
+    },
+    {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\storyImages\\202324140924_115494027.jpeg",
+      "SourceId": "Chatverse.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\",
+      "BasePath": "_content/Chatverse.UI",
+      "RelativePath": "storyImages/202324140924_115494027.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\storyImages\\202324140924_115494027.jpeg"
+    },
+    {
+      "Identity": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\storyImages\\202347140957_115494027.jpeg",
+      "SourceId": "Chatverse.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\",
+      "BasePath": "_content/Chatverse.UI",
+      "RelativePath": "storyImages/202347140957_115494027.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\storyImages\\202347140957_115494027.jpeg"
     }
   ]
 }

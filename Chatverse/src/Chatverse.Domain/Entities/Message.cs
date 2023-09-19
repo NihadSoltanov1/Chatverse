@@ -1,17 +1,4 @@
-﻿using Chatverse.Domain.Common;
-using Chatverse.Domain.Identity;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Chatverse.Domain.Entities
-{
+﻿namespace Chatverse.Domain.Entities;
     public class Message
     {
         public Message()
@@ -29,4 +16,4 @@ namespace Chatverse.Domain.Entities
         public DateTime SendDate { get; set; }
 
     }
-}
+

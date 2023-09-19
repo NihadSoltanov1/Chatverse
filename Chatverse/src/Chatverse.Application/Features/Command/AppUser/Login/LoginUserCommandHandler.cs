@@ -1,44 +1,33 @@
-﻿using Chatverse.Application.Common.Security.Jwt;
-using Chatverse.Application.Exceptions;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Chatverse.Application.Features.Command.AppUser.Login;
 
-namespace Chatverse.Application.Features.Command.AppUser.Login
+public class LoginUserCommandHandler : IRequestHandler<LoginUserCommandRequest, LoginUserCommandResponse>
 {
-    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommandRequest, LoginUserCommandResponse>
+    private readonly ITokenHandler _tokenHandler;
+    private readonly UserManager<Chatverse.Domain.Identity.AppUser> _userManager;
+
+    public LoginUserCommandHandler(ITokenHandler tokenHandler, UserManager<Domain.Identity.AppUser> userManager)
     {
-        private readonly ITokenHandler _tokenHandler;
-        private readonly UserManager<Chatverse.Domain.Identity.AppUser> _userManager;
+        _tokenHandler = tokenHandler;
+        _userManager = userManager;
+    }
 
-        public LoginUserCommandHandler(ITokenHandler tokenHandler, UserManager<Domain.Identity.AppUser> userManager)
+    public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
+    {
+        var user = await _userManager.FindByEmailAsync(request.UsernameOrEmail);
+        if (user is null)
         {
-            _tokenHandler = tokenHandler;
-            _userManager = userManager;
+            user = await _userManager.FindByNameAsync(request.UsernameOrEmail);
+            if (user is null) throw new NotFoundException("User not found.");
         }
+        var result = await _userManager.CheckPasswordAsync(user, request.Password);
+        if (!result) throw new AuthenticationErrorException();
+        if (user.EmailConfirmed == false) throw new ActivateAccountException("Please check your email and activate your account");
+        var accessToken = _tokenHandler.CreateAccessToken(60,user);
 
-        public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
+        return new LoginUserCommandResponse()
         {
-            var user = await _userManager.FindByEmailAsync(request.UsernameOrEmail);
-            if (user is null)
-            {
-                user = await _userManager.FindByNameAsync(request.UsernameOrEmail);
-                if (user is null) throw new NotFoundException("User not found.");
-            }
-            var result = await _userManager.CheckPasswordAsync(user, request.Password);
-            if (!result) throw new AuthenticationErrorException();
-            if (user.EmailConfirmed == false) throw new ActivateAccountException("Please check your email and activate your account");
-            var accessToken = _tokenHandler.CreateAccessToken(60,user);
+            Token = accessToken
+        };
 
-            return new LoginUserCommandResponse()
-            {
-                Token = accessToken
-            };
-
-        }
     }
 }

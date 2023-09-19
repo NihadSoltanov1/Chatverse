@@ -1,14 +1,4 @@
-﻿using Chatverse.Domain.Common;
-using Chatverse.Domain.Identity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Chatverse.Domain.Entities
-{
+﻿namespace Chatverse.Domain.Entities;
     public class Comment : BaseAuditableEntity
     {
         public string Content { get; set; }
@@ -22,4 +12,4 @@ namespace Chatverse.Domain.Entities
         public Post Post { get; set; }
         public ICollection<Notification> Notifications { get; set; }
     }
-}
+

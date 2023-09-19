@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Chatverse.Application.Common.Results
-{
+﻿namespace Chatverse.Application.Common.Results;
     public record SuccessDataResult<T> : DataResult<T>
     {
         public SuccessDataResult(T data, string message) : base(data, true, message)
@@ -25,4 +18,4 @@ namespace Chatverse.Application.Common.Results
 
         }
     }
-}
+

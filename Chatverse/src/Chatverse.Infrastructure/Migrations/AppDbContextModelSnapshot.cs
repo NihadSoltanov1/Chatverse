@@ -341,6 +341,35 @@ namespace Chatverse.Infrastructure.Migrations
                     b.ToTable("SocialAccounts");
                 });
 
+            modelBuilder.Entity("Chatverse.Domain.Entities.Story", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Media")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Stories");
+                });
+
             modelBuilder.Entity("Chatverse.Domain.Identity.AppRole", b =>
                 {
                     b.Property<string>("Id")
@@ -715,6 +744,17 @@ namespace Chatverse.Infrastructure.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("Chatverse.Domain.Entities.Story", b =>
+                {
+                    b.HasOne("Chatverse.Domain.Identity.AppUser", "AppUser")
+                        .WithMany("Stories")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("Chatverse.Domain.Identity.AppUser", b =>
                 {
                     b.HasOne("Chatverse.Domain.Entities.City", "City")
@@ -833,6 +873,8 @@ namespace Chatverse.Infrastructure.Migrations
                     b.Navigation("SentFriendRequests");
 
                     b.Navigation("SocialAccounts");
+
+                    b.Navigation("Stories");
                 });
 #pragma warning restore 612, 618
         }

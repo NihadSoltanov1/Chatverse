@@ -82,7 +82,7 @@ namespace Chatverse.UI.Controllers
         public async Task<IActionResult> UploadImageToRoot(IFormFile formFile)
         {
             IFormFile file = formFile;
-            var filePath = _fileService.FileUploadToRoot(file);
+            var filePath = _fileService.FileUploadToRoot(file, "MessageImages");
             return Json(filePath);
         }
 

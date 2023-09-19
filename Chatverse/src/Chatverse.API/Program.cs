@@ -13,6 +13,7 @@ using Chatverse.Infrastructure.Filters;
 using Chatverse.API.Extensions;
 using Chatverse.UI.Hubs;
 using Chatverse.API.Hubs;
+using Hangfire;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,14 +28,16 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("https://chatverseui20230909154327.azurewebsites.net") // MVC projesinin URL'si
+        builder.WithOrigins("http://localhost:5223") // MVC projesinin URL'si
                .AllowAnyHeader()
                .AllowAnyMethod()
                .AllowCredentials()
                .SetIsOriginAllowed((host) => true); // Tüm istek kaynaklarına izin ver
     });
 });
+
 builder.Services.AddSignalR();
+builder.Services.AddHangfire(x => x.UseSqlServerStorage(connectionString));
 builder.Services.AddInfrastructureServices(configuration);
 builder.Services.AddApplicationServices(configuration);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -66,6 +69,8 @@ if (app.Environment.IsDevelopment())
 }
 app.ConfigureExceptionHandler<Program>(app.Services.GetRequiredService<ILogger<Program>>());
 //app.UseStaticFiles();
+app.UseHangfireDashboard("/chatfire");
+app.UseHangfireServer();
 app.UseHttpsRedirection();
 app.UseCors();
 app.UseAuthentication();
@@ -75,4 +80,5 @@ app.MapControllers();
 
 app.MapHub<ChatHub>("/chatHub");
 app.MapHub<CallHub>("/call");
+app.MapHub<VoiceCallHub>("/voicecall");
 app.Run();

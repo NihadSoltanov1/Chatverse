@@ -73,7 +73,7 @@ namespace Chatverse.UI.Controllers
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
 
 
-            string path = _fileService.FileUploadToRoot(updateAccountInformationViewModel.ProfilePicture);
+            string path = _fileService.FileUploadToRoot(updateAccountInformationViewModel.ProfilePicture,"profilepictures");
             GetAccountInformationViewModel getAccountInformationViewModel = new GetAccountInformationViewModel();
             if (path is not null)
             {
@@ -115,7 +115,7 @@ namespace Chatverse.UI.Controllers
                 ViewBag.InfoList = infos;
                 return View(model: posts);
             }
-            return View();
+            return RedirectToAction("HomePage","Main");
         }
     }
 }

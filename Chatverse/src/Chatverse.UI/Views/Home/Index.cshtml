@@ -26,6 +26,7 @@
 
         connection.on("ReceiveMessage", function (user, message) {
             var li = document.createElement("li");
+            var li = document.createElement("li");
             li.textContent = `${user} says: ${message}`;
             document.getElementById("messagesList").appendChild(li);
         });

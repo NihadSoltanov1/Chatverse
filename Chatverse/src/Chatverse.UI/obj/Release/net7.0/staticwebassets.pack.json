@@ -8101,6 +8101,10 @@
       "PackagePath": "staticwebassets\\js\\video.js"
     },
     {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\js\\voice.js",
+      "PackagePath": "staticwebassets\\js\\voice.js"
+    },
+    {
       "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
@@ -8199,6 +8203,14 @@
     {
       "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\sound\\sentmessage.mp3",
       "PackagePath": "staticwebassets\\sound\\sentmessage.mp3"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\storyImages\\202324140924_115494027.jpeg",
+      "PackagePath": "staticwebassets\\storyImages\\202324140924_115494027.jpeg"
+    },
+    {
+      "Id": "C:\\Chatverse\\Chatverse\\src\\Chatverse.UI\\wwwroot\\storyImages\\202347140957_115494027.jpeg",
+      "PackagePath": "staticwebassets\\storyImages\\202347140957_115494027.jpeg"
     },
     {
       "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.Chatverse.UI.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -6,7 +6,7 @@ let userId = null;
 let localStream = null;
 const Peers = {}
 
-const connection = new signalR.HubConnectionBuilder().withUrl("http://localhost:5273/call").build();
+const connection = new signalR.HubConnectionBuilder().withUrl("https://chatverseapi20230909133203.azurewebsites.net/call").build();
 
 const myPeer = new Peer();
 myPeer.on('open', id => {

@@ -1,14 +1,4 @@
-﻿using FluentValidation;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Chatverse.Application.Common.Behaviors
-{
+﻿namespace Chatverse.Application.Common.Behaviors;
     public class ValidationBehaviour<TRequest, TResult> : IPipelineBehavior<TRequest, TResult> where TRequest : IRequest<TResult>
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
@@ -16,10 +6,7 @@ namespace Chatverse.Application.Common.Behaviors
         public ValidationBehaviour(IEnumerable<IValidator<TRequest>> validators)
         {
             _validators = validators;
-        }
-
-     
-
+        } 
         public async Task<TResult> Handle(TRequest request, RequestHandlerDelegate<TResult> next, CancellationToken cancellationToken)
         {
             var ctx = new ValidationContext<TRequest>(request);
@@ -33,4 +20,4 @@ namespace Chatverse.Application.Common.Behaviors
             return await next();
         }
     }
-}
+

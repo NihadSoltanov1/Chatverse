@@ -39,7 +39,15 @@ namespace Chatverse.UI.Hubs
             if(hubConnection is not null) await Clients.Client(hubConnection.ConnectionId).SendAsync("removeVideoCallingRequest");
             
         }
+        public async Task DeclineVoiceCalling(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            var hubConnection = await _context.HubConnections.FirstOrDefaultAsync(x => x.Username == username);
 
+
+            if (hubConnection is not null) await Clients.Client(hubConnection.ConnectionId).SendAsync("removeVoiceCallingRequest");
+
+        }
 
 
         public async Task JoinRoom(string roomId, string username)
@@ -61,7 +69,17 @@ namespace Chatverse.UI.Hubs
             }
 
         }
+        public async Task VoiceCallingFriend(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            var currentUser = await _userManager.FindByIdAsync(Context.UserIdentifier);
+            var hubConnection = await _context.HubConnections.FirstOrDefaultAsync(x => x.Username == username);
+            if (hubConnection is not null)
+            {
+                await Clients.Client(hubConnection.ConnectionId).SendAsync("showVoiceCallingUserPopup", currentUser.UserName, currentUser.ProfilePicture);
+            }
 
+        }
 
         public async Task SendMessageAsync(string toUser, string? content, string? imagePath) 
         {
@@ -97,7 +115,8 @@ namespace Chatverse.UI.Hubs
             if (user is not null)
             {
                 var hubConnection2 = await _context.HubConnections.FirstOrDefaultAsync(x => x.Username == user.UserName);
-                if(hubConnection2 is not null)
+               
+                if (hubConnection2 is not null)
                 {
                   var connectionId2 = hubConnection2.ConnectionId;
                     await Clients.Client(connectionId2).SendAsync("showtousertyping" , currentUser.ProfilePicture, currentUser.UserName,isTyping);
@@ -120,8 +139,20 @@ namespace Chatverse.UI.Hubs
 
         public override async Task OnConnectedAsync()
         {
-           
 
+            var id = Context.UserIdentifier;
+            var existUser = await _userManager.FindByIdAsync(id);
+            var exsistHubConnection = await _context.HubConnections.Where(x => x.Username == existUser.UserName).ToListAsync();
+            if(exsistHubConnection is not null)
+            {
+                foreach(var i in exsistHubConnection)
+                {
+                    DeleteHubConnectionCommandRequest deleteHubConnectionCommand = new DeleteHubConnectionCommandRequest();
+                    deleteHubConnectionCommand.ConnecitionId = i.ConnectionId;
+                    await _mediator.Send(deleteHubConnectionCommand);
+                }
+             
+            }
             CreateHubConnectionCommandRequest createHubConnectionCommandRequest = new CreateHubConnectionCommandRequest();
             createHubConnectionCommandRequest.ConnectionId = Context.ConnectionId;
             createHubConnectionCommandRequest.UserId = Context.UserIdentifier;

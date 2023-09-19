@@ -1,5 +1,6 @@
 ﻿using Chatverse.UI.ViewModels.Friends;
 using Chatverse.UI.ViewModels.Post;
+using Chatverse.UI.ViewModels.Story;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -45,6 +46,28 @@ namespace Chatverse.UI.Controllers
                         List<GetAllFriendsViewModel> getAllFriends = JsonConvert.DeserializeObject<List<GetAllFriendsViewModel>>(message1);
                         List<GetAllFriendsViewModel> takePartFriend = getAllFriends.Take(3).ToList();
                         ViewBag.allFriends = takePartFriend;
+                    }
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                    HttpResponseMessage response3 = await client.GetAsync($"{baseUrl}/Stories/GetOwnStories");
+                    if (response3.IsSuccessStatusCode)
+                    {
+                        var message1 = await response3.Content.ReadAsStringAsync();
+                        List<GetOwnStoryViewModel> getAllOwnStories = JsonConvert.DeserializeObject<List<GetOwnStoryViewModel>>(message1);
+                        List<GetOwnStoryViewModel> takePartOwnStory = getAllOwnStories.Take(1).ToList();
+                        ViewBag.ownStories = takePartOwnStory;
+                        ViewBag.AllOwnStories = getAllOwnStories;
+                    }
+
+
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                    HttpResponseMessage response4 = await client.GetAsync($"{baseUrl}/Stories/GetFriendsStories");
+                    if (response3.IsSuccessStatusCode)
+                    {
+                        var message2 = await response4.Content.ReadAsStringAsync();
+                        List<GetFriendStoryViewModel> getAllFriendStories = JsonConvert.DeserializeObject<List<GetFriendStoryViewModel>>(message2);
+                        List<GetFriendStoryViewModel> takePartFriendStory = getAllFriendStories.Take(2).ToList();
+                        ViewBag.friendStories = takePartFriendStory;
+                        ViewBag.AllFriendStories = getAllFriendStories;
                     }
 
                     return View(model: posts);

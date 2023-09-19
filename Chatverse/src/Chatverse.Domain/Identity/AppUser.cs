@@ -1,14 +1,5 @@
-﻿using Chatverse.Domain.Entities;
-using Chatverse.Domain.Enums;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-namespace Chatverse.Domain.Identity
-{
+﻿namespace Chatverse.Domain.Identity;
+
     public class AppUser : IdentityUser
     {
         public string? FullName { get; set; }
@@ -40,7 +31,8 @@ namespace Chatverse.Domain.Identity
         public bool Privicy { get; set; }
         public DateTime? BirthDate { get; set; }
         public ICollection<SocialAccount> SocialAccounts { get; set; }
+        public ICollection<Story>? Stories { get; set; }
 
 
     }
-}
+

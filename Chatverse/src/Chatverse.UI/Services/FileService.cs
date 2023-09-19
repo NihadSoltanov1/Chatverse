@@ -41,7 +41,7 @@ namespace Chatverse.UI.Services
             return paths;
         
         }
-        public string FileUploadToRoot(IFormFile file)
+        public string FileUploadToRoot(IFormFile file, string folderName)
         {
             string paths = String.Empty;
             if (file is null) return null;
@@ -49,7 +49,7 @@ namespace Chatverse.UI.Services
                 if (file != null && file.Length > 0)
                 {
                     var fileUniqueName = DateTime.Now.ToString("yyyymmddMMss") + "_" + Path.GetFileName(file.FileName);
-                var folderName = "profilepictures";
+               
                     var folderPath = Path.Combine(_env.WebRootPath, folderName);
                     var fullPath = Path.Combine(folderPath, fileUniqueName);
                     string rootFolder = @"wwwroot\";

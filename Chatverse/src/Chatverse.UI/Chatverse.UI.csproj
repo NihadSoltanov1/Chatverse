@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\MessageImages\" />
+    <Folder Include="wwwroot\storyImages\" />
     <Folder Include="wwwroot\postfiles\" />
   </ItemGroup>
 

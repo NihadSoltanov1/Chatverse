@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Chatverse.Application.Common.Results
-{
+﻿namespace Chatverse.Application.Common.Results;
     public record Result : IResult
     {
         public Result(bool success, string message)
@@ -23,4 +16,4 @@ namespace Chatverse.Application.Common.Results
         public string Message { get; set; }
         public int StatusCode { get; set; }
     }
-}
+

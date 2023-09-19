@@ -1,30 +1,24 @@
-﻿using Chatverse.Application.Common.Interfaces;
-using Chatverse.Application.Common.Results;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
+﻿namespace Chatverse.Application.Features.Command.Friendship.DeleteFriendshipRequest;
 
-namespace Chatverse.Application.Features.Command.Friendship.DeleteFriendshipRequest
+public class DeleteFriendshipRequestCommandHandler : IRequestHandler<DeleteFriendshipRequestCommandRequest, Common.Results.IResult>
 {
-    public class DeleteFriendshipRequestCommandHandler : IRequestHandler<DeleteFriendshipRequestCommandRequest, IResult>
+    private readonly IApplicationDbContext _context;
+    private readonly UserManager<Domain.Identity.AppUser> _userManger;
+    private readonly ICurrentUserService _currentUserService;
+
+    public DeleteFriendshipRequestCommandHandler(IApplicationDbContext context, UserManager<Domain.Identity.AppUser> userManger, ICurrentUserService currentUserService)
     {
-        private readonly IApplicationDbContext _context;
-        private readonly UserManager<Domain.Identity.AppUser> _userManger;
-        private readonly ICurrentUserService _currentUserService;
+        _context = context;
+        _userManger = userManger;
+        _currentUserService = currentUserService;
+    }
 
-        public DeleteFriendshipRequestCommandHandler(IApplicationDbContext context, UserManager<Domain.Identity.AppUser> userManger, ICurrentUserService currentUserService)
-        {
-            _context = context;
-            _userManger = userManger;
-            _currentUserService = currentUserService;
-        }
-
-        public async Task<IResult> Handle(DeleteFriendshipRequestCommandRequest request, CancellationToken cancellationToken)
-        {
-            var currentUser = await _userManger.FindByNameAsync(_currentUserService.UserName);
-            var friendship = _context.Friendships.FirstOrDefault(x=>x.Id == request.FriendshipId);
-            _context.Friendships.Remove(friendship);
-            await _context.SaveChangesAsync(cancellationToken);
-            return new Result(true, "Remove fried request succesfully");
-        }
+    public async Task<Common.Results.IResult> Handle(DeleteFriendshipRequestCommandRequest request, CancellationToken cancellationToken)
+    {
+        var currentUser = await _userManger.FindByNameAsync(_currentUserService.UserName);
+        var friendship = _context.Friendships.FirstOrDefault(x=>x.Id == request.FriendshipId);
+        _context.Friendships.Remove(friendship);
+        await _context.SaveChangesAsync(cancellationToken);
+        return new Result(true, "Remove fried request succesfully");
     }
 }

@@ -1,15 +1,4 @@
-﻿using Chatverse.Domain.Common;
-using Chatverse.Domain.Identity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace Chatverse.Domain.Entities
-{
+﻿namespace Chatverse.Domain.Entities;
     public class Post : BaseAuditableEntity
     {
         [ForeignKey("AppUser")]
@@ -23,4 +12,4 @@ namespace Chatverse.Domain.Entities
         public bool State { get; set; }
 
     }
-}
+

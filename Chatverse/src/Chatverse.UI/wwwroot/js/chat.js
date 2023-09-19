@@ -8,7 +8,7 @@ if (storedToken) {
     };
 
     var connection = new signalR.HubConnectionBuilder()
-        .withUrl("https://chatverseapi20230909133203.azurewebsites.net/chatHub", { accessTokenFactory: () => storedToken })
+        .withUrl("http://localhost:5273/chatHub", { accessTokenFactory: () => storedToken })
         .build();
 
     connection.start()
@@ -149,14 +149,15 @@ if (storedToken) {
                         </li>
 
                         <li class="list-inline-item d-none d-lg-inline-block me-2 ms-0">
-                            <button type="button" class="btn nav-btn" data-bs-toggle="modal" data-bs-target="#audiocallModal">
-                                <i class="ri-phone-line"></i>
+                            <button type="button" class="btn nav-btn" id="openVoiceCallModal">
+                               
+                                 <i class="ri-vidicon-line"></i>
                             </button>
                         </li>
 
                         <li class="list-inline-item d-none d-lg-inline-block me-2 ms-0">
                             <button type="button" class="btn nav-btn" id="openVideoCallModal">
-                                <i class="ri-vidicon-line"></i>
+                                 <i class="ri-phone-line"></i>
                             </button>
                         </li>
 
@@ -539,17 +540,14 @@ if (storedToken) {
                             }
                         });
                     }
-                    //var hiddenElement = document.createElement('div');
-                    //hiddenElement.style.display = 'none';
-                    //var hiddenContent = `<input type="hidden" class="receiverIdHiddeninput" value="${targetElementId}">`;
 
-
-                    //hiddenElement.innerHTML = hiddenContent;
-                    //divElement.appendChild(hiddenElement);
-                    //fromButton.style.display = 'block';
                     setTimeout(MyButtonEventListener, 1000)
+                    setTimeout(function () {
+                        scrollToBottom()
+                    }, 100)
                     setTimeout(ShowTyping, 1001)
                     setTimeout(ShowVideoCallModal(srcValue, username), 1002)
+                    setTimeout(ShowVoiceCallModal(srcValue, username), 1004)
                 },
                 error: function (error) {
                     console.error(error);
@@ -559,7 +557,14 @@ if (storedToken) {
 
         })
     })
+    function scrollToBottom() {
+        var chatConversationDiv = document.querySelector('.chat-conversation');
 
+        if (chatConversationDiv && chatConversationDiv.simplebar) {
+            chatConversationDiv.simplebar.getScrollElement().scrollTop = chatConversationDiv.simplebar.getScrollElement().scrollHeight;
+        }
+        console.log("Bura Scroll Isledi")
+    }
     function DeclineVideoCalling(username) {
         var declineButton = document.getElementById('cancel-call');
         declineButton.addEventListener('click', function () {
@@ -636,7 +641,69 @@ if (storedToken) {
        
        
     }
+    function ShowVoiceCallModal(image, username) {
+        var showPopupButton = document.getElementById("openVoiceCallModal");
+        var customMessageContentDiv = document.querySelector('.customMessageContent');
+        showPopupButton.addEventListener("click", function () {
+            console.log('video call basladildi')
+            var callingDiv = document.createElement('div');
+            callingDiv.id = 'customVideoModal';
+            callingDiv.className = 'popup';
+            var callingDivContent = `<div class="popup-content">
+        <div class="circle-image" id="callingImage">
+            <img src="${image}" />
+        </div>
+        <br />
+        <div class="calling-animation"></div>
+        <p>${username}</p>
+        <button id="cancel-call" class="circular-button">
+            <span class="mdi mdi-phone" style="color: white; font-size: 28px;"></span>
+        </button>
+      
+    </div>`;
+            callingDiv.innerHTML = callingDivContent;
+            customMessageContentDiv.appendChild(callingDiv);
 
+
+            waitingToAnswer = true;
+            setTimeout(function () {
+                var audioElement2 = document.getElementById("callingMessageAudio");
+                audioElement2.currentTime = 0; // Sesi sıfırla (eğer zaten çalıyorsa)
+                audioElement2.play();
+                audioElement2.addEventListener('ended', function () {
+                    this.currentTime = 2;
+                    this.play();
+                });
+
+                setTimeout(function () {
+                    connection.invoke('VoiceCallingFriend', username)
+                    console.log("Calling friend invoke")
+                }, 1000);
+
+                DeclineVideoCalling(username);
+            }, 1500);
+
+            setTimeout(function () {
+
+
+                var CallingPopupDiv = document.getElementById('customVideoModal');
+                console.log("CallingPopupDiv: " + CallingPopupDiv);
+                var customMessageContentDiv1 = document.querySelector('.customMessageContent');
+                console.log("CustomMessafgeContentDiv: " + customMessageContentDiv1)
+                customMessageContentDiv1.removeChild(CallingPopupDiv);
+                var audioElement2 = document.getElementById("callingMessageAudio");
+                audioElement2.pause();
+                audioElement2.currentTime = 0;
+                connection.invoke("DeclineVoiceCalling", username);
+            }, 80000);
+
+
+
+        });
+
+
+
+    }
     function DeclineVideoCallRequest(username) {
         var declineButton = document.getElementById('cancel-call');
         declineButton.addEventListener('click', function () {
@@ -692,38 +759,46 @@ if (storedToken) {
        
 
     }
-
-
+    var timeoutId;
     function ShowTyping() {
         var messageContentInput = document.getElementById('messageContent');
         messageContentInput.addEventListener('keydown', () => {
-            var receiverInput1 = document.querySelectorAll(".receiverIdHiddeninput")[0];
+
+          var receiverInput1 = document.querySelectorAll(".receiverIdHiddeninput")[0];
             var receiverId1 = receiverInput1.value;
-            setTimeout(connection.invoke("Typing", receiverId1, true),4000)
+            connection.invoke("Typing", receiverId1, false)
+
         });
         messageContentInput.addEventListener('keyup', () => {
             var receiverInput1 = document.querySelectorAll(".receiverIdHiddeninput")[0];
             var receiverId1 = receiverInput1.value;
-            setTimeout(connection.invoke("Typing", receiverId1, false),2000)
             
+            connection.invoke("Typing", receiverId1, false)
         });
     }
 
+    connection.on('showtousertyping', (ProfilePicture, UserName, isTyping) => {
 
-
-
-    connection.on('showtousertyping', (ProfilePicture, UserName,isTyping) => {
-       
         var typingLi5 = document.getElementById("customTyping");
         if (isTyping) {
+            clearTimeout(timeoutId);
             typingLi5.style.display = 'block';
+
+
         }
         else {
-            typingLi5.style.display = 'none';
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(function () {
+                typingLi5.style.display = 'none';
+            }, 2000);
+            
         }
 
 
     });
+
+
+
 
     connection.on('seeSendMessage', (SenderUsername, SenderProfilePicture, hour, content, imagePath) => {
             var messageContentUlElement2 = document.querySelector('.mainMessageContentList');
@@ -1011,6 +1086,51 @@ if (storedToken) {
             <p>Chatverse video çağrısı</p>
             <div class="button-container">
                 <button id="accept-call" class="circular-button ">
+                    <i class="mdi mdi-phone" style="color: white; font-size: 28px;"></i>
+                </button>
+
+                <button id="cancel-call" class="circular-button">
+                    <i class="mdi mdi-phone-hangup" style="color: white; font-size: 28px;"></i>
+                </button>
+            </div>
+        </div>`;
+        
+        callingDiv.innerHTML = callingDivContent;
+        customMessageContentDiv.appendChild(callingDiv);
+        setTimeout(function () {
+            var audioElement2 = document.getElementById("acceptingMessageAudio");
+            audioElement2.currentTime = 0; // Sesi sıfırla (eğer zaten çalıyorsa)
+            audioElement2.play();
+            audioElement2.addEventListener('ended', function () {
+                this.currentTime = 2;
+                this.play();
+            });
+        }, 500)
+        setTimeout(DeclineVideoCallRequest(UserName), 1500);
+        setTimeout(VideoCallingView(UserName), 1200);
+
+    });
+    connection.on("showVoiceCallingUserPopup", (UserName, ProfilePicture) => {
+
+        var customMessageContentDiv = document.querySelector('.customMessageContent');
+
+        var callingDiv = document.createElement('div');
+
+        callingDiv.id = 'customacceptVideoModal';
+        callingDiv.className = 'popup';
+
+
+        var callingDivContent = `
+        <div class="popup-content">
+            <div class="circle-image" id="callingImage">
+                <img src="/${ProfilePicture}" />
+            </div>
+            <br />
+            <p>${UserName}</p>
+            <br/>
+            <p>Chatverse video çağrısı</p>
+            <div class="button-container">
+                <button id="accept-call" class="circular-button ">
                     <i class="mdi mdi-video" style="color: white; font-size: 28px;"></i>
                 </button>
 
@@ -1019,15 +1139,18 @@ if (storedToken) {
                 </button>
             </div>
         </div>`;
-        var ses = new Audio("~/sound/accepting.mp3");
-        ses.play();
-        ses.addEventListener('ended', function () {
-            this.currentTime = 2;
-            this.play();
-        });
+
         callingDiv.innerHTML = callingDivContent;
         customMessageContentDiv.appendChild(callingDiv);
-
+        setTimeout(function () {
+            var audioElement2 = document.getElementById("acceptingMessageAudio");
+            audioElement2.currentTime = 0; // Sesi sıfırla (eğer zaten çalıyorsa)
+            audioElement2.play();
+            audioElement2.addEventListener('ended', function () {
+                this.currentTime = 2;
+                this.play();
+            });
+        }, 500)
         setTimeout(DeclineVideoCallRequest(UserName), 1500);
         setTimeout(VideoCallingView(UserName), 1200);
 
@@ -1041,7 +1164,14 @@ if (storedToken) {
         audioElement2.pause();
         audioElement2.currentTime = 0;
     });
-
+    connection.on("removeVoiceCallingRequest", () => {
+        var customMessageContentDiv = document.querySelector('.customMessageContent');
+        var videoCallingRequestDiv = document.getElementById('customacceptVideoModal');
+        customMessageContentDiv.removeChild(videoCallingRequestDiv);
+        var audioElement2 = document.getElementById("acceptingMessageAudio");
+        audioElement2.pause();
+        audioElement2.currentTime = 0;
+    });
     connection.on("removeVideoCallerRequest", () => {
         var customMessageContentDiv = document.querySelector('.customMessageContent');
         var videoCallingRequestDiv = document.getElementById('customVideoModal');
@@ -1053,7 +1183,10 @@ if (storedToken) {
 
 
     connection.on("user-connected", (roomId) => {
-        window.location.href = '/Messages/VideoRoom/' + roomId;
+        setTimeout(function () {
+            window.location.href = '/Messages/VideoRoom/' + roomId;
+        }, 1500);
+       
     });
    
 

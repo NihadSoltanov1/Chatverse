@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BZ4BO2/XVDXa6jX4gArJgVoCcu0QPiGCpRh1qw/UMZbkGJ0x2NmI3QCExLRExvRRszdx+dpl/4ewMjIQZ4GSsw==",
+  "dgSpecHash": "skir1N6j3s5ER4MPZLo9WYdlgcXMyShmC8aq/DD2kMyIWhdPOMXyU18ROmthIlc0dI3wbQkP8hQEhdONzGXxjg==",
   "success": true,
   "projectFilePath": "C:\\Chatverse\\Chatverse\\src\\Chatverse.Infrastructure\\Chatverse.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -19,6 +19,7 @@
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\google.apis.core\\1.61.0\\google.apis.core.1.61.0.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\google.apis.storage.v1\\1.60.0.2981\\google.apis.storage.v1.1.60.0.2981.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\google.cloud.storage.v1\\4.6.0\\google.cloud.storage.v1.4.6.0.nupkg.sha512",
+    "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\hangfire.core\\1.8.5\\hangfire.core.1.8.5.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
     "C:\\Users\\Nihad Soltanov\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

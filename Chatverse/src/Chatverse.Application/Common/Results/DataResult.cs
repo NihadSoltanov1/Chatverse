@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Chatverse.Application.Common.Results
-{
+﻿namespace Chatverse.Application.Common.Results;
     public record DataResult<T> : Result, IDataResult<T>
     {
         public DataResult(T data, bool success, string message)
@@ -22,4 +15,4 @@ namespace Chatverse.Application.Common.Results
 
         public T Data { get; set; }
     }
-}
+;

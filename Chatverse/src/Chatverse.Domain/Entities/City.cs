@@ -1,14 +1,4 @@
-﻿using Chatverse.Domain.Common;
-using Chatverse.Domain.Identity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Chatverse.Domain.Entities
-{
+﻿namespace Chatverse.Domain.Entities;
     public class City : BaseEntity
     {
         public string Name { get; set; }
@@ -17,4 +7,4 @@ namespace Chatverse.Domain.Entities
         public Country Country { get; set; }
         public ICollection<AppUser> AppUsers { get; set; }
     }
-}
+

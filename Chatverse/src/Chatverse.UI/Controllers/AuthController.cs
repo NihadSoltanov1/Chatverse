@@ -116,8 +116,11 @@ namespace Chatverse.UI.Controllers
             }
         }
 
-       
-
+        [HttpGet]
+        public async Task<IActionResult> Register()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)

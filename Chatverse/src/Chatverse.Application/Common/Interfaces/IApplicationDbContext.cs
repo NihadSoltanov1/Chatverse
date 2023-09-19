@@ -1,14 +1,4 @@
-﻿using Chatverse.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-namespace Chatverse.Application.Common.Interfaces
-{
+﻿namespace Chatverse.Application.Common.Interfaces;
     public interface IApplicationDbContext 
     {
         public DbSet<Comment> Comments { get; set; }
@@ -22,6 +12,7 @@ namespace Chatverse.Application.Common.Interfaces
         public DbSet<NotificationCategory> NotificationCategories { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<SocialAccount> SocialAccounts { get; set; }
+        public DbSet<Story> Stories { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
-}
+

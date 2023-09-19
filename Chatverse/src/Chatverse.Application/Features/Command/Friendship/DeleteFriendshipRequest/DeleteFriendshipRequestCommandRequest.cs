@@ -1,15 +1,6 @@
-﻿using Chatverse.Application.Common.Results;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Chatverse.Application.Features.Command.Friendship.DeleteFriendshipRequest;
 
-namespace Chatverse.Application.Features.Command.Friendship.DeleteFriendshipRequest
+public class DeleteFriendshipRequestCommandRequest : IRequest<Common.Results.IResult>
 {
-    public class DeleteFriendshipRequestCommandRequest : IRequest<IResult>
-    {
-        public int FriendshipId { get; set; }
-    }
+    public int FriendshipId { get; set; }
 }
